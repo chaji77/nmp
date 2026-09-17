@@ -1,0 +1,30 @@
+
+2025-08-13 14:00:15,958
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250810'
+
+
+2025-08-13 14:00:16,225
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '08'
+
+
+2025-08-13 14:30:49,973
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250810'
+
+
+2025-08-13 14:30:50,040
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '08'
+
+
+2025-08-13 14:31:07,668
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250810'
+
+
+2025-08-13 14:31:07,725
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '08'
+

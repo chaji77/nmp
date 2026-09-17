@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+<sb:ContractMB xmlns:sb="http://www.shinbo.co.kr" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <sb:Common>
+        <sb:Sender></sb:Sender>
+        <sb:TransactionSEQNO></sb:TransactionSEQNO>
+        <sb:Receiver></sb:Receiver>
+        <sb:TransactionNO></sb:TransactionNO>
+        <sb:TransactionDate></sb:TransactionDate>
+        <sb:TransactionTime></sb:TransactionTime>
+        <sb:ResponseCode></sb:ResponseCode>
+        <sb:UserField></sb:UserField>
+    </sb:Common>
+    <sb:Transfer>
+          <sb:TradeDate></sb:TradeDate>
+          <sb:OrderNO></sb:OrderNO>
+          <sb:ContractDate></sb:ContractDate>
+          <sb:HandAcceptYN></sb:HandAcceptYN>
+          <sb:ContractType></sb:ContractType>
+          <sb:BuyerID></sb:BuyerID>
+          <sb:BuyerBusinessNO></sb:BuyerBusinessNO>
+          <sb:SellerID></sb:SellerID>
+          <sb:SellerBusinessNO></sb:SellerBusinessNO>
+          <sb:TotalContractAMT></sb:TotalContractAMT>
+          <sb:BuyerFee></sb:BuyerFee>
+          <sb:SellerFee></sb:SellerFee>
+          <sb:FeeType></sb:FeeType>
+          <sb:SellerName></sb:SellerName>
+          <sb:SellerAccountNO></sb:SellerAccountNO>
+          <sb:PaymentApprovalType></sb:PaymentApprovalType>
+          <sb:TaxApprovalNO></sb:TaxApprovalNO>
+          <sb:TaxBillNO></sb:TaxBillNO>
+          <sb:TaxBillDate></sb:TaxBillDate>
+          <sb:TaxBillAMT></sb:TaxBillAMT>
+          <sb:TaxBillSupplyAMT></sb:TaxBillSupplyAMT>
+          <sb:MainItem></sb:MainItem>
+          <sb:SettlementScheduleCount></sb:SettlementScheduleCount>
+          <sb:ScheduleDetail seq="1">
+              <sb:ScheduleSEQNO></sb:ScheduleSEQNO>
+              <sb:TradeType></sb:TradeType>
+              <sb:SettlementType></sb:SettlementType>
+              <sb:SettlementDueAMT></sb:SettlementDueAMT>
+              <sb:RefundAMT></sb:RefundAMT>
+              <sb:SettlementDueDate></sb:SettlementDueDate>
+              <sb:PaymentDueDate></sb:PaymentDueDate>
+              <sb:ExpirationDate></sb:ExpirationDate>
+          </sb:ScheduleDetail>
+          <sb:OrderCount></sb:OrderCount>
+    </sb:Transfer>
+</sb:ContractMB>

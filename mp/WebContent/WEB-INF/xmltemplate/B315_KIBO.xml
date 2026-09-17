@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<B315>
+	<Header>
+	</Header>
+	<Body>
+		<CommPart>
+			<TransactionID/>
+			<CodeType/>
+			<TransactionLength/>
+			<Sender/>
+			<TransactionSEQNO/>
+			<Receiver/>
+			<TransactionNO/>
+			<TransactionDate/>
+			<TransactionTime/>
+			<ResponseCode/>
+			<ResponseMessage/>
+			<UserField/>
+		</CommPart>
+		<IndivPart>
+			<TradeDate/>
+			<OrderNO/>
+			<ContractDate/>
+			<HandAcceptYN/>
+		</IndivPart>
+	</Body>
+</B315>

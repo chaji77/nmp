@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+span.f24 {color:black;font-size:2em;}
+
+.table-invoice th,
+.table-invoice td {
+  border:1px solid #dedede;
+  padding:3px;
+  height:31px;
+}
+.table-invoice th {
+  background-color:#fafafa;
+  font-weight:normal;
+}
+.table-invoice td {
+  white-space:normal;
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<B313>
+	<Header>
+	</Header>
+	<Body>
+		<CommPart>
+			<TransactionID/>
+			<CodeType/>
+			<TransactionLength/>
+			<Sender/>
+			<TransactionSEQNO/>
+			<Receiver/>
+			<TransactionNO/>
+			<TransactionDate/>
+			<TransactionTime/>
+			<ResponseCode/>
+			<ResponseMessage/>
+			<UserField/>
+		</CommPart>
+		<IndivPart>
+			<TradeDate/>
+			<OrderNO/>
+			<ContractDate/>
+			<HandAcceptYN/>
+			<ContractType/>
+			<TotalContractAMT/>
+			<BuyerFee/>
+			<SellerFee/>
+			<FeeType/>
+			<SellerName/>
+			<SellerBankCode/>
+			<SellerAccountNO/>
+			<PaymentApprovalType/>
+			<TaxBillNO/>
+			<TaxBillDate/>
+			<TaxBillAMT/>
+			<MainItem/>
+			<SettlementScheduleInfoList SettlementScheduleCount="">
+				<SettlementScheduleInfo>
+					<ScheduleSEQNO/>
+					<TradeType/>
+					<SettlementType/>
+					<SettlementDueAMT/>
+					<RefundAMT/>
+					<SettlementDueDate/>
+					<SettlementDueTime/>
+					<PaymentDueDate/>
+					<ExpirationDate/>
+				</SettlementScheduleInfo>
+			</SettlementScheduleInfoList>
+			<OrderInfoList OrderCount="">
+				<OrderInfo>
+					<OrderSEQNO/>
+					<Item/>
+					<Size/>
+					<Quantity/>
+					<QuantityUnit/>
+					<UnitPrice/>
+					<SupplyAMT/>
+					<TaxAMT/>
+					<TotalAMT/>
+				</OrderInfo>
+			</OrderInfoList>
+			<Information/>
+		</IndivPart>
+	</Body>
+</B313>

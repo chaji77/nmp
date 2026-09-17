@@ -1,0 +1,565 @@
+
+2026-01-21 11:23:22,403
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2026-01-21 11:23:22,885
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:761)
+EXEC DBO.DAILY_STAT_PROC '20260121';
+
+
+2026-01-21 11:23:23,251
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20260110'
+
+
+2026-01-21 11:23:23,407
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2026', '01'
+
+
+2026-01-21 11:23:34,011
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'GUARANTEE_MASTER_INFO.GUAR_STATUS';
+
+
+2026-01-21 11:23:34,039
+DEBUG : kr.co.mp.trade.GuaranteeDAO.M_GUARANTEE_LIST_PROC(GuaranteeDAO.java:294)
+EXEC DBO.M_GUARANTEE_LIST_PROC 0, '', '0', '', 1, 20;
+
+
+2026-01-21 11:23:34,070
+DEBUG : kr.co.mp.common.CodeDAO.BANK_LIST_PROC(CodeDAO.java:77)
+EXEC DBO.BANK_LIST_PROC;
+
+
+2026-01-21 11:23:34,082
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'GUARANTEE_MASTER_INFO.GUAR_STATUS';
+
+
+2026-01-21 11:23:37,471
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-01-21 11:23:40,027
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2026-01-21 11:23:40,041
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123369;
+
+
+2026-01-21 11:23:40,051
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 123369;
+
+
+2026-01-21 11:23:40,057
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2026-01-21 11:23:40,060
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 123369;
+
+
+2026-01-21 11:23:40,065
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123369;
+
+
+2026-01-21 11:23:40,075
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 123369;
+
+
+2026-01-21 11:23:40,084
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 123369;
+
+
+2026-01-21 11:23:40,096
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 123369;
+
+
+2026-01-21 11:23:40,102
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 123369;
+
+
+2026-01-21 11:23:40,111
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 123369, 'N';
+
+
+2026-01-21 11:23:40,111
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 123369, 'N';
+
+
+2026-01-21 11:23:40,129
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 123369,0;
+
+
+2026-01-21 11:23:40,129
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 123369,0;
+
+
+2026-01-21 11:23:40,148
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 123369;
+
+
+2026-01-21 11:23:40,148
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 123369;
+
+
+2026-01-21 11:23:40,395
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2026-01-21 11:23:40,405
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123369;
+
+
+2026-01-21 11:23:40,417
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 123369;
+
+
+2026-01-21 11:23:40,426
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 123369;
+
+
+2026-01-21 11:23:40,444
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 123369;
+
+
+2026-01-21 11:23:40,453
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 123369, 'N';
+
+
+2026-01-21 11:23:40,463
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 123369,0;
+
+
+2026-01-21 11:23:40,472
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 123369;
+
+
+2026-01-21 11:23:40,494
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123369;
+
+
+2026-01-21 11:23:40,496
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123369;
+
+
+2026-01-21 11:23:40,522
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123369;
+
+
+2026-01-21 11:23:43,452
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2026-01-21 11:23:43,461
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123368;
+
+
+2026-01-21 11:23:43,470
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 123368;
+
+
+2026-01-21 11:23:43,477
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 123368;
+
+
+2026-01-21 11:23:43,502
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 123368;
+
+
+2026-01-21 11:23:43,515
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 123368, 'N';
+
+
+2026-01-21 11:23:43,525
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 123368,0;
+
+
+2026-01-21 11:23:43,537
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 123368;
+
+
+2026-01-21 11:23:43,550
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123368;
+
+
+2026-01-21 11:23:45,627
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_FOR_TRADE_LIST_PROC(TaxDAO.java:84)
+EXEC DBO.CT_BILL_FOR_TRADE_LIST_PROC 1, 20, 123368, 0, '20250121', '20260121';
+
+
+2026-01-21 11:23:45,665
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123368;
+
+
+2026-01-21 11:28:46,577
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 11:32:36,239
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_MASTER_DETAIL_PROC(TaxDAO.java:123)
+EXEC DBO.CT_BILL_MASTER_DETAIL_PROC '10326';
+
+
+2026-01-21 11:32:36,249
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_ITEM_DETAIL_PROC(TaxDAO.java:175)
+EXEC DBO.CT_BILL_ITEM_DETAIL_PROC '10326';
+
+
+2026-01-21 11:33:45,705
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 11:33:50,280
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:33:50,280
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/InvoicesPerCustomer.jsp]의 [141] 행에서 오류가 발생했습니다.
+InteferCryptoUtil cannot be resolved
+138:       <td class='center'>
+139:         <a onclick="dropBill('<%=IntegerCryptoUtil.crypt(t.SBILL_SEQ) %>');" class='btn darkred'>삭제</a>
+140:         <% if (t.ITEM_NAME == null || t.ITEM_NAME.trim().equals("")){%>
+141:           <a onclick="editBill('<%=InteferCryptoUtil.crypy(t.SBILL_SEQ ) %>');" class = 'btn'>수정</a>
+142:         <% } %>
+143:       </td>
+144:     </tr>
+
+
+Stacktrace:
+
+
+2026-01-21 11:33:52,558
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:33:52,559
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:33:55,360
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:33:55,361
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/InvoicesPerCustomer.jsp]의 [141] 행에서 오류가 발생했습니다.
+InteferCryptoUtil cannot be resolved
+138:       <td class='center'>
+139:         <a onclick="dropBill('<%=IntegerCryptoUtil.crypt(t.SBILL_SEQ) %>');" class='btn darkred'>삭제</a>
+140:         <% if (t.ITEM_NAME == null || t.ITEM_NAME.trim().equals("")){%>
+141:           <a onclick="editBill('<%=InteferCryptoUtil.crypy(t.SBILL_SEQ ) %>');" class = 'btn'>수정</a>
+142:         <% } %>
+143:       </td>
+144:     </tr>
+
+
+Stacktrace:
+
+
+2026-01-21 11:36:10,118
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:10,118
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/InvoicesPerCustomer.jsp]의 [141] 행에서 오류가 발생했습니다.
+The method crypy(String) is undefined for the type IntegerCryptoUtil
+138:       <td class='center'>
+139:         <a onclick="dropBill('<%=IntegerCryptoUtil.crypt(t.SBILL_SEQ) %>');" class='btn darkred'>삭제</a>
+140:         <% if (t.ITEM_NAME == null || t.ITEM_NAME.trim().equals("")){%>
+141:           <a onclick="editBill('<%=IntegerCryptoUtil.crypy(t.SBILL_SEQ ) %>');" class = 'btn'>수정</a>
+142:         <% } %>
+143:       </td>
+144:     </tr>
+
+
+Stacktrace:
+
+
+2026-01-21 11:36:10,975
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:10,976
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:11,956
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:11,957
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:12,263
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:12,263
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:12,538
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:12,538
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:37,186
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:37,186
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/InvoicesPerCustomer.jsp]의 [141] 행에서 오류가 발생했습니다.
+The method crypy(String) is undefined for the type IntegerCryptoUtil
+138:       <td class='center'>
+139:         <a onclick="dropBill('<%=IntegerCryptoUtil.crypt(t.SBILL_SEQ) %>');" class='btn darkred'>삭제</a>
+140:         <% if (t.ITEM_NAME == null || t.ITEM_NAME.trim().equals("")){%>
+141:           <a onclick="editBill('<%=IntegerCryptoUtil.crypy(t.SBILL_SEQ ) %>');" class = 'btn'>수정</a>
+142:         <% } %>
+143:       </td>
+144:     </tr>
+
+
+Stacktrace:
+
+
+2026-01-21 11:36:55,884
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:55,884
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/InvoicesPerCustomer.jsp]의 [141] 행에서 오류가 발생했습니다.
+The method crypy(String) is undefined for the type IntegerCryptoUtil
+138:       <td class='center'>
+139:         <a onclick="dropBill('<%=IntegerCryptoUtil.crypt(t.SBILL_SEQ) %>');" class='btn darkred'>삭제</a>
+140:         <% if (t.ITEM_NAME == null || t.ITEM_NAME.trim().equals("")){%>
+141:           <a onclick="editBill('<%=IntegerCryptoUtil.crypy(t.SBILL_SEQ ) %>');" class = 'btn'>수정</a>
+142:         <% } %>
+143:       </td>
+144:     </tr>
+
+
+Stacktrace:
+
+
+2026-01-21 11:36:57,463
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:57,464
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:57,969
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:57,970
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:58,226
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:58,226
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:36:58,475
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-01-21 11:36:58,476
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.trade.InvoicesPerCustomer_jsp
+
+
+2026-01-21 11:38:53,807
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_FOR_TRADE_LIST_PROC(TaxDAO.java:84)
+EXEC DBO.CT_BILL_FOR_TRADE_LIST_PROC 1, 20, 123368, 0, '20250121', '20260121';
+
+
+2026-01-21 11:38:53,827
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123368;
+
+
+2026-01-21 11:38:59,005
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_MASTER_DETAIL_PROC(TaxDAO.java:123)
+EXEC DBO.CT_BILL_MASTER_DETAIL_PROC '10326';
+
+
+2026-01-21 11:38:59,014
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_ITEM_DETAIL_PROC(TaxDAO.java:175)
+EXEC DBO.CT_BILL_ITEM_DETAIL_PROC '10326';
+
+
+2026-01-21 11:39:16,189
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_MASTER_DETAIL_PROC(TaxDAO.java:123)
+EXEC DBO.CT_BILL_MASTER_DETAIL_PROC '10326';
+
+
+2026-01-21 11:39:16,199
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_ITEM_DETAIL_PROC(TaxDAO.java:175)
+EXEC DBO.CT_BILL_ITEM_DETAIL_PROC '10326';
+
+
+2026-01-21 11:43:53,976
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 11:48:54,458
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 11:53:54,441
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 11:58:54,453
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:03:54,459
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:08:54,450
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:13:54,446
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:18:54,459
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:23:54,454
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:28:54,455
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:33:54,447
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:38:54,461
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 12:43:54,440
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 13:20:10,523
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-01-21 13:20:37,992
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_RECEIVER_BY_CTID_PROC(InvoiceDAO.java:406)
+EXEC DBO.T_BILL_RECEIVER_BY_CTID_PROC 0
+

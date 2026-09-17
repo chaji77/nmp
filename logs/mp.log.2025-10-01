@@ -1,0 +1,101 @@
+
+2025-10-01 17:52:04,543
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-10-01 17:52:05,576
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:758)
+EXEC DBO.DAILY_STAT_PROC '20251001';
+
+
+2025-10-01 17:52:06,129
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20251010'
+
+
+2025-10-01 17:52:06,544
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '10'
+
+
+2025-10-01 17:52:17,590
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_CNT_PROC(CustomerDAO.java:23)
+EXEC DBO.COMPANY_CNT_PROC;
+
+
+2025-10-01 17:52:17,624
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_CNT_PROC(CustomerDAO.java:23)
+EXEC DBO.COMPANY_CNT_PROC;
+
+
+2025-10-01 17:52:18,025
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:626)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20250930', 1;
+
+
+2025-10-01 17:52:18,025
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:626)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20250930', 1;
+
+
+2025-10-01 17:52:18,040
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:626)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20250930', 0;
+
+
+2025-10-01 17:52:18,040
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:626)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20250930', 0;
+
+
+2025-10-01 17:52:18,166
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_LIST_PROC(NoticeDAO.java:149)
+EXEC DBO.C_NOTICE_LIST_PROC 1, 5, 'N';
+
+
+2025-10-01 17:52:18,166
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_LIST_PROC(NoticeDAO.java:149)
+EXEC DBO.C_NOTICE_LIST_PROC 1, 5, 'N';
+
+
+2025-10-01 17:52:18,188
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_POPUPLIST_PROC(NoticeDAO.java:179)
+EXEC DBO.C_NOTICE_POPUPLIST_PROC;
+
+
+2025-10-01 17:52:18,188
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_POPUPLIST_PROC(NoticeDAO.java:179)
+EXEC DBO.C_NOTICE_POPUPLIST_PROC;
+
+
+2025-10-01 19:51:03,025
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-10-01 19:51:03,026
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+com.microsoft.sqlserver.jdbc.SQLServerException: 호스트 210.112.124.63, 포트 1433에 대한 TCP/IP 연결에 실패했습니다. 오류: "Network is unreachable: connect. 연결 속성을 확인하세요. SQL Server의 인스턴스가 호스트에서 실행되고 있고 포트에서 TCP/IP 연결을 허용하고 있는지 확인하세요. 또한 방화벽에서 포트로의 TCP 연결을 차단하지 않는지 확인하세요.".
+
+
+2025-10-01 19:51:03,384
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-10-01 19:51:03,384
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [17]에서 [mgr/Notification.jsp]을(를) 처리하는 중 예외 발생
+
+14: DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+15: String formattedDate = (strCheckOutYn.equals("Y")) ? now.format(formatter) : "";
+16: 
+17: ArrayList<NotificationVO> arr = NotificationDAO.NOTIFICATE_PROC(strRegId, formattedDate);
+18: String strContextPath = ConfigurationMgr.getInstance().getString("CONTEXT_PATH");
+19: if (strFromNotificationYN.equals("Y") && (arr==null || arr.size()==0)) {
+20:   out.print("");
+
+
+Stacktrace:
+

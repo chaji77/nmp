@@ -1,0 +1,43 @@
+.hint i {color:#000;}
+.dynamic-page {
+  display: none;
+  width: calc(100% - 42px);
+  margin-top: 0px;margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: white;
+}
+p {line-height:1.6em;}
+#element_to_pop_up {
+  background-color:transparent;
+  display:none;
+  padding:0 !important;
+}
+#my-company-reg {background-color:#fffafa;}
+div.cause {margin-top:10px;font-size:0.9em;text-align:justify;}
+
+#ifrm_cert {display:block;width:500px;height:650px;border:0;margin-left:auto;margin-right:auto;}
+#maturity-cnt {font-weight:bold;color:darkorange;display:none;font-size:1.2em;}
+
+.fa-search {font-size:1.6em;cursor:pointer;vertical-align:middle;margin-left:10px;}
+.fa-search:hover {color:darkgreen;}
+.ellipse_column {width:180px;display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+#items th {background-color:#faffff;}
+#bill-item-list td {padding:2px;}
+#bill-item-list input {width:calc(100% - 22px);padding-right:10px;}
+#bill-item-list input.numput {text-align:right;}
+
+.emp {color:darkred;font-size:2em;}
+.scrap_yn_block {display:none;}
+
+.result-message {line-height:1.4em;text-align:justify;}
+
+#temp_contact_cnt {background-color:darkorange;color:white;padding:2px 5px;margin-left:5px;border-radius:3px;animation:blink 1.5s infinite;}
+
+@media only screen and (max-width:767px) {
+  .dynamic-page {width:calc(100% - 20px);padding:10px;font-size:0.9em;}
+  div.btns a {padding-left:15px;padding-right:15px;}
+  .result-message {top:calc(50% - 130px);left:5%;width:calc(90% - 45px);}
+  .select2 {width:calc(100% - 146.5px);max-width:calc(100% - 146.5px);}
+}

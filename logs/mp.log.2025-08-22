@@ -1,0 +1,93 @@
+
+2025-08-22 08:02:47,816
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-08-22 08:02:47,822
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create PoolableConnectionFactory (호스트 210.112.124.63, 포트 1433에 대한 TCP/IP 연결에 실패했습니다. 오류: "connect timed out. 연결 속성을 확인하세요. SQL Server의 인스턴스가 호스트에서 실행되고 있고 포트에서 TCP/IP 연결을 허용하고 있는지 확인하세요. 또한 방화벽에서 포트로의 TCP 연결을 차단하지 않는지 확인하세요.".)
+
+
+2025-08-22 08:02:47,833
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-22 08:02:47,855
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [mgr/LoginProc.jsp]을(를) 처리하는 중 예외 발생
+
+11: vo.LOGIN_ID  = StrUtil.nvl(request.getParameter("login_id"));
+12: vo.LOGIN_PW  = StrUtil.nvl(request.getParameter("login_pw"));
+13: if (!csrf_token.equals("") && ((String)session.getAttribute("csrf_token")).equals(csrf_token)) {
+14:   ManagerVO r = new ManagerBean().M_MANAGER_LOGIN_PROC(vo);
+15:   if (r.MAN_ID==-1) rtn = "\"isSuccess\":false,\"msg\":\"아이디를 확인하십시오.\"";
+16:   else if (r.MAN_ID==-2) rtn = "\"isSuccess\":false,\"msg\":\"비밀번호를 확인하십시오.\"";
+17:   else {
+
+
+Stacktrace:
+
+
+2025-08-22 08:03:32,288
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-08-22 08:03:32,291
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create PoolableConnectionFactory (호스트 210.112.124.63, 포트 1433에 대한 TCP/IP 연결에 실패했습니다. 오류: "connect timed out. 연결 속성을 확인하세요. SQL Server의 인스턴스가 호스트에서 실행되고 있고 포트에서 TCP/IP 연결을 허용하고 있는지 확인하세요. 또한 방화벽에서 포트로의 TCP 연결을 차단하지 않는지 확인하세요.".)
+
+
+2025-08-22 08:03:32,325
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-22 08:03:32,326
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [mgr/LoginProc.jsp]을(를) 처리하는 중 예외 발생
+
+11: vo.LOGIN_ID  = StrUtil.nvl(request.getParameter("login_id"));
+12: vo.LOGIN_PW  = StrUtil.nvl(request.getParameter("login_pw"));
+13: if (!csrf_token.equals("") && ((String)session.getAttribute("csrf_token")).equals(csrf_token)) {
+14:   ManagerVO r = new ManagerBean().M_MANAGER_LOGIN_PROC(vo);
+15:   if (r.MAN_ID==-1) rtn = "\"isSuccess\":false,\"msg\":\"아이디를 확인하십시오.\"";
+16:   else if (r.MAN_ID==-2) rtn = "\"isSuccess\":false,\"msg\":\"비밀번호를 확인하십시오.\"";
+17:   else {
+
+
+Stacktrace:
+
+
+2025-08-22 08:04:47,532
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-08-22 08:04:47,534
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create PoolableConnectionFactory (호스트 210.112.124.63, 포트 1433에 대한 TCP/IP 연결에 실패했습니다. 오류: "connect timed out. 연결 속성을 확인하세요. SQL Server의 인스턴스가 호스트에서 실행되고 있고 포트에서 TCP/IP 연결을 허용하고 있는지 확인하세요. 또한 방화벽에서 포트로의 TCP 연결을 차단하지 않는지 확인하세요.".)
+
+
+2025-08-22 08:04:47,559
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-22 08:04:47,559
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [mgr/LoginProc.jsp]을(를) 처리하는 중 예외 발생
+
+11: vo.LOGIN_ID  = StrUtil.nvl(request.getParameter("login_id"));
+12: vo.LOGIN_PW  = StrUtil.nvl(request.getParameter("login_pw"));
+13: if (!csrf_token.equals("") && ((String)session.getAttribute("csrf_token")).equals(csrf_token)) {
+14:   ManagerVO r = new ManagerBean().M_MANAGER_LOGIN_PROC(vo);
+15:   if (r.MAN_ID==-1) rtn = "\"isSuccess\":false,\"msg\":\"아이디를 확인하십시오.\"";
+16:   else if (r.MAN_ID==-2) rtn = "\"isSuccess\":false,\"msg\":\"비밀번호를 확인하십시오.\"";
+17:   else {
+
+
+Stacktrace:
+

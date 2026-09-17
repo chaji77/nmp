@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding='EUC-KR'?>
+<sb:ApplicationMK xmlns:sb='http://www.shinbo.co.kr' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+ <sb:Common>
+  <sb:Sender></sb:Sender>
+  <sb:TransactionSEQNO></sb:TransactionSEQNO>
+  <sb:Receiver></sb:Receiver>
+  <sb:TransactionNO>C211</sb:TransactionNO>
+  <sb:TransactionDate></sb:TransactionDate>
+  <sb:TransactionTime></sb:TransactionTime>
+  <sb:ResponseCode>0000</sb:ResponseCode>
+  <sb:ResponseMessage></sb:ResponseMessage>
+ </sb:Common>
+ <sb:Transfer>
+  <sb:BuyerID></sb:BuyerID>
+  <sb:BuyerBusinessNO></sb:BuyerBusinessNO>
+  <sb:SellerID></sb:SellerID>
+  <sb:SellerBusinessNO></sb:SellerBusinessNO>
+  <sb:ApplicationNO></sb:ApplicationNO>
+  <sb:ApplicationAMT></sb:ApplicationAMT>
+  <sb:GuaranteeExpirationText></sb:GuaranteeExpirationText>
+  <sb:GuaranteeType></sb:GuaranteeType>
+  <sb:Information></sb:Information>
+ </sb:Transfer>
+</sb:ApplicationMK>

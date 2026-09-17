@@ -1,0 +1,90 @@
+
+2025-11-04 10:12:58,587
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-11-04 10:12:59,088
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:758)
+EXEC DBO.DAILY_STAT_PROC '20251104';
+
+
+2025-11-04 10:12:59,272
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20251110'
+
+
+2025-11-04 10:12:59,439
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '11'
+
+
+2025-11-04 10:13:01,931
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:308)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0'
+
+
+2025-11-04 10:13:01,945
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:353)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2025-11-04 10:15:42,024
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_ADD_PROC(InvoiceDAO.java:86)
+EXEC DBO.T_BILL_ADD_PROC 'MPONE', '0', 0, 1, 1, 1, 1, 2, '', '10000', '1000', '11000', '20251104', '4108711758', '엠피원(주)', '박상열', '(07549) 서울특별시 강서구 양천로 532, 더리브아너비즈타워 1305호', '전자상거래업', '서비스업', '담당자', 'mailadmin@mp1.co.kr', '5068135985', '테스트', '테스트', '회사입니다', '업태', '업종', '아무개', '010-0000-0000', 'jdjemals@mp1.com', '<N><E>20251103</E><NM>아므</NM><I>ea</I><U>1</U><P>10000</P><A>10000</A><T>1000</T><D></D></N>', ''
+
+
+2025-11-04 10:15:42,496
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2025-11-04 10:21:02,773
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-11-04 10:25:17,822
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_ADD_PROC(InvoiceDAO.java:86)
+EXEC DBO.T_BILL_ADD_PROC 'MPONE', '0', 0, 1, 1, 1, 1, 2, '', '10000', '1000', '11000', '20251104', '4108711758', '엠피원(주)', '박상열', '(07549) 서울특별시 강서구 양천로 532, 더리브아너비즈타워 1305호', '전자상거래업', '서비스업', '담당자', 'mailadmin@mp1.co.kr', '5068135985', '테스트', '테스트', '', '업태', '업종', '담당자', '010-0000-0000', 'jdjemals@mp1.com', '<N><E>20251103</E><NM>아므</NM><I>ea</I><U>1</U><P>10000</P><A>10000</A><T>1000</T><D></D></N>', ''
+
+
+2025-11-04 10:25:17,871
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2025-11-04 10:26:31,762
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2025-11-04 10:31:49,419
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-11-04 10:36:36,414
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:308)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0'
+
+
+2025-11-04 10:36:36,425
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:353)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2025-11-04 10:36:38,336
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2025-11-04 10:36:44,314
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_DROP_PROC(InvoiceDAO.java:261)
+EXEC DBO.T_BILL_DROP_PROC '1000034,1000035', 1
+
+
+2025-11-04 10:36:46,205
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+

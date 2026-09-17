@@ -1,0 +1,170 @@
+
+2026-03-23 17:04:45,083
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_CNT_PROC(CustomerDAO.java:23)
+EXEC DBO.COMPANY_CNT_PROC;
+
+
+2026-03-23 17:04:45,277
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:629)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20260330', 1;
+
+
+2026-03-23 17:04:45,289
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:629)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20260330', 0;
+
+
+2026-03-23 17:04:45,318
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_LIST_PROC(NoticeDAO.java:149)
+EXEC DBO.C_NOTICE_LIST_PROC 1, 5, 'N';
+
+
+2026-03-23 17:04:45,335
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_POPUPLIST_PROC(NoticeDAO.java:179)
+EXEC DBO.C_NOTICE_POPUPLIST_PROC;
+
+
+2026-03-23 17:07:10,336
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_CNT_PROC(CustomerDAO.java:23)
+EXEC DBO.COMPANY_CNT_PROC;
+
+
+2026-03-23 17:07:10,352
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:629)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20260330', 1;
+
+
+2026-03-23 17:07:10,367
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:629)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20260330', 0;
+
+
+2026-03-23 17:07:10,393
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_LIST_PROC(NoticeDAO.java:149)
+EXEC DBO.C_NOTICE_LIST_PROC 1, 5, 'N';
+
+
+2026-03-23 17:07:10,407
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_POPUPLIST_PROC(NoticeDAO.java:179)
+EXEC DBO.C_NOTICE_POPUPLIST_PROC;
+
+
+2026-03-23 18:42:51,728
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2026-03-23 18:42:52,178
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:761)
+EXEC DBO.DAILY_STAT_PROC '20260323';
+
+
+2026-03-23 18:42:52,419
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20260310'
+
+
+2026-03-23 18:42:52,564
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2026', '03'
+
+
+2026-03-23 18:42:54,203
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 18:44:42,251
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 18:44:50,314
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 18:44:51,062
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 18:49:51,164
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 18:54:51,115
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 18:59:51,117
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 19:04:51,108
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 19:09:51,098
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 19:14:51,100
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 19:19:51,102
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-23 19:21:52,014
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '이지원', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:14,853
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '이지원', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:16,574
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '이지원', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:18,500
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:20,018
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:20,774
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:24,958
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:24:49,738
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-23 19:28:03,735
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+

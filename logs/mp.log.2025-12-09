@@ -1,0 +1,230 @@
+
+2025-12-09 16:28:54,972
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-12-09 16:28:55,478
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:760)
+EXEC DBO.DAILY_STAT_PROC '20251209';
+
+
+2025-12-09 16:28:55,757
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20251210'
+
+
+2025-12-09 16:28:55,920
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '12'
+
+
+2025-12-09 16:28:58,935
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20251108', '20251209', 0, 'A', 'R', '', 0;
+
+
+2025-12-09 16:28:58,945
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:379)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20251108', '20251209', 0, 'A', 'R', '', 0;
+
+
+2025-12-09 16:28:58,946
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:380)
+com.microsoft.sqlserver.jdbc.SQLServerException: 열 이름 BUYER_BIZ_NO이(가) 잘못되었습니다.
+
+
+2025-12-09 16:29:06,640
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20240108', '20251209', 0, 'A', 'R', '', 0;
+
+
+2025-12-09 16:29:06,654
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:379)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20240108', '20251209', 0, 'A', 'R', '', 0;
+
+
+2025-12-09 16:29:06,654
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:380)
+com.microsoft.sqlserver.jdbc.SQLServerException: 열 이름 BUYER_BIZ_NO이(가) 잘못되었습니다.
+
+
+2025-12-09 16:29:13,392
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 999999, 0, '', '20240108', '20251209', 0, 'A', 'R', '', 0;
+
+
+2025-12-09 16:29:13,407
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:379)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 999999, 0, '', '20240108', '20251209', 0, 'A', 'R', '', 0;
+
+
+2025-12-09 16:29:13,407
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:380)
+com.microsoft.sqlserver.jdbc.SQLServerException: 열 이름 BUYER_BIZ_NO이(가) 잘못되었습니다.
+
+
+2025-12-09 16:34:07,032
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 16:39:06,903
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 16:40:34,423
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 500, 0, '', '20231003', '20251209', 0, '', 'R', '', 0;
+
+
+2025-12-09 16:40:34,438
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:379)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 500, 0, '', '20231003', '20251209', 0, '', 'R', '', 0;
+
+
+2025-12-09 16:40:34,438
+ERROR : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:380)
+com.microsoft.sqlserver.jdbc.SQLServerException: 열 이름 BUYER_BIZ_NO이(가) 잘못되었습니다.
+
+
+2025-12-09 16:44:06,892
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 16:49:06,891
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 16:54:06,885
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 16:59:06,887
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:04:06,898
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:09:06,893
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:14:06,891
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:19:06,898
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:24:06,891
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:29:06,907
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:34:06,888
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:39:06,886
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:44:06,888
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:49:06,897
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:54:06,888
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 17:59:06,892
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:04:06,895
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:09:06,883
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:14:06,884
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:19:06,887
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:24:06,886
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:29:06,893
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:34:06,888
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 18:39:06,894
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 20:04:52,215
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 20:09:06,895
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 20:14:06,885
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-12-09 20:19:06,893
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+

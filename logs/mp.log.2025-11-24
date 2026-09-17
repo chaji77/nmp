@@ -1,0 +1,5 @@
+
+2025-11-24 16:19:26,855
+DEBUG : kr.co.mp.firstbill.BillUserDAO.BILL_USER_LOGIN_PROC(BillUserDAO.java:64)
+EXEC FIRSTBILL.DBO.BILL_USER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+

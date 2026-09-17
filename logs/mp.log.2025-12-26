@@ -1,0 +1,345 @@
+
+2025-12-26 10:03:01,616
+DEBUG : kr.co.mp.firstbill.BillUserDAO.BILL_USER_LOGIN_PROC(BillUserDAO.java:64)
+EXEC FIRSTBILL.DBO.BILL_USER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-12-26 10:03:05,499
+DEBUG : kr.co.mp.firstbill.BillUserDAO.BILL_USER_LOGIN_PROC(BillUserDAO.java:64)
+EXEC FIRSTBILL.DBO.BILL_USER_LOGIN_PROC 'potbelly', 'BgSOCELfnK2LNiYPPBYX8A==';
+
+
+2025-12-26 10:03:05,894
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 10:03:08,421
+DEBUG : kr.co.mp.firstbill.BillUserDAO.BILL_USER_DETAIL_PROC(BillUserDAO.java:25)
+EXEC FIRSTBILL.DBO.BILL_USER_DETAIL_PROC 16;
+
+
+2025-12-26 10:03:10,337
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 10:03:12,138
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_LIST_BY_CPY_ID_PROC(InvoiceDAO.java:402)
+EXEC FIRSTBILL.DBO.BILL_LIST_BY_CPY_ID_PROC 1, 16, '20241226', '20251226', '';
+
+
+2025-12-26 10:03:12,146
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 10:03:15,481
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_LIST_BY_CPY_ID_PROC(InvoiceDAO.java:402)
+EXEC FIRSTBILL.DBO.BILL_LIST_BY_CPY_ID_PROC 1, 16, '20241201', '20251226', '';
+
+
+2025-12-26 10:03:15,489
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 10:04:03,943
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 10:54:59,750
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-12-26 10:54:59,750
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/firstbill/InvoiceWrite.jsp]의 [310] 행에서 오류가 발생했습니다.
+strToTaxRegId cannot be resolved or is not a field
+307:         <th class='blue'>등록번호</th>
+308:         <td><input type='number' name='bizno' value='<%=vo.strToBizNo%>' maxlength=8 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+309:         <th class='blue'>종사업장번호</th>
+310:         <td><input type='number' name='tax_reg_id' value='<%=vo.strToTaxRegId%>' maxlength=5 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+311:       </tr>
+312:       <tr>
+313:         <th class='red'>상　호</th>
+
+
+Stacktrace:
+
+
+2025-12-26 10:55:42,257
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-12-26 10:55:42,257
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/firstbill/InvoiceWrite.jsp]의 [310] 행에서 오류가 발생했습니다.
+strToTaxRegId cannot be resolved or is not a field
+307:         <th class='blue'>등록번호</th>
+308:         <td><input type='number' name='bizno' value='<%=vo.strToBizNo%>' maxlength=8 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+309:         <th class='blue'>종사업장번호</th>
+310:         <!-- <td><input type='number' name='tax_reg_id' value='<%=vo.strToTaxRegId%>' maxlength=5 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+311:      --> </tr>
+312:       <tr>
+313:         <th class='red'>상　호</th>
+
+
+Stacktrace:
+
+
+2025-12-26 10:55:52,278
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-12-26 10:55:52,279
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/firstbill/InvoiceWrite.jsp]의 [310] 행에서 오류가 발생했습니다.
+strToTaxRegId cannot be resolved or is not a field
+307:         <th class='blue'>등록번호</th>
+308:         <td><input type='number' name='bizno' value='<%=vo.strToBizNo%>' maxlength=8 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+309:         <th class='blue'>종사업장번호</th>
+310:         <!-- <td><input type='number' name='tax_reg_id' value='<%=vo.strToTaxRegId%>' maxlength=5 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+311:      --> </tr>
+312:       <tr>
+313:         <th class='red'>상　호</th>
+
+
+Stacktrace:
+
+
+2025-12-26 10:56:11,221
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 10:56:11,270
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:278)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 10:57:05,336
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-12-26 10:57:05,353
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/firstbill/InvoiceWrite.jsp]의 [310] 행에서 오류가 발생했습니다.
+strToTaxRegId cannot be resolved or is not a field
+307:         <th class='blue'>등록번호</th>
+308:         <td><input type='number' name='bizno' value='<%=vo.strToBizNo%>' maxlength=8 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+309:         <th class='blue'>종사업장번호</th>
+310:         <td><input type='number' name='tax_reg_id' value='<%=vo.strToTaxRegId%>' maxlength=4 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+311:         </tr>
+312:       <tr>
+313:         <th class='red'>상　호</th>
+
+
+Stacktrace:
+
+
+2025-12-26 13:38:01,588
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-12-26 13:38:01,589
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/firstbill/InvoiceWrite.jsp]의 [310] 행에서 오류가 발생했습니다.
+strToTaxRegId cannot be resolved or is not a field
+307:         <th class='blue'>등록번호</th>
+308:         <td><input type='number' name='bizno' value='<%=vo.strToBizNo%>' maxlength=8 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+309:         <th class='blue'>종사업장번호</th>
+310:         <td><input type='number' name='tax_reg_id' value='<%=vo.strToTaxRegId%>' maxlength=4 placeholder='숫자만 입력하십시오.' onKeyDown="onlyNumber();"></td>
+311:         </tr>
+312:       <tr>
+313:         <th class='red'>상　호</th>
+
+
+Stacktrace:
+
+
+2025-12-26 13:38:27,695
+DEBUG : kr.co.mp.firstbill.BillUserDAO.BILL_USER_LOGIN_PROC(BillUserDAO.java:64)
+EXEC FIRSTBILL.DBO.BILL_USER_LOGIN_PROC 'potbelly', 'BgSOCELfnK2LNiYPPBYX8A==';
+
+
+2025-12-26 13:38:27,722
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 13:38:37,155
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 13:38:37,164
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:278)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 13:47:20,195
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 13:47:20,205
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:278)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 13:48:27,274
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 13:48:27,286
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:279)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 13:48:30,136
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 13:48:30,177
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:279)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 13:48:33,118
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 13:48:33,128
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:279)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 14:26:18,265
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_DETAIL_PROC(InvoiceDAO.java:214)
+EXEC FIRSTBILL.DBO.BILL_DETAIL_PROC 0
+
+
+2025-12-26 14:26:18,280
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_ITEM_PROC(InvoiceDAO.java:279)
+EXEC FIRSTBILL.DBO.BILL_ITEM_PROC 0
+
+
+2025-12-26 14:28:45,465
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_UPDATE_PROC(InvoiceDAO.java:142)
+EXEC FIRSTBILL.DBO.BILL_UPDATE_PROC 0, 1, 1, 1, 1, '', '10000', '1000', '11000', '20251223', '', 'null', 'null', 'null', '4108711758', '엠피원', '차지인', 'ㅎㅎ', '업태', '업종', '담당자', '', 'chaji@mp1.co.kr', '<N><E>20251223</E><NM>품목</NM><I>ea</I><U>1</U><P>1000</P><A>10000</A><T>1000</T><D></D></N>', '';
+
+
+2025-12-26 14:28:45,472
+ERROR : kr.co.mp.firstbill.InvoiceDAO.BILL_UPDATE_PROC(InvoiceDAO.java:148)
+EXEC FIRSTBILL.DBO.BILL_UPDATE_PROC 0, 1, 1, 1, 1, '', '10000', '1000', '11000', '20251223', '', 'null', 'null', 'null', '4108711758', '엠피원', '차지인', 'ㅎㅎ', '업태', '업종', '담당자', '', 'chaji@mp1.co.kr', '<N><E>20251223</E><NM>품목</NM><I>ea</I><U>1</U><P>1000</P><A>10000</A><T>1000</T><D></D></N>', '';
+
+
+2025-12-26 14:28:45,473
+ERROR : kr.co.mp.firstbill.InvoiceDAO.BILL_UPDATE_PROC(InvoiceDAO.java:149)
+com.microsoft.sqlserver.jdbc.SQLServerException: INSERT 문이 FOREIGN KEY 제약 조건 "FK__BILL_ITEM__BILL"과(와) 충돌했습니다. 데이터베이스 "FIRSTBILL", 테이블 "dbo.BILL_TB", column 'BILL_SEQ'에서 충돌이 발생했습니다.
+
+
+2025-12-26 14:28:46,986
+DEBUG : kr.co.mp.firstbill.InvoiceDAO.BILL_STANDBY_PROC(InvoiceDAO.java:168)
+EXEC FIRSTBILL.DBO.BILL_STANDBY_PROC 1, 16;
+
+
+2025-12-26 17:59:20,246
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-12-26 17:59:20,734
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:761)
+EXEC DBO.DAILY_STAT_PROC '20251226';
+
+
+2025-12-26 17:59:21,014
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20251210'
+
+
+2025-12-26 17:59:21,158
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '12'
+
+
+2025-12-26 17:59:27,360
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2025-12-26 17:59:30,143
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2025-12-26 17:59:30,158
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123365;
+
+
+2025-12-26 17:59:30,166
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 123365;
+
+
+2025-12-26 17:59:30,174
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 123365;
+
+
+2025-12-26 17:59:30,245
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 123365;
+
+
+2025-12-26 17:59:30,276
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 123365, 'N';
+
+
+2025-12-26 17:59:30,336
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 123365,0;
+
+
+2025-12-26 17:59:30,381
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 123365;
+
+
+2025-12-26 17:59:30,680
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123365;
+
+
+2025-12-26 17:59:33,484
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_FOR_TRADE_LIST_PROC(TaxDAO.java:84)
+EXEC DBO.CT_BILL_FOR_TRADE_LIST_PROC 1, 20, 123365, 0, '20241226', '20251226';
+
+
+2025-12-26 17:59:33,506
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123365;
+

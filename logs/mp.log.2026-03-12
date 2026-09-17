@@ -1,0 +1,806 @@
+
+2026-03-12 16:27:22,948
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2026-03-12 16:27:23,814
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:761)
+EXEC DBO.DAILY_STAT_PROC '20260312';
+
+
+2026-03-12 16:27:24,378
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20260310'
+
+
+2026-03-12 16:27:24,601
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2026', '03'
+
+
+2026-03-12 16:28:24,155
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:29:03,655
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:29:07,301
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:308)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0'
+
+
+2026-03-12 16:29:07,313
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:353)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-12 16:30:26,516
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:31:24,714
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:31:44,012
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:308)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0'
+
+
+2026-03-12 16:31:44,028
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:353)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-12 16:32:24,288
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:32:34,947
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:32:36,328
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:32:36,723
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:32:37,052
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:33:03,240
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-12 16:33:44,905
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:34:14,671
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:34:16,019
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:34:16,459
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:34:16,806
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:34:17,507
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:34:42,988
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:37:21,862
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:40:19,905
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:40:20,070
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:40:27,261
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_DETAIL_PROC(InvoiceDAO.java:161)
+EXEC DBO.T_BILL_DETAIL_PROC 1000032
+
+
+2026-03-12 16:40:27,312
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_ITEM_PROC(InvoiceDAO.java:227)
+EXEC DBO.T_BILL_ITEM_PROC 1000032
+
+
+2026-03-12 16:40:36,294
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 16:45:36,410
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 16:50:36,415
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 16:55:36,409
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 17:00:36,413
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 17:05:36,420
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 17:10:36,414
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 17:15:36,443
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 17:16:55,433
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-12 17:17:01,221
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:17:05,311
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-12 17:17:07,133
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '(주)삼화정유', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-12 17:17:08,943
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2026-03-12 17:17:08,953
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 17442;
+
+
+2026-03-12 17:17:08,962
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 17442;
+
+
+2026-03-12 17:17:08,972
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 17442;
+
+
+2026-03-12 17:17:08,997
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 17442;
+
+
+2026-03-12 17:17:09,010
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 17442, 'N';
+
+
+2026-03-12 17:17:09,024
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 17442,0;
+
+
+2026-03-12 17:17:09,046
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 17442;
+
+
+2026-03-12 17:17:09,340
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 17442;
+
+
+2026-03-12 17:17:13,304
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:17:15,004
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '1378173615', '0'
+
+
+2026-03-12 17:17:18,757
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:17:42,621
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-12 17:19:59,448
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:19:59,448
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [129] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+126: 	      <ul>
+127: 	        <li>
+128: 	          <label>회사명</label>
+129: 	          <input type='text' name='wd' value='<%=strCorpNm%>' placeholder="회사명">
+130: 	        </li>
+131: 	        <li>
+132: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:20:06,501
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:20:06,502
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [129] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+126: 	      <ul>
+127: 	        <li>
+128: 	          <label>회사명</label>
+129: 	          <input type='text' name='wd' value='<%=strCorpNm%>' placeholder="회사명">
+130: 	        </li>
+131: 	        <li>
+132: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:22:41,563
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:22:53,602
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:22:56,774
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:03,417
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:04,084
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:04,321
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:04,799
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:05,211
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:05,839
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:23:09,370
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_SEARCH_PROC(CustomerDAO.java:271)
+EXEC DBO.COMPANY_SEARCH_PROC 1, 20, '', '', 'X', 'X', 'X', 'X', 'X', 'X', '0', 0;
+
+
+2026-03-12 17:24:21,310
+DEBUG : kr.co.mp.common.CodeDAO.C_CODE_PROC(CodeDAO.java:24)
+EXEC DBO.C_CODE_PROC 'COMPANY.CPY_DISHONOR';
+
+
+2026-03-12 17:24:21,320
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123366;
+
+
+2026-03-12 17:24:21,330
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_MEMO_PROC(CustomerDAO.java:660)
+EXEC DBO.COMPANY_MEMO_PROC 123366;
+
+
+2026-03-12 17:24:21,339
+DEBUG : kr.co.mp.c.CustomerDAO.PERSON_LIST_PROC(CustomerDAO.java:400)
+EXEC DBO.PERSON_LIST_PROC 123366;
+
+
+2026-03-12 17:24:21,357
+DEBUG : kr.co.mp.c.mpfee.CompanyMpFeeInfoDAO.COMPANY_MPFEE_INFO_PROC(CompanyMpFeeInfoDAO.java:23)
+EXEC DBO.COMPANY_MPFEE_INFO_PROC 123366;
+
+
+2026-03-12 17:24:21,365
+DEBUG : kr.co.mp.c.RelationCompanyDAO.RELATION_COMPANY_DETAIL_PROC(RelationCompanyDAO.java:25)
+EXEC DBO.RELATION_COMPANY_DETAIL_PROC 123366, 'N';
+
+
+2026-03-12 17:24:21,376
+DEBUG : kr.co.mp.mgr.customer.CompanyNoTradeDAO.M_COMPANY_NO_TRADE_LIST_PROC(CompanyNoTradeDAO.java:24)
+EXEC DBO.M_COMPANY_NO_TRADE_LIST_PROC 123366,0;
+
+
+2026-03-12 17:24:21,384
+DEBUG : kr.co.mp.mgr.customer.MgrCustomerDAO.M_BUSINESS_PERSON_LIST_PROC(MgrCustomerDAO.java:357)
+EXEC DBO.M_BUSINESS_PERSON_LIST_PROC 123366;
+
+
+2026-03-12 17:24:21,398
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_DETAIL_PROC(CustomerDAO.java:202)
+EXEC DBO.COMPANY_DETAIL_PROC 123366;
+
+
+2026-03-12 17:24:31,887
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:29:32,419
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 17:30:32,783
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:30:32,783
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [130] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+127: 	      <ul>
+128: 	        <li>
+129: 	          <label>회사명</label>
+130: 	          <input type='text' name='strCorpName' value='<%=strCorpNm%>' placeholder="회사명">
+131: 	        </li>
+132: 	        <li>
+133: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:30:32,783
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:30:32,783
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:30:34,727
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:30:34,727
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:38:22,208
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:38:22,209
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [130] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+127: 	      <ul>
+128: 	        <li>
+129: 	          <label>회사명</label>
+130: 	          <input type='text' name='strCorpName' value='<%=strCorpNm%>' placeholder="회사명">
+131: 	        </li>
+132: 	        <li>
+133: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:38:24,018
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:38:24,019
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:38:26,618
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:38:26,618
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [130] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+127: 	      <ul>
+128: 	        <li>
+129: 	          <label>회사명</label>
+130: 	          <input type='text' name='strCorpName' value='<%=strCorpNm%>' placeholder="회사명">
+131: 	        </li>
+132: 	        <li>
+133: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:38:38,502
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:38:38,502
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [130] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+127: 	      <ul>
+128: 	        <li>
+129: 	          <label>회사명</label>
+130: 	          <input type='text' name='strCorpName' value='<%=strCorpNm%>' placeholder="회사명">
+131: 	        </li>
+132: 	        <li>
+133: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:39:58,170
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:39:58,171
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [22] 행에서 오류가 발생했습니다.
+corpName cannot be resolved to a variable
+19: String strInvoiceeCorpNum = StrUtil.nvl(request.getParameter("cn"), "");
+20: 
+21: String strEmpId = "0";
+22: ArrayList<InvoiceVO> arr = new InvoiceDAO().T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate.replaceAll("/", ""), strInvoiceeCorpNum.replaceAll("-", ""), strEmpId, corpName);
+23: 
+24: %>
+25: <%@ include file="../Header.jsp" %>
+
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [130] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+127: 	      <ul>
+128: 	        <li>
+129: 	          <label>회사명</label>
+130: 	          <input type='text' name='strCorpName' value='<%=strCorpNm%>' placeholder="회사명">
+131: 	        </li>
+132: 	        <li>
+133: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:39:59,068
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:39:59,068
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:42:43,291
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:42:43,292
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [22] 행에서 오류가 발생했습니다.
+corpName cannot be resolved to a variable
+19: String strInvoiceeCorpNum = StrUtil.nvl(request.getParameter("cn"), "");
+20: 
+21: String strEmpId = "0";
+22: ArrayList<InvoiceVO> arr = new InvoiceDAO().T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate.replaceAll("/", ""), strInvoiceeCorpNum.replaceAll("-", ""), strEmpId, corpName);
+23: 
+24: %>
+25: <%@ include file="../Header.jsp" %>
+
+
+JSP 파일 [/mgr/etax/TaxRequestList.jsp]의 [130] 행에서 오류가 발생했습니다.
+strCorpNm cannot be resolved to a variable
+127: 	      <ul>
+128: 	        <li>
+129: 	          <label>회사명</label>
+130: 	          <input type='text' name='strCorpName' value='<%=strCorpNm%>' placeholder="회사명">
+131: 	        </li>
+132: 	        <li>
+133: 	          <label>사업자번호</label>
+
+
+Stacktrace:
+
+
+2026-03-12 17:42:44,452
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:42:44,456
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:42:44,681
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:42:44,681
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:42:44,882
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:42:44,882
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:42:45,309
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:42:45,309
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:42:45,585
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-12 17:42:45,585
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+org.apache.jasper.JasperException: java.lang.ClassNotFoundException: org.apache.jsp.mgr.etax.TaxRequestList_jsp
+
+
+2026-03-12 17:45:28,612
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:45:36,838
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:45:40,393
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:45:44,633
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:46:02,773
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:46:16,528
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:46:20,332
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:46:34,167
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', null
+
+
+2026-03-12 17:46:34,171
+ERROR : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:142)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', null
+
+
+2026-03-12 17:46:34,171
+ERROR : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:143)
+com.microsoft.sqlserver.jdbc.SQLServerException: 매개 변수 번호 6에 값이 설정되지 않았습니다.
+
+
+2026-03-12 17:47:13,676
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:47:16,844
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:47:28,396
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', null
+
+
+2026-03-12 17:47:28,398
+ERROR : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:142)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', null
+
+
+2026-03-12 17:47:28,399
+ERROR : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:143)
+com.microsoft.sqlserver.jdbc.SQLServerException: 매개 변수 번호 6에 값이 설정되지 않았습니다.
+
+
+2026-03-12 17:47:35,803
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', null
+
+
+2026-03-12 17:47:35,805
+ERROR : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:142)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', null
+
+
+2026-03-12 17:47:35,805
+ERROR : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:143)
+com.microsoft.sqlserver.jdbc.SQLServerException: 매개 변수 번호 6에 값이 설정되지 않았습니다.
+
+
+2026-03-12 17:47:45,628
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:116)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0'
+
+
+2026-03-12 17:50:53,973
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-12 17:50:57,541
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-12 17:51:05,741
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-12 17:51:14,506
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '1378173615', '0', ''
+
+
+2026-03-12 17:51:18,286
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-12 17:56:18,366
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-12 18:01:18,334
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+

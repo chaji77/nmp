@@ -1,0 +1,8 @@
+uploadfiles/
+classes/
+.Settings
+.Store
+.DS_Store
+/GitHub_Passwords.txt
+/logfiles/
+/dev/

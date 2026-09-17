@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding='EUC-KR'?>
+<sb:MemberLimitMB xmlns:sb='http://www.shinbo.co.kr' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+ <sb:Common>
+  <sb:Sender></sb:Sender>
+  <sb:TransactionSEQNO></sb:TransactionSEQNO>
+  <sb:Receiver></sb:Receiver>
+  <sb:TransactionNO>A311</sb:TransactionNO>
+  <sb:TransactionDate></sb:TransactionDate>
+  <sb:TransactionTime></sb:TransactionTime>
+  <sb:ResponseCode>0000</sb:ResponseCode>
+  <sb:ResponseMessage></sb:ResponseMessage>
+  <sb:UserField></sb:UserField>
+ </sb:Common>
+ <sb:Transfer>
+  <sb:BuyerID></sb:BuyerID>
+  <sb:BuyerBusinessNO></sb:BuyerBusinessNO>
+  <sb:SellerID></sb:SellerID>
+  <sb:SellerBusinessNO></sb:SellerBusinessNO>
+  <sb:SettlementType></sb:SettlementType>
+  <sb:SettlementDueAMT></sb:SettlementDueAMT>
+ </sb:Transfer>
+</sb:MemberLimitMB>

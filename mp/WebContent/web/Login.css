@@ -1,0 +1,42 @@
+ul.flex-layer {display:flex;flex-flow:row wrap;justify-content:center;}
+ul.flex-layer li {margin:10px;}
+ul.flex-layer li.btn-block {margin-top:20px;}
+
+.login-box, .cert-box {padding:10px 30px;border-radius:10px;background-color:rgba(0, 0, 0, 0.1);}
+.cert-box {background-color:rgba(0, 200, 200, 0.1);}
+
+ul.form-box {width:300px;height:230px;margin-left:auto;margin-right:auto;}
+ul.form-box li {min-height:40px;}
+ul.form-box li h3 {margin-top:20px;}
+
+ul.form-box li label {width:74px;}
+ul.form-box li input {border:1px solid #aaa;padding:5px;width:calc(100% - 96.5px);border-radius:5px;}
+ul.form-box a.btn {padding:10px 20px;border-radius:5px;font-weight:bold;}
+
+@media only screen and (max-width:767px) {
+  ul.flex-layer {justify-content:left;}
+  ul.flex-layer li {width: calc(100% - 20px);margin-left:0px;}
+  .login-box, .cert-box {border-radius:0;padding:10px;}
+  ul.form-box {width:100%;}
+  ul.form-box li {padding-left:15px;}
+}
+/**************************** login via cert ****************************/
+#element_to_pop_up {
+    background-color:transparent;
+    border-radius:15px;
+    color:#000;
+    display:none;
+    padding:0px;
+    padding-right:10px;
+    min-width:400px;
+    min-height: 180px;
+    width:auto;
+    height:auto;
+}
+.b-close{
+    cursor:pointer;
+    position:absolute;
+    right:10px;
+    top:5px;
+}
+#ifrm_cert {width:500px;height:650px;border:0;}

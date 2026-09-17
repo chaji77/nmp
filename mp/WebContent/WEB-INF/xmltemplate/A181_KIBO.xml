@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<A181>
+	<Header>
+	</Header>
+	<Body>
+		<CommPart>
+			<TransactionID/>
+			<CodeType/>
+			<TransactionLength/>
+			<Sender/>
+			<TransactionSEQNO/>
+			<Receiver/>
+			<TransactionNO/>
+			<TransactionDate/>
+			<TransactionTime/>
+			<ResponseCode/>
+			<ResponseMessage/>
+			<UserField/>
+		</CommPart>
+		<IndivPart>
+			<OrgSender/>
+			<OrgTransactionSEQNO/>
+			<OrgTransactionNO/>
+			<OrgTransactionDate/>
+			<OrgTransactionTime/>
+		</IndivPart>
+	</Body>
+</A181>

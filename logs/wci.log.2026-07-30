@@ -1,0 +1,31 @@
+
+2026-07-30 18:17:26,512
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2026-07-30 18:17:26,517
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create JDBC driver of class '' for connect URL 'null'
+
+
+2026-07-30 18:17:26,752
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-07-30 18:17:26,752
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [/index.jsp]을(를) 처리하는 중 예외 발생
+
+11: <%@ include file="./web/includes/LoginCheck.jsp" %>
+12: <%
+13: request.setCharacterEncoding("utf-8");
+14: int intTotalCustomerCount = CustomerBean.COMPANY_CNT_PROC();
+15: %>
+16: <%@ include file="./web/includes/Header.jsp" %>
+17: <title><%=ConfigurationMgr.getInstance().getString("OWNER_BRAND_NM") %></title>
+
+
+Stacktrace:
+

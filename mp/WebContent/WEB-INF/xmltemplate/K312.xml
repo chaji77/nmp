@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="EUC-KR"?>
+<sb:ResPaymentTakeOver xmlns:sb="http://www.shinbo.co.kr">
+  <sb:Common xmlns:sb="http://www.shinbo.co.kr">
+    <sb:Sender></sb:Sender>
+    <sb:TransactionSEQNO></sb:TransactionSEQNO>
+    <sb:Receiver></sb:Receiver>
+    <sb:TransactionNO>K312</sb:TransactionNO>
+    <sb:TransactionDate></sb:TransactionDate>
+    <sb:TransactionTime></sb:TransactionTime>
+    <sb:ResponseCode></sb:ResponseCode>
+    <sb:ResponseMessage></sb:ResponseMessage>
+    <sb:UserField></sb:UserField>    
+  </sb:Common>
+  <sb:Transfer>
+    <sb:OrderNO></sb:OrderNO> 
+    <sb:TradeDate></sb:TradeDate>
+  </sb:Transfer>
+</sb:ResPaymentTakeOver>

@@ -1,0 +1,708 @@
+
+2026-03-16 13:19:38,527
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2026-03-16 13:19:38,806
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:761)
+EXEC DBO.DAILY_STAT_PROC '20260316';
+
+
+2026-03-16 13:19:39,003
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20260310'
+
+
+2026-03-16 13:19:39,143
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2026', '03'
+
+
+2026-03-16 13:19:56,408
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20260213', '20260316', 0, 'A', 'R', '', 0;
+
+
+2026-03-16 13:24:56,587
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 13:26:42,791
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', ''
+
+
+2026-03-16 13:26:42,809
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 13:26:49,890
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', '아이비'
+
+
+2026-03-16 13:26:49,902
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 13:27:02,165
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', ''
+
+
+2026-03-16 13:27:02,177
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 13:27:07,811
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', '펀놀로지'
+
+
+2026-03-16 13:27:07,821
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 13:27:11,267
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', '펀놀로지'
+
+
+2026-03-16 13:27:11,278
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 13:32:11,407
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 13:37:11,416
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 13:42:11,409
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 13:47:11,406
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 13:52:11,418
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 13:57:11,420
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:02:11,418
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:07:11,422
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:09:50,782
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-16 14:09:52,104
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-16 14:09:52,105
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestListForExcel.jsp]의 [23] 행에서 오류가 발생했습니다.
+The method T_BILL_STANDBY_PROC(String, int, String, String, String, String) in the type InvoiceDAO is not applicable for the arguments (String, int, String, String, String)
+20: ArrayList<InvoiceVO> arr = new ArrayList<>();
+21: int intPage     = 1;
+22: while (true) {
+23: 	ArrayList<InvoiceVO> pageArr = dao.T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate, strInvoiceeCorpNum, strEmpId);
+24:     if (pageArr == null || pageArr.isEmpty()) {
+25:         break; 
+26:     }
+
+
+Stacktrace:
+
+
+2026-03-16 14:12:22,438
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-16 14:12:24,619
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-16 14:12:24,620
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestListForExcel.jsp]의 [23] 행에서 오류가 발생했습니다.
+strCorpName cannot be resolved to a variable
+20: ArrayList<InvoiceVO> arr = new ArrayList<>();
+21: int intPage     = 1;
+22: while (true) {
+23: 	ArrayList<InvoiceVO> pageArr = dao.T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate, strInvoiceeCorpNum, strEmpId, strCorpName);
+24:     if (pageArr == null || pageArr.isEmpty()) {
+25:         break; 
+26:     }
+
+
+Stacktrace:
+
+
+2026-03-16 14:12:33,762
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-16 14:12:36,215
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-16 14:12:36,215
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxRequestListForExcel.jsp]의 [23] 행에서 오류가 발생했습니다.
+strCorpName cannot be resolved to a variable
+20: ArrayList<InvoiceVO> arr = new ArrayList<>();
+21: int intPage     = 1;
+22: while (true) {
+23: 	ArrayList<InvoiceVO> pageArr = dao.T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate, strInvoiceeCorpNum, strEmpId, strCorpName);
+24:     if (pageArr == null || pageArr.isEmpty()) {
+25:         break; 
+26:     }
+
+
+Stacktrace:
+
+
+2026-03-16 14:13:27,292
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-16 14:13:30,411
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 1, '', '', '0', ''
+
+
+2026-03-16 14:13:30,422
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STANDBY_PROC(InvoiceDAO.java:117)
+EXEC DBO.T_BILL_STANDBY_PROC 'MPONE', 2, '', '', '0', ''
+
+
+2026-03-16 14:13:30,433
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_DETAIL_PROC(InvoiceDAO.java:162)
+EXEC DBO.T_BILL_DETAIL_PROC 1000032
+
+
+2026-03-16 14:13:30,470
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_ITEM_PROC(InvoiceDAO.java:228)
+EXEC DBO.T_BILL_ITEM_PROC 1000032
+
+
+2026-03-16 14:13:30,483
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_DETAIL_PROC(InvoiceDAO.java:162)
+EXEC DBO.T_BILL_DETAIL_PROC 1000033
+
+
+2026-03-16 14:13:30,493
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_ITEM_PROC(InvoiceDAO.java:228)
+EXEC DBO.T_BILL_ITEM_PROC 1000033
+
+
+2026-03-16 14:13:30,504
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_DETAIL_PROC(InvoiceDAO.java:162)
+EXEC DBO.T_BILL_DETAIL_PROC 1000036
+
+
+2026-03-16 14:13:30,512
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_ITEM_PROC(InvoiceDAO.java:228)
+EXEC DBO.T_BILL_ITEM_PROC 1000036
+
+
+2026-03-16 14:18:27,414
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:23:27,410
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:28:27,415
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:33:27,405
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:38:27,421
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:43:27,413
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:48:27,424
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:53:27,419
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 14:58:27,410
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:03:27,411
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:08:27,411
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:13:27,405
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:23:09,649
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:23:13,283
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', ''
+
+
+2026-03-16 15:23:13,298
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 15:27:46,031
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20260213', '20260316', 0, 'A', 'R', '', 0;
+
+
+2026-03-16 15:27:48,875
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:310)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', 1, '0', ''
+
+
+2026-03-16 15:27:48,887
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:355)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 15:32:49,421
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:37:49,415
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:42:49,431
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:47:49,434
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:52:49,426
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 15:57:49,447
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:02:49,410
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:07:49,424
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:12:49,505
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:17:49,422
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:19:51,101
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:19:51,126
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:20:43,990
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '20260311', '20260319', '', 1, '0', ''
+
+
+2026-03-16 16:20:43,998
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:20:47,773
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:20:47,782
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:20:52,679
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:20:52,689
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:21:28,258
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '20250414', '20250417', '', 1, '0', ''
+
+
+2026-03-16 16:21:28,268
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:21:33,625
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:21:33,636
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:23:08,008
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-16 16:23:08,008
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxList.jsp]의 [200] 행에서 오류가 발생했습니다.
+totalSum cannot be resolved to a variable
+197: if (arr!=null && arr.size()>0) {
+198:   for (InvoiceVO vo : arr) {
+199:     intTotalCnt = vo.TCNT;
+200:     totalSum = vo.SUM_TOTAL;
+201: %>
+202:       <tr>
+203:         <td><a href='javascript:view(<%=vo.BILL_SEQ %>);'><b><%=vo.BILL_SENDER_KEY %><%=vo.BILL_SEQ %></b></a></td>
+
+
+Stacktrace:
+
+
+2026-03-16 16:24:45,725
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-16 16:24:45,726
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxList.jsp]의 [200] 행에서 오류가 발생했습니다.
+totalSum cannot be resolved to a variable
+197: if (arr!=null && arr.size()>0) {
+198:   for (InvoiceVO vo : arr) {
+199:     intTotalCnt = vo.TCNT;
+200:     totalSum = vo.SUM_TOTAL;
+201: %>
+202:       <tr>
+203:         <td><a href='javascript:view(<%=vo.BILL_SEQ %>);'><b><%=vo.BILL_SENDER_KEY %><%=vo.BILL_SEQ %></b></a></td>
+
+
+Stacktrace:
+
+
+2026-03-16 16:25:58,090
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-03-16 16:25:58,091
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/etax/TaxList.jsp]의 [200] 행에서 오류가 발생했습니다.
+totalSum cannot be resolved to a variable
+197: if (arr!=null && arr.size()>0) {
+198:   for (InvoiceVO vo : arr) {
+199:     intTotalCnt = vo.TCNT;
+200:     totalSum = vo.SUM_TOTAL;
+201: %>
+202:       <tr>
+203:         <td><a href='javascript:view(<%=vo.BILL_SEQ %>);'><b><%=vo.BILL_SENDER_KEY %><%=vo.BILL_SEQ %></b></a></td>
+
+
+Stacktrace:
+
+
+2026-03-16 16:30:26,825
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:30:26,834
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:31:26,561
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:31:26,571
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:31:51,580
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '20250304', '20250417', '', 1, '0', ''
+
+
+2026-03-16 16:31:51,590
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:36:51,642
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:41:16,657
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '20250304', '20250417', '', 1, '0', ''
+
+
+2026-03-16 16:41:16,667
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:43:34,005
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '20250304', '20250417', '', 1, '0', ''
+
+
+2026-03-16 16:43:34,016
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:44:43,236
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_LIST_PROC(InvoiceDAO.java:312)
+EXEC DBO.T_BILL_LIST_PROC 'MPONE', 1, '', '', '', 1, '0', ''
+
+
+2026-03-16 16:44:43,250
+DEBUG : kr.co.mp.mptax.InvoiceDAO.T_BILL_STATUS_PROC(InvoiceDAO.java:358)
+EXEC DBO.T_BILL_STATUS_PROC 'MPONE'
+
+
+2026-03-16 16:49:43,417
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:54:43,413
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 16:59:43,402
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:04:43,415
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:09:43,414
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:14:43,408
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:19:43,406
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:24:43,416
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:29:43,412
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:34:43,410
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:39:43,421
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:44:43,461
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:49:43,434
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:54:43,416
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 17:59:43,413
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-16 18:04:43,408
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-17 17:44:52,908
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2026-03-17 17:44:53,336
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:761)
+EXEC DBO.DAILY_STAT_PROC '20260317';
+
+
+2026-03-17 17:44:53,790
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20260310'
+
+
+2026-03-17 17:44:53,968
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2026', '03'
+
+
+2026-03-17 17:49:54,282
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-17 17:54:54,279
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-17 17:59:54,277
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-17 18:04:54,266
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2026-03-17 18:09:54,279
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+

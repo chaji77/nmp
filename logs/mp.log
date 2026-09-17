@@ -1,0 +1,31 @@
+
+2026-07-08 15:24:32,910
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2026-07-08 15:24:32,921
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create JDBC driver of class '' for connect URL 'null'
+
+
+2026-07-08 15:24:33,350
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2026-07-08 15:24:33,350
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [mgr/LoginProc.jsp]을(를) 처리하는 중 예외 발생
+
+11: vo.LOGIN_ID  = StrUtil.nvl(request.getParameter("login_id"));
+12: vo.LOGIN_PW  = StrUtil.nvl(request.getParameter("login_pw"));
+13: if (!csrf_token.equals("") && ((String)session.getAttribute("csrf_token")).equals(csrf_token)) {
+14:   ManagerVO r = new ManagerBean().M_MANAGER_LOGIN_PROC(vo);
+15:   if (r.MAN_ID==-1) rtn = "\"isSuccess\":false,\"msg\":\"아이디를 확인하십시오.\"";
+16:   else if (r.MAN_ID==-2) rtn = "\"isSuccess\":false,\"msg\":\"비밀번호를 확인하십시오.\"";
+17:   else {
+
+
+Stacktrace:
+

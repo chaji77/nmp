@@ -1,0 +1,111 @@
+
+2025-07-30 16:09:27,584
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-07-30 16:09:27,584
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create PoolableConnectionFactory ("encrypt" 속성이 "true"(으)로 설정되고 "trustServerCertificate" 속성이 "false"(으)로 설정되었지만 드라이버가 SSL(Secure Sockets Layer) 암호화를 사용하여 SQL Server에 대한 보안 연결을 설정할 수 없습니다. 오류: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target. ClientConnectionId:ec94b3c8-5791-49b3-8120-a0352fc7b254)
+
+
+2025-07-30 16:09:27,756
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-07-30 16:09:27,756
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [/index.jsp]을(를) 처리하는 중 예외 발생
+
+11: <%@ include file="./web/includes/LoginCheck.jsp" %>
+12: <%
+13: request.setCharacterEncoding("utf-8");
+14: int intTotalCustomerCount = CustomerBean.COMPANY_CNT_PROC();
+15: %>
+16: <%@ include file="./web/includes/Header.jsp" %>
+17: <title><%=ConfigurationMgr.getInstance().getString("OWNER_BRAND_NM") %></title>
+
+
+Stacktrace:
+
+
+2025-07-30 16:10:54,570
+DEBUG : kr.co.mp.c.CustomerDAO.COMPANY_CNT_PROC(CustomerDAO.java:23)
+EXEC DBO.COMPANY_CNT_PROC;
+
+
+2025-07-30 16:10:55,100
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:626)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20250730', 1;
+
+
+2025-07-30 16:10:55,111
+DEBUG : kr.co.mp.trade.TradeDAO.HOLIDAY_PERMIT_INVOICE_DAY_PROC(TradeDAO.java:626)
+EXEC DBO.HOLIDAY_PERMIT_INVOICE_DAY_PROC '20250730', 0;
+
+
+2025-07-30 16:10:55,160
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_LIST_PROC(NoticeDAO.java:149)
+EXEC DBO.C_NOTICE_LIST_PROC 1, 5, 'N';
+
+
+2025-07-30 16:10:55,175
+DEBUG : kr.co.mp.c.notice.NoticeDAO.C_NOTICE_POPUPLIST_PROC(NoticeDAO.java:179)
+EXEC DBO.C_NOTICE_POPUPLIST_PROC;
+
+
+2025-07-30 16:11:05,956
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-07-30 16:11:06,187
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:758)
+EXEC DBO.DAILY_STAT_PROC '20250730';
+
+
+2025-07-30 16:11:06,368
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250710'
+
+
+2025-07-30 16:11:06,594
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '07'
+
+
+2025-07-30 16:11:49,838
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:758)
+EXEC DBO.DAILY_STAT_PROC '20250730';
+
+
+2025-07-30 16:11:50,021
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250710'
+
+
+2025-07-30 16:11:50,192
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '07'
+
+
+2025-07-30 16:16:51,097
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-07-30 16:21:50,424
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-07-30 16:26:24,777
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250710'
+
+
+2025-07-30 16:26:25,284
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '07'
+

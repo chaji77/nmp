@@ -1,0 +1,858 @@
+
+2025-08-21 09:12:52,436
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-08-21 09:12:52,467
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:758)
+EXEC DBO.DAILY_STAT_PROC '20250821';
+
+
+2025-08-21 09:12:52,557
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250810'
+
+
+2025-08-21 09:12:52,782
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '08'
+
+
+2025-08-21 09:12:59,925
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 09:12:59,943
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 09:12:59,959
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 09:13:05,185
+DEBUG : org.apache.jsp.common.kakaotalk.Send_jsp._jspService(Send_jsp.java:288)
+M006:01056075313:-31312
+
+
+2025-08-21 09:18:00,449
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:23:00,442
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:28:00,437
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:33:00,445
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:38:00,453
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:40:38,658
+DEBUG : org.apache.jsp.common.kakaotalk.Send_jsp._jspService(Send_jsp.java:288)
+M006:01056075313:-31312
+
+
+2025-08-21 09:43:00,457
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:48:00,440
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:53:00,453
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 09:58:00,449
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:03:00,450
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:08:00,453
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:13:00,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:18:00,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:23:00,453
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:28:00,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:33:00,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:38:00,481
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:43:00,455
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:48:00,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:53:00,454
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 10:58:00,445
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:03:00,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:08:00,451
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:13:00,453
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:18:00,471
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:23:00,465
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:28:00,449
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:33:00,458
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:38:00,459
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:43:00,446
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:48:00,447
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:53:00,458
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 11:58:00,501
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 12:03:00,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:06:47,089
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:08:00,445
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:13:00,438
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:18:00,450
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:23:00,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:28:00,449
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:33:00,442
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:38:00,437
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:43:00,456
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:48:00,441
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:53:00,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 13:58:00,458
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:03:00,454
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:08:00,444
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:13:00,442
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:16:30,356
+DEBUG : org.apache.jsp.common.kakaotalk.Send_jsp._jspService(Send_jsp.java:288)
+M006:01056075313:-31312
+
+
+2025-08-21 14:18:00,016
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:20:38,974
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 2, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:20:38,987
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025619', 'Y';
+
+
+2025-08-21 14:20:38,996
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC 'EMTNETC25072200002UR';
+
+
+2025-08-21 14:20:41,677
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:20:41,691
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 14:20:41,703
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 14:20:44,066
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 2, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:20:44,078
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025619', 'Y';
+
+
+2025-08-21 14:20:44,089
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC 'EMTNETC25072200002UR';
+
+
+2025-08-21 14:20:46,045
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:20:46,061
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 14:20:46,078
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 14:20:49,087
+DEBUG : org.apache.jsp.common.kakaotalk.Send_jsp._jspService(Send_jsp.java:288)
+M006:01042177004:-31312
+
+
+2025-08-21 14:25:46,445
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:30:46,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:35:46,454
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:40:46,454
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:41:44,221
+DEBUG : org.apache.jsp.common.kakaotalk.Send_jsp._jspService(Send_jsp.java:288)
+M006:01042177004:-31312
+
+
+2025-08-21 14:41:49,930
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-21 14:41:49,930
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/Contracts.jsp]의 [361] 행에서 오류가 발생했습니다.
+Syntax error on token ")", delete this token
+358:       <td class='left'><%=FormatUtil.addSeparatorDate(vo.MTYDATE) %>
+359:        <% String today = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+360:       
+361:         if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) && vo.SETTLEDUEDATE.equals(today)) { %>
+362:         <br/><a onclick='sendMessage("M005", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a><% } %>
+363:       </td>
+364:       <td class='left'><a onclick='goDetail(<%=vo.CTID%>);' class='underline'><strong><%=vo.CTID%></strong></a><br/><%=vo.CTNO %></td>
+
+
+Stacktrace:
+
+
+2025-08-21 14:41:58,579
+DEBUG : kr.co.mp.mgr.manager.ManagerDAO.M_MANAGER_LOGIN_PROC(ManagerDAO.java:157)
+EXEC DBO.M_MANAGER_LOGIN_PROC 'superuser', 'BgSOCELfnK2k88wpT7UzxQ==';
+
+
+2025-08-21 14:41:58,602
+DEBUG : kr.co.mp.trade.TradeDAO.DAILY_STAT_PROC(TradeDAO.java:758)
+EXEC DBO.DAILY_STAT_PROC '20250821';
+
+
+2025-08-21 14:41:58,658
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getAdditionalHoliday(ScheduleDAO.java:29)
+EXEC DBO.GET_ADDITIONAL_HOLIDAY_PROC '20250810'
+
+
+2025-08-21 14:41:58,699
+DEBUG : kr.co.funology.fw.pims.ScheduleDAO.getSchedule(ScheduleDAO.java:60)
+EXEC P_PLAN_LIST_PROC '2025', '08'
+
+
+2025-08-21 14:42:02,264
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-21 14:42:02,265
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+JSP를 위한 클래스를 컴파일할 수 없습니다.: 
+
+JSP 파일 [/mgr/trade/Contracts.jsp]의 [361] 행에서 오류가 발생했습니다.
+Syntax error on token ")", delete this token
+358:       <td class='left'><%=FormatUtil.addSeparatorDate(vo.MTYDATE) %>
+359:        <% String today = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+360:       
+361:         if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) && vo.SETTLEDUEDATE.equals(today)) { %>
+362:         <br/><a onclick='sendMessage("M005", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a><% } %>
+363:       </td>
+364:       <td class='left'><a onclick='goDetail(<%=vo.CTID%>);' class='underline'><strong><%=vo.CTID%></strong></a><br/><%=vo.CTNO %></td>
+
+
+Stacktrace:
+
+
+2025-08-21 14:44:25,736
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:44:25,750
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 14:44:25,766
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 14:49:25,807
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:54:25,812
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 14:57:53,272
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:57:53,290
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 14:57:53,308
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 14:57:55,843
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 2, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 14:57:56,053
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025619', 'Y';
+
+
+2025-08-21 14:57:56,261
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC 'EMTNETC25072200002UR';
+
+
+2025-08-21 15:00:02,971
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:00:02,989
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 15:00:03,006
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 15:00:05,025
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 2, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:00:05,040
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025619', 'Y';
+
+
+2025-08-21 15:00:05,051
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC 'EMTNETC25072200002UR';
+
+
+2025-08-21 15:01:34,719
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:01:34,736
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 15:01:34,743
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:01:34,753
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 15:01:34,759
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 15:01:34,793
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 15:02:15,941
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_MASTER_DETAIL_PROC(TaxDAO.java:123)
+EXEC DBO.CT_BILL_MASTER_DETAIL_PROC '10318';
+
+
+2025-08-21 15:02:15,949
+DEBUG : kr.co.mp.trade.TaxDAO.CT_BILL_ITEM_DETAIL_PROC(TaxDAO.java:175)
+EXEC DBO.CT_BILL_ITEM_DETAIL_PROC '10318';
+
+
+2025-08-21 15:06:35,446
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:11:35,461
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:25:55,272
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:26:35,440
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:27:25,046
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:27:25,063
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 15:27:25,080
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 15:27:27,310
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 2, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:27:27,325
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025619', 'Y';
+
+
+2025-08-21 15:27:27,338
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC 'EMTNETC25072200002UR';
+
+
+2025-08-21 15:27:28,926
+DEBUG : kr.co.mp.trade.TradeDAO.CT_HEADER_LIST_PROC(TradeDAO.java:342)
+EXEC DBO.CT_HEADER_LIST_PROC 1, 20, 0, '', '20250721', '20250821', 0, 'A', 'R', '', 0;
+
+
+2025-08-21 15:27:28,943
+DEBUG : kr.co.mp.trade.TradeDAO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC(TradeDAO.java:517)
+EXEC DBO.UNUSUAL_TRANSACTION_LIST_BY_CTID_PROC '2025639,2025638,2025637,2025636,2025635,2025634,2025633,2025632,2025631,2025630,2025629,2025628,2025627,2025626,2025625,2025624,2025623,2025622,2025621,2025620', 'Y';
+
+
+2025-08-21 15:27:28,960
+DEBUG : kr.co.mp.trade.TradeDAO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC(TradeDAO.java:855)
+EXEC DBO.RECEIVE_XML_K311_LIST_BY_CTNO_PROC ',,,,,,,,EMTNETC25072400010UR,EMTNETF25072400009UR,EMTNETC25072400002UR,EMTNETC25072400001UR,EMTNETF25072300004UR,EMTNETF25072300003UR,EMTNETF25072300002UR,EMTNETC25072300001UR,EMTNETF25072200004UR,,EMTNETF25072200003UR,EMTNETC25072200001UR';
+
+
+2025-08-21 15:32:29,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:37:29,458
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:42:29,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:47:29,451
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:52:29,449
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 15:57:29,451
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:02:29,440
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:07:29,449
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:12:29,004
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:17:29,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:22:29,448
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:27:29,450
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:32:29,441
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:37:29,464
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:42:29,464
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:47:29,456
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:52:29,444
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 16:57:29,442
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 17:13:51,257
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 17:17:29,456
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 17:42:53,750
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 17:47:29,460
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 17:59:28,699
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:02:29,435
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:07:29,441
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:12:29,452
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:17:29,450
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:22:29,441
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:27:29,455
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 18:33:36,140
+DEBUG : kr.co.mp.mgr.NotificationDAO.NOTIFICATE_PROC(NotificationDAO.java:25)
+EXEC DBO.NOTIFICATE_PROC 'superuser', '';
+
+
+2025-08-21 23:54:33,776
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-08-21 23:54:33,776
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+com.microsoft.sqlserver.jdbc.SQLServerException: 호스트 210.112.124.63, 포트 1433에 대한 TCP/IP 연결에 실패했습니다. 오류: "connect timed out. 연결 속성을 확인하세요. SQL Server의 인스턴스가 호스트에서 실행되고 있고 포트에서 TCP/IP 연결을 허용하고 있는지 확인하세요. 또한 방화벽에서 포트로의 TCP 연결을 차단하지 않는지 확인하세요.".
+
+
+2025-08-21 23:54:33,926
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-21 23:54:33,926
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [mgr/LoginProc.jsp]을(를) 처리하는 중 예외 발생
+
+11: vo.LOGIN_ID  = StrUtil.nvl(request.getParameter("login_id"));
+12: vo.LOGIN_PW  = StrUtil.nvl(request.getParameter("login_pw"));
+13: if (!csrf_token.equals("") && ((String)session.getAttribute("csrf_token")).equals(csrf_token)) {
+14:   ManagerVO r = new ManagerBean().M_MANAGER_LOGIN_PROC(vo);
+15:   if (r.MAN_ID==-1) rtn = "\"isSuccess\":false,\"msg\":\"아이디를 확인하십시오.\"";
+16:   else if (r.MAN_ID==-2) rtn = "\"isSuccess\":false,\"msg\":\"비밀번호를 확인하십시오.\"";
+17:   else {
+
+
+Stacktrace:
+
+
+2025-08-21 23:55:27,008
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:128)
+Error in kr.co.sology.fw.db.ConnectionMgr.getConnection()
+
+
+2025-08-21 23:55:27,008
+ERROR : kr.co.funology.fw.mgr.ConnectionMgr.setErrorLog(ConnectionMgr.java:129)
+java.sql.SQLException: Cannot create PoolableConnectionFactory (호스트 210.112.124.63, 포트 1433에 대한 TCP/IP 연결에 실패했습니다. 오류: "connect timed out. 연결 속성을 확인하세요. SQL Server의 인스턴스가 호스트에서 실행되고 있고 포트에서 TCP/IP 연결을 허용하고 있는지 확인하세요. 또한 방화벽에서 포트로의 TCP 연결을 차단하지 않는지 확인하세요.".)
+
+
+2025-08-21 23:55:27,242
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:118)
+org.apache.jasper.JasperException
+
+
+2025-08-21 23:55:27,242
+ERROR : org.apache.jsp.error.error_jsp._jspService(error_jsp.java:119)
+행 [14]에서 [mgr/LoginProc.jsp]을(를) 처리하는 중 예외 발생
+
+11: vo.LOGIN_ID  = StrUtil.nvl(request.getParameter("login_id"));
+12: vo.LOGIN_PW  = StrUtil.nvl(request.getParameter("login_pw"));
+13: if (!csrf_token.equals("") && ((String)session.getAttribute("csrf_token")).equals(csrf_token)) {
+14:   ManagerVO r = new ManagerBean().M_MANAGER_LOGIN_PROC(vo);
+15:   if (r.MAN_ID==-1) rtn = "\"isSuccess\":false,\"msg\":\"아이디를 확인하십시오.\"";
+16:   else if (r.MAN_ID==-2) rtn = "\"isSuccess\":false,\"msg\":\"비밀번호를 확인하십시오.\"";
+17:   else {
+
+
+Stacktrace:
+

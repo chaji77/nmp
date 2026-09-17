@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows><!-- Registration -->
+<row><id>M001</id><title><![CDATA[회원가입안내]]></title><body><![CDATA[
+웰캠프 회원가입 완료되었습니다.
+다음 진행을 위해 고객센터로 연락주세요.
+T.02-542-3230
+
+T. 02-542-3230]]></body></row><!-- mpContractAuthorization -->
+<row><id>M017</id><title><![CDATA[계약승인안내]]></title><body><![CDATA[
+거래은행에서 #{SELLER}건을 결제하시기 바랍니다.[웰캠프]
+
+T. 02-542-3230]]></body></row>
+
+<row><id>M004</id><title><![CDATA[은행 만기상환7일안내]]></title><body><![CDATA[
+#{MTYDATE} 날짜에 만기 도래건 #{CNT}건이 있습니다.[웰캠프]
+
+T. 02-542-3230]]></body></row>
+<!-- <row><id>TaxInvoiceIssuance</id><title><![CDATA[MP이용수수료발행안내]]></title><body><![CDATA[안녕하세요, #{MPPAYCPY} 담당자님.
+
+판매사 #{SELLER}로 결제한 B2B 이용 수수료 세금계산서가 등록된 이메일로 발행되었습니다.
+
+E-mail : #{EMAIL}
+
+☎️ 문의 사항 : 1688-7400 / 02-715-7260
+⏰ 운영 시간 : 평일 09:00 ~ 18:00 (은행 휴무일 제외)]]></body></row>MaturityRepayment7days -->
+
+<!-- <row><id>MaturityRepayment</id><title><![CDATA[#{BANK}은행 만기상환일안내]]></title><body><![CDATA[안녕하세요, #{BUYER} 담당자님.
+
+오늘은 #{BANK}은행 대출 상환일 입니다.
+
+만 기 일 : #{MTYDATE}
+상환 건수 : #{CNT}
+총 금 액 : #{CONTRACTAMT}원
+
+✅ 조기 상환이나 연장하셨을 경우 해당사항 없습니다.
+✅ 연장된 만기일은 MP1에서 확인되지 않으니 별도관리 하시기 바랍니다.
+
+☎️ 문의 사항 : 1688-7400 / 02-715-7260
+⏰ 운영 시간 : 평일 09:00 ~ 18:00 (은행 휴무일 제외)]]></body></row> PaymentDueDate-->
+<row><id>M006</id><title><![CDATA[결제일안내]]></title><body><![CDATA[
+#{SELLER}/ #{CONTRACTAMT}원 오늘까지 결제 가능합니다.[웰캠프]
+
+T. 02-542-3230]]></body></row><!-- ContractCancellation -->
+<row><id>M007</id><title><![CDATA[계약취소안내]]></title><body><![CDATA[
+#{SELLER}의 진행중인 결제건이 취소되었습니다.[웰캠프]
+
+T. 02-542-3230]]></body></row>
+<!-- <row><id>ApprovalRequest</id><title><![CDATA[]]></title><body><![CDATA[
+#{SELLER}건에 첨부된 계산서가 작성일로부터(은행 영업일 기준) 31일째입니다. 
+오늘까지 판매사로 승인요청을 해주시기 바랍니다.
+
+T. 02-542-3230]]></body></row>  LoginTemporaryPassword-->
+<row><id>M015</id><title><![CDATA[로그인 임시 비밀번안내]]></title><body><![CDATA[
+아이디와 임시비밀번호를 안내드립니다.
+아이디 : #{PRS_LOGIN}
+비밀번호 : #{PRS_PASSWD}
+[웰캠프]
+
+T. 02-542-3230]]></body></row><!-- mpReverseOrder -->
+<row><id>M009</id><title><![CDATA[매매계약서안내]]></title><body><![CDATA[ 
+#{BUYER}의 매매계약서를 확인하시기 바랍니다.[웰캠프]
+
+T. 02-542-3230]]></body></row><!-- mpCollectionComplete -->
+<row><id>M010</id><title><![CDATA[거래추심안내]]></title><body><![CDATA[
+거래은행에서 #{BUYER}건을 추심 진행 바랍니다.[웰캠프]
+
+T. 02-542-3230]]></body></row><!-- PaymentCompleted -->
+<row><id>M011</id><title><![CDATA[결제완료안내]]></title><body><![CDATA[
+#{BUYER}로부터 #{CONTRACTAMT}원이 결제되었습니다.[웰캠프]
+
+T. 02-542-3230]]></body></row>
+<!-- <row><id>SellerReverseOrder</id><title><![CDATA[#{SELLER} 판매계약서안내]]></title><body><![CDATA[안녕하세요, #{BUYER} 담당자님.
+
+구매사 #{SELLER}에서 판매계약서를 전송하였습니다. 
+금액 : #{CONTRACTAMT}원
+
+엠피원 홈페이지(mp1.co.kr)에서 승인해주세요!
+
+☎️ 고객 센터 : 1688-7400 / 02-715-7260
+⏰ 운영 시간 : 평일 09:00 ~ 18:00 (은행 휴무일 제외)]]></body></row>-->
+</rows> 
