@@ -1,3 +1,11 @@
 # 제외할 프로젝트
 wci_11/
 wci.zip
+
+# Eclipse IDE 메타데이터 (로컬 환경마다 자동 변경됨)
+mp/.project
+rcftp/.classpath
+rcftp/.project
+rcftp/.settings/org.eclipse.jdt.core.prefs
+rcftp/.settings/org.eclipse.jdt.apt.core.prefs
+wci/.project
