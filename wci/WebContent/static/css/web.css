@@ -1,0 +1,51 @@
+body {color:#555;}
+div.wrapper {max-width:1240px;margin-left:auto;margin-right:auto;padding:0 10px;position:relative;}
+header {background-color:white;height:16px;border-bottom:1px solid #ddd;height:47px;}
+header aside {color:transparent;padding:10px 0;cursor:default;}
+header aside:after {width:0;height:0;margin-left:0;}
+
+#navigation>li {padding:10px 5px;}
+#navigation>li a {color:#555;font-size:1.15em;font-weight:bold;padding-bottom:5px;	transition:color .2s ease-in-out;}
+#navigation>li a:hover {color:#246CEB;border-bottom:3px solid #246CEB;}
+#navigation-items>li>ul {border-right:0;}
+
+.navigation-li-col {width: 160px;}
+.navigation-li-col a {padding-bottom:3px;}
+.navigation-li-col a:hover {color:#246CEB;border-bottom:1px solid #246CEB;}
+
+img.burger {filter:invert(100%);height:30px;}
+img.logo {height:24px;margin:5px 10px 0px 0px;}
+main {clear:both;width:100%;margin:0;padding:0;display:flex;}
+div.page-title-block {margin-top:52px;margin-bottom:72px;}
+footer {width:100%;margin:0;padding:0;margin-top:20px;padding-top:20px;line-height:1.4em;height:180px;}
+footer>div>span>span {padding-right:5px;margin-right:5px;border-right:1px solid #ddd;}
+footer>div>span>span.noseparator {border-right:0;}
+
+div.footer-nav {clear:both;border-top:1px solid #ddd;padding: 20px 0 0 0;margin-top:72px;}
+div.footer-nav span i {color:#78B3EA;margin-right:5px;}
+
+span.title {padding-bottom: 9px;border-bottom: 5px solid rgba(120,179,234,.1);}
+table.has-cap {border-top: 2px solid #eee;}
+form i.fa-asterisk {color:#FF69B4;}
+
+input.invalid {border:1px solid #FF69B4;}
+
+a.received_contract {padding:4px 8px;background-color:#FF5733;color:white;border-radius:2px;animation:blink 2s infinite;}
+
+@media only screen and (min-width:768px) and (max-width:1100px) {
+  #navigation>li a:hover {border-bottom:0;}
+  .navigation-li-col a:hover {color:#246CEB;border-bottom:0;}
+}
+@media only screen and (max-width:767px) {
+  div.wrapper {width:calc(100% - 20px);}
+  header {width:calc(100% - 10px);padding-left:0;}
+  main, footer {width:100%;padding-left:0;}
+  header aside {right:0px;}
+  img.logo {margin-left:34px;}
+  div.navigation-mobile-header {top:57px;}
+  div.navigation-mobile-body {top:57px;}
+  #navigation>li a:hover {border-bottom:0;}
+  .navigation-li-col a:hover {color:#246CEB;border-bottom:0;}
+  footer {font-size:0.9em;line-height: 1.1em;}
+  footer>div>span>span {display:block;width:100%;border-right:0;}
+}

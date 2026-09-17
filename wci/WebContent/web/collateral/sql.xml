@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+  <query id='Grt_Company_SearchVO'>
+SELECT X.*
+  FROM (
+SELECT ROW_NUMBER() OVER(ORDER BY A.CPY_NAME ASC) AS RN
+     , COUNT(*) OVER() AS TOTAL_CNT
+     , A.CPY_ID
+     , A.CPY_NAME
+     , A.CPY_CEO_NAME 
+     , A.CPY_BUSINESS_NO
+     , B.ADR_ZIPCODE
+     , CONCAT(B.ADR_DESC, ' ', B.ADR_DESC2) AS ADR_DESC
+  FROM [DOB2B-SERVER].[DoB2B].DBO.COMPANY A
+ INNER JOIN [DOB2B-SERVER].[DoB2B].DBO.ADDRESS B ON A.ADR_ID = B.ADR_ID
+ WHERE CST_ID = 2
+   AND A.CPY_NAME LIKE CONCAT('%', ?, '%')
+       ) X
+ WHERE X.RN BETWEEN ((?-1)*10)*1 AND ?*10
+  </query>
+</queries>

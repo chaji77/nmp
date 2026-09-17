@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+  <query id="Grt_Application_ListVO">
+SELECT A.APPLNO,
+       A.CPY_SELLER,
+       A.CPY_BUYER,
+       A.MP_APPLYMD,
+       A.GRTNO,
+       A.GRTTYPE,
+       A.MP_APPLAMT,
+       A.KCGF_AMT,
+       A.STATUS,
+       A.STATUS_YMDHMS,
+       A.TRA_CD,
+       B.CPY_NAME BUYNAME,
+       C.CPY_NAME SELLNAME
+  FROM [DOB2B-SERVER].[DoB2B].DBO.KIBO_GUARANTEE A 
+ INNER JOIN [DOB2B-SERVER].[DoB2B].DBO.COMPANY B ON B.CPY_ID = A.CPY_BUYER  AND B.CPY_NAME LIKE CONCAT('%', ?,  '%')
+ INNER JOIN [DOB2B-SERVER].[DoB2B].DBO.COMPANY C ON C.CPY_ID = A.CPY_SELLER AND B.CPY_NAME LIKE CONCAT('%', ?, '%')
+ WHERE (A.CPY_BUYER = ? OR A.CPY_SELLER = ?)
+   AND A.MP_APPLYMD BETWEEN ? AND ?
+   AND (CASE WHEN ? = '' THEN ? ELSE A.STATUS END) = ?
+ ORDER BY A.MP_APPLYMD DESC
+  </query>
+  <query id='info_guarantee'>
+SELECT A.APPLNO
+     , A.CPY_BUYER
+     , A.CPY_SELLER
+     , A.GRTTYPE
+     , A.MP_APPLYMD
+     , A.MP_APPLAMT
+     , A.APPL_EXPIREYMD
+     , A.TRA_CD
+     , A.GRTNO
+     , A.KCGF_AMT
+     , A.ISSUEYMD
+     , A.STATUS
+     , A.STATUS_YMDHMS
+     , A.FIRST_EXPIREYMD
+     , A.FIRST_UNAMT
+     , A.FIRST_UNAMT_YMDHMS
+     , A.FIRST_UNAMT_OKYN
+     , A.FIRST_UNAMT_OKYMDHMS
+     , A.OFFLINE_AMT
+     , A.OFFLINE_AMT_YMDHMS
+     , A.OFFLINE_AMT_CLEARYN
+     , A.OFFLINE_AMT_CLEARYMD
+     , A.CHG_EXPIREYMD
+     , A.CLEARYMD
+     , A.DESCRIPTION
+     , A.GRTNO01
+     , A.GRTNO02
+     , A.GRTNO03
+     , A.E221_SEQNO
+     , A.E231_SEQNO
+     , A.H221_SEQNO
+     , A.H225H227_SEQNO
+   , B.CPY_NAME
+   , B.CPY_BUSINESS_NO
+   , B.CPY_INCORPORATE_NO
+  FROM [DOB2B-SERVER].[DoB2B].DBO.KIBO_GUARANTEE A WITH (NOLOCK)
+ INNER JOIN [DOB2B-SERVER].[DoB2B].DBO.COMPANY   B WITH (NOLOCK) ON B.CPY_ID = A.CPY_BUYER
+ WHERE A.APPLNO = ?;
+  </query>
+  <query id='Grt_IssueConVO'>
+SELECT A.SEQNO,
+       A.STARTYMD,
+       A.ENDYMD,
+       A.CONDITION,
+       A.CHGUSER,
+       A.CHGTIME
+  FROM [DOB2B-SERVER].[DoB2B].DBO.INFO_GUARANTEE_CONDITION A WITH(NOLOCK)
+ WHERE A.CHGTYPE = '90'
+   AND A.APPLNO  = ?
+   AND ISNULL(A.DELYESNO,'N') = 'N'
+ ORDER BY A.SEQNO ASC;
+  </query>
+  <query id='Grt_IssueHistoryVO'>
+  SELECT A.SEQNO,
+         A.CHGTYPE,
+         CASE A.CHGTYPE
+         WHEN '10' THEN '신규'
+         WHEN '20' THEN '기한연장'
+         WHEN '30' THEN '감액'
+         WHEN '40' THEN '일부해지'
+         WHEN '50' THEN '기한연장,감액'
+         END AS CHGTYPE_NAME,
+         A.STARTYMD,
+         A.ENDYMD,
+         A.AMT,
+         A.CHGUSER,
+         A.CHGTIME,
+         A.CREUSER,
+         A.CRETIME,
+         A.CONDITION
+    FROM [DOB2B-SERVER].[DoB2B].DBO.KIBO_GUARANTEE_CONDITION A WITH(NOLOCK)
+   WHERE A.CHGTYPE NOT IN ('90')
+    AND  A.APPLNO = ?
+    AND  ISNULL(A.DELYESNO,'N') = 'N'
+  </query>
+</queries>

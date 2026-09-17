@@ -1,0 +1,41 @@
+ul.step {display:flex;justify-content:center;margin-left:auto;margin-right:auto;max-width:500px;}
+ul.step li {max-width:100px;border-radius:5px;background-color:#eee;padding:10px;margin-left:-10px;}
+ul.step li.after {
+  width: 0;
+  height: 0;
+  margin:0;padding:0;margin-top:25px;border-radius:0;
+  border-top: 10px solid white;
+  border-bottom: 10px solid white;
+  border-right: 10px solid white;
+  border-left: 10px solid #eee;
+}
+ul.step li.now {background-color:#246CEB;color:#fff;}
+ul.step li.after.now {border-left: 10px solid #246CEB;}
+ul.step li:first-child{margin-left:0;}
+
+h3 {width:fit-content;margin-top:30px;padding-bottom:0px;font-size:1.4em;letter-spacing:-1px;}
+
+ul.form {display:flex;flex-flow:row wrap;}
+ul.form li {width:50%;margin-bottom:10px;}
+ul.form li.wide {width:100%;}
+ul.form li a.btn {padding:7px;}
+ul.form label {padding-left:10px;margin-right:0;}
+input {width:calc(100% - 156.5px);}
+select {width:calc(100% - 146.5px);}
+.select2 {width:340px;max-width:calc(100% - 235px);}
+label i {color:#FF5733;}
+
+input.btn-input {width:140px;cursor:pointer;}
+input.btn-input:hover {background-color:black;color:white;}
+li.not-has-input {padding-top:7px;padding-bottom:7px;}
+
+div.hint {display:none;padding:15px;margin-top:5px;background-color:#fee;font-size:0.9em;text-align:justify;}
+a.circle {color:white;background-color:#00ced1;cursor:pointer;padding: 5px 10px;}
+
+.block-title-aside {margin-top:30px;text-align:right;}
+
+@media only screen and (max-width:767px) {
+  ul.step {max-width:360px;}
+  ul.form li {width:100%;}
+  .block-title-aside {margin-top:0;text-align:left;margin-left:112px;}
+}
