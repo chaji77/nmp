@@ -27,6 +27,7 @@ String strCpyBizNo = (String)pageContext.getAttribute("CPY_BIZ_NO");
 String strCpyNm    = (String)pageContext.getAttribute("CPY_NM");
 String strCuUseYn  = StrUtil.nvl((String)pageContext.getAttribute("CU_USE_YN"), "N");
 String SIGN_EXCLUDE_YN    = StrUtil.nvl((String)pageContext.getAttribute("SIGN_EXCLUDE_YN"), "N");
+String FEE_MOD_YN         = StrUtil.nvl((String)pageContext.getAttribute("FEE_MOD_YN"), "N");
 
 session.setAttribute("csrf_token", csrf_token);
 int intCpyId = 0;
@@ -265,7 +266,9 @@ $(document).ready(function() {
   </li>
   <li class='not-has-input'>
     <label>MP수수료부담</label>
-    <input type='radio' name='mp_pay_cpy' value='2' checked> 구매기업 <input type='radio' name='mp_pay_cpy' value='1'> 판매기업
+    <span <%=FEE_MOD_YN.equals("Y") ? "" : "style='pointer-events:none;opacity:0.5;'"%>>
+      <input type='radio' name='mp_pay_cpy' value='2' checked> 구매기업 <input type='radio' name='mp_pay_cpy' value='1'> 판매기업
+    </span>
   </li>
   <li class='not-has-input'>
     <label>사업자구분</label>

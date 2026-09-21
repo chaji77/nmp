@@ -53,10 +53,21 @@ public class EmtNetRcvBM {
                 ((EmtNetK321) kXX).executeK321();
             }else if ("B413".equals(transactionNO)) {
 	        	kXX = new EmtNetB413(resultXML);
+	        	((EmtNetB413) kXX).executeB413();   // [추가] 파이프라인 실행 → RECEIVE_XML_K311 INSERT
             }
             
-            commonElement = kXX.getResCommonElement();
-            kXX.updateDBWithResponse();
+            // [추가] 미구현 전문(B331/B341 등) 수신 시 NPE 방지
+            //  - 기존에는 kXX 가 null 인 채로 아래 호출을 타서 NPE 발생 →
+            //    catch 로 넘어가며 응답 필드가 비어버렸다.
+            if (kXX != null) {
+                commonElement = kXX.getResCommonElement();
+                kXX.updateDBWithResponse();
+            } else {
+                System.out.println("[EmtNetRcvBM] 미지원 전문 수신: " + transactionNO);
+                commonElement.setTransactionNO(transactionNO);
+                commonElement.setResponseCode("9902");
+                commonElement.setResponseMessage("미지원 전문");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

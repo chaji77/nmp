@@ -66,9 +66,17 @@ if (strCurrentPage.contains("ContractsSent.jsp") && arr!=null && arr.size()>0) {
     }
   }
 }
+// RECEIVED LIST : ALLOW SELECT-CANCEL FOR PENDING(020) ROWS ONLY
+boolean isReceivedCancelable = strPageCode.equals("R");
 // COLUM COUNT
 int intColumnCnt   = 10; // (strTempYn.equals("Y") || hasConfirmSettleYn) ? 10 : 9;
-String strTotalSettleAmt = (strMaturityYN.equals("Y") && arr!=null && arr.size()>0) ? (arr.get(0)).TOTAL_SUM:"0";
+long lngTotalSettleAmt = 0;
+if (arr!=null) {
+  for (CtHeaderVO v : arr) {
+    lngTotalSettleAmt += Long.parseLong(StrUtil.nvl(v.TOTALCONTRACTAMT, "0"));
+  }
+}
+String strTotalSettleAmt = String.valueOf(lngTotalSettleAmt);
 %>
 
 <style>
@@ -111,7 +119,20 @@ $(document).ready(function(){
     if ($("table.searchbox").is(":visible")) $("table.searchbox").slideUp();
     else $("table.searchbox").slideDown();
   });
+  <% if (strTempYn.equals("Y")) { %>
+  $(document).on('change', "#contract_list input[name='seq'], input[name='AllCheckContracts']", updateCheckedTotal);
+  updateCheckedTotal();
+  <% } %>
 });
+<% if (strTempYn.equals("Y")) { %>
+function updateCheckedTotal() {
+  var sum = 0;
+  $("#contract_list input[name='seq']:checked").each(function() {
+    sum += parseInt($(this).data("amt")) || 0;
+  });
+  $("#totalSettleAmtValue").text(addComma(sum));
+}
+<% } %>
 </script>
 
 <form name='frmSearch' method='post'>
@@ -171,8 +192,14 @@ $(document).ready(function(){
   </li>
 </ul>
 
+<% if (!strMaturityYN.equals("Y")) { %>
+<div style='margin-bottom:15px;text-align:right;'><strong><%=strTempYn.equals("Y")?"선택항목 결제총액":"현재 페이지 결제총액"%> : <font color='red' id='totalSettleAmtValue'><%=StrUtil.addComma(strTotalSettleAmt) %></font>원</strong></div>
+<% } %>
+
 <% if (strTempYn.equals("Y") || hasConfirmSettleYn) { %>
-<div style='padding:10px 0;'><a href='javascript:sendMulti();' class='btn'>일괄전송</a></div>
+<div style='padding:10px 0;'><a href='javascript:sendMulti();' class='btn'>일괄전송</a>&nbsp;<a href='javascript:removeSelected();' class='btn'>삭제</a></div>
+<% } else if (isReceivedCancelable) { %>
+<div style='padding:10px 0;'><a href='javascript:cancelSelected();' class='btn'>선택취소</a></div>
 <% } %>
 
 <%=((strMaturityYN.equals("Y"))?"<div style='margin-bottom:15px;text-align:right;'>기간내 결제총액 : <font color='red'>" + StrUtil.addComma(strTotalSettleAmt) + "</font>원</div>":"")%>
@@ -182,7 +209,7 @@ $(document).ready(function(){
   <thead>
     <tr>
       <th class='left' style='width:10px;'><input type='checkbox' name='AllCheckContracts' value='Y' 
-          <%=(!strTempYn.equals("Y") && !hasConfirmSettleYn)?"disabled":"onclick='toggleAllCheckContracts();'"%>></th>
+          <%=(!strTempYn.equals("Y") && !hasConfirmSettleYn && !isReceivedCancelable)?"disabled":"onclick='toggleAllCheckContracts();'"%>></th>
       <th class='left mobile_hide'>계약번호</th>
       <th class='left'>계약일<p class='mobile_show'><br/>거래일<br/>결제금액<br/>진행상태</p></th>
       <th class='left mobile_hide'>거래일</th>
@@ -212,8 +239,8 @@ if (arr!=null && arr.size()>0) {
       }
 %>
     <tr>
-      <% if ((strTempYn.equals("Y") && vo.STATUS.equals("010")) || (hasConfirmSettleYn && vo.STATUS.equals("025"))) { %>
-      <td class='left'><input type='checkbox' name='seq' value='<%=vo.CTID%>'></td>
+      <% if ((strTempYn.equals("Y") && vo.STATUS.equals("010")) || (hasConfirmSettleYn && vo.STATUS.equals("025")) || (isReceivedCancelable && vo.STATUS.equals("020"))) { %>
+      <td class='left'><input type='checkbox' name='seq' value='<%=vo.CTID%>' data-amt='<%=StrUtil.nvl(vo.TOTALCONTRACTAMT,"0")%>'></td>
       <% } else { %>
       <td class='left'></td>
       <% } %>

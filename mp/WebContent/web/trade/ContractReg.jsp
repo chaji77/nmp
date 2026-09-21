@@ -35,6 +35,7 @@ String MOBILE_YN          = StrUtil.nvl((String)pageContext.getAttribute("MOBILE
 String SIGN_EXCLUDE_YN    = StrUtil.nvl((String)pageContext.getAttribute("SIGN_EXCLUDE_YN"), "N");
 String CRG_ID             = StrUtil.nvl((String)pageContext.getAttribute("CRG_ID"), "N");
 String PAPER_BILL_YN      = StrUtil.nvl((String)pageContext.getAttribute("PAPER_BILL_YN"), "N");
+String FEE_MOD_YN         = StrUtil.nvl((String)pageContext.getAttribute("FEE_MOD_YN"), "N");
 if (MOBILE_YN.equals("Y") && MobileUtil.isMobile(request)) SIGN_EXCLUDE_YN = "Y"; // MOBILE APPROVAL IS REGISTERED, AND IF IT IS A MOBILE ENVIRONMENT, THE SIGNATURE IS EXCLUDED.
 
 session.setAttribute("csrf_token", csrf_token);
@@ -81,6 +82,21 @@ let wordtoblock = [<%=strBlockWords%>];
 </script>
 <script type='text/javascript' src='ContractReg.js?<%=DateTimeUtil.getCurrentDateTime()%>'></script>
 <script>
+function cancel() {
+  showCustomConfirm("계약을 취소하시겠습니까?<br/>취소된 매매계약서는 복원되지 않습니다.", function() {
+    $.post("ContractCancelProc.jsp", $("form[name='frmEnt']").serialize(), function(data) {
+      if (data==0) {
+        showAlert("취소할 수 없습니다.<br/>취소는 승인전까지 가능합니다.<br/>진행상태가 변경되었을 수 있으니 다시 확인하십시오.", function(){
+          window.location.reload();
+        });
+      } else {
+        showAlert("취소되었습니다.", function() {
+          location.href = strContextPath + "/web/trade/";
+        });
+      }
+    });
+  }, function(){});
+}
 $(document).ready(function() {
   <% if (isEditMode) { %>
   // set values for edit mode
@@ -182,7 +198,9 @@ $(document).ready(function() {
   </li>
   <li class='not-has-input'>
     <label>MP수수료부담</label>
-    <input type='radio' name='mp_pay_cpy' value='2' checked> 구매기업 <input type='radio' name='mp_pay_cpy' value='1'> 판매기업
+    <span <%=FEE_MOD_YN.equals("Y") ? "" : "style='pointer-events:none;opacity:0.5;'"%>>
+      <input type='radio' name='mp_pay_cpy' value='2' checked> 구매기업 <input type='radio' name='mp_pay_cpy' value='1'> 판매기업
+    </span>
   </li>
   <!-- 결제방법 -->
   <li>

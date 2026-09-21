@@ -43,6 +43,12 @@ function goCompanyMenu(idx) {
   case 8 :
     url = "<%=request.getContextPath()%>/mgr/trade/InvoicesPerCustomer.jsp";
     break;
+  case 9 :
+    url = "<%=request.getContextPath()%>/mgr/sales/SalesInformation.jsp";
+    break;
+  case 10 :
+    url = "<%=request.getContextPath()%>/mgr/sales/SalesMemoPerCustomer.jsp";
+    break;
   }
   document.frmCompanyHead.action = url;
   document.frmCompanyHead.submit();
@@ -80,5 +86,7 @@ function goCompanyMenu(idx) {
   <li class='category<%=(strMenuIdx.equals("5"))?" selected":""%>' onclick='goCompanyMenu(5);'>메모</li>
   <li class='category<%=(strMenuIdx.equals("6"))?" selected":""%>' onclick='goCompanyMenu(6);'>본·지사</li>
   <li class='category<%=(strMenuIdx.equals("7"))?" selected":""%>' onclick='goCompanyMenu(7);'>거래처</li>
+  <li class='category<%=(strMenuIdx.equals("9"))?" selected":""%>' onclick='goCompanyMenu(9);'>추가정보</li>
+  <li class='category<%=(strMenuIdx.equals("10"))?" selected":""%>' onclick='goCompanyMenu(10);'>영업메모</li>
   <li></li>
 </ul>

@@ -112,7 +112,7 @@ isReloadable = <%=isReloadable%>;
 function loadSystemInfo(server, obj) {
   var blocknm = server.replace(/\./g, "-");
   $("."+blocknm).html("");
-  $("."+blocknm).load("https://"+server+"/mp/dev/SystemCheck.jsp");
+  $("."+blocknm).load("https://"+server+"/wci/dev/SystemCheck.jsp");
 }
 
 $(document).ready(function() {

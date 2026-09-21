@@ -27,7 +27,7 @@ pvo.ROW_CNT        = 20;
 pvo.STATUS         = StrUtil.nvl(request.getParameter("status"), "");
 pvo.CTNO           = StrUtil.nvl(request.getParameter("ctno"), "");
 pvo.SBDATE         = StrUtil.nvl(request.getParameter("sbdate"), "R");
-String strStartYmd = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 180, "-"));
+String strStartYmd = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 1825, "-"));
 String strEndYmd   = StrUtil.nvl(request.getParameter("end_ymd"), DateTimeUtil.getCurrentDate("-"));
 if (!pvo.CTNO.equals("")) {
   strStartYmd = "1970-07-28";
@@ -39,11 +39,15 @@ TradeBean bean = new TradeBean();
 ArrayList<CtHeaderVO> arr = null;
 ArrayList<UnusualTransactionVO> arrUnusuals = null;
 ArrayList<TransactionResultVO> arrK311Results = null;
+String strTotalMpFee = "0";
+String strTotalPayAmt = "0";
 try {
   arr = bean.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd, strEndYmd, 0, "A", 0);
   intTotalCnt = (arr.get(0)).TOTAL_CNT;
   String strCtIds = "";
   String strCtNos = "";
+  strTotalMpFee = arr.stream().map(vo -> StrUtil.nvl(vo.MPFEE_TOTALAMT)).filter(s -> !s.equals("")).mapToLong(Long::parseLong).sum() + "";
+  strTotalPayAmt = arr.stream().map(vo -> StrUtil.nvl(vo.TOTALCONTRACTAMT)).filter(s -> !s.equals("")).mapToLong(Long::parseLong).sum() + "";
   for (CtHeaderVO v : arr) {
     strCtIds += ","+v.CTID;
     strCtNos += ","+v.CTNO;
@@ -91,7 +95,7 @@ function goPage(p) {
   document.frmSearch.submit();
 }
 function calc(ctid) {
-  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommission.jsp", {'ctid':ctid}, function(data) {
+  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommissionFixed.jsp", {'ctid':ctid}, function(data) {
     showAlert(data);
   });
 }
@@ -123,7 +127,7 @@ function checkAbnormal(strMpFeeCpyId, intCtId) {
 }
 function showTransactionResult(intCtId) {
   closePopup();
-  $("#element_to_pop_up").bPopup({loadUrl:'/mp/mgr/trade/TransactionResult.jsp?seq='+intCtId});
+  $("#element_to_pop_up").bPopup({loadUrl:'/wci/mgr/trade/TransactionResult.jsp?seq='+intCtId});
 }
 function cancelTransaction(encid) {
   $.ajax({
@@ -172,7 +176,7 @@ function sendMessage(tid, cpyid, ctid) {
   $.ajax({
     url:"<%=request.getContextPath()%>/common/kakaotalk/Send.jsp", 
     type: 'post',
-    data:{"tid":tid,"cpyid":cpyid,"ctid":ctid}, 
+    data:{"tcd":tid,"cpyid":cpyid,"ctid":ctid}, 
     async: true,
     success: function(data) {
       if (data=="SUCCESS") showAlert("전송되었습니다.");
@@ -300,6 +304,11 @@ $(document).ready(function(){
 </table>
 </form>
 
+<div style="text-align: right; margin-top: 10px; margin-bottom: 10px; font-size: 1.2em;">
+  <strong>해당 결제금액 총합: <font color="red"><%=StrUtil.addComma(strTotalPayAmt) %></font> 원</strong>
+  &nbsp;//&nbsp;
+  <strong>해당 수수료 총합: <font color="red"><%=StrUtil.addComma(strTotalMpFee) %></font> 원</strong>
+</div>
 <table class='detail'>
   <thead>
     <tr>
@@ -341,13 +350,15 @@ if (arr!=null && arr.size()>0) {
     }
 %>
     <tr>
-      <td class='left'><%=FormatUtil.addSeparatorDate(vo.CONTRACTDATE) %><br/><%=FormatUtil.addSeparatorDate(vo.REGDATE) %></td>
+      <td class='left'><%=FormatUtil.addSeparatorDate(vo.CONTRACTDATE) %><br/><%=FormatUtil.addSeparatorDateTime(vo.REGTIME, "/").substring(0, 16)%></td>
       <td class='left'><%=FormatUtil.addSeparatorDate(vo.SETTLEDUEDATE) %>
-        <% if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) { %>
+        <% if (vo.STATUS.equals("040") || vo.STATUS.equals("050")) { %>
         <br/><a onclick='sendMessage("M006", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a>
         <% } %>
       </td>
       <td class='left'><%=FormatUtil.addSeparatorDate(vo.MTYDATE) %>
+        <% Long mtyDiffDay = DateTimeUtil.diff(vo.REGTIME.substring(0, 8), vo.MTYDATE, "") + 1; %>
+        <span style="color:red;">(<%=mtyDiffDay %>)</span>
         <% if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) { %>
         <br/><a onclick='sendMessage("M005", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a><% } %>
       </td>
@@ -367,16 +378,21 @@ if (arr!=null && arr.size()>0) {
         <% 
         if (vo.STATUS.equals("040") || (vo.STATUS.equals("050") && vo.BNK_CD.equals("TB"))) {
           out.println("<a onclick='cancelTransaction(\""+IntegerCryptoUtil.crypt(vo.CTID)+"\");' class='btn darkred'>전송취소</a>");
+          if ("C".equals(vo.DIRTYPE)){
+          	out.print("<br/><i class='fa-solid fa-arrow-down'></i> " + FormatUtil.addSeparatorDateTime(vo.APPRTIME, "/").substring(0, 16));
+          }
         }
+      
         if (vo.STATUS.equals("030") || vo.STATUS.equals("707")) {
           out.println("<a onclick='sendTransaction(\"N\",\""+IntegerCryptoUtil.crypt(vo.CTID)+"\", \""+CryptoDESUtil.encrypt(vo.CTID+"cjdmasmRlsrmeosnsqlcdms").replaceAll("[^a-zA-Z]", "")+"\");' class='btn lurian'>재전송</a>");
           out.println("<a onclick='sendTransaction(\"Y\",\""+IntegerCryptoUtil.crypt(vo.CTID)+"\", \""+CryptoDESUtil.encrypt(vo.CTID+"cjdmasmRlsrmeosnsqlcdms").replaceAll("[^a-zA-Z]", "")+"\");' class='btn white'>결변재전송</a>");
         }
-        if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) {
+        if (vo.STATUS.equals("050") || vo.STATUS.equals("060") || vo.STATUS.equals("070")) {
           if (arrK311Results!=null && arrK311Results.size()>0) {
             for (TransactionResultVO tvo : arrK311Results) {
               if (tvo.ORDERNO.equals(vo.CTNO)) {
-                out.print("<br/><i class='fa-solid fa-arrow-down'></i> " + FormatUtil.addSeparatorDate(tvo.TRANSACTIONDATE));
+           	  	String dateTime = tvo.TRANSACTIONDATE + tvo.TRANSACTIONTIME;
+                out.print("<br/><i class='fa-solid fa-arrow-down'></i> " + FormatUtil.addSeparatorDateTime(dateTime, "/").substring(0, 16));
               }
             }
           }

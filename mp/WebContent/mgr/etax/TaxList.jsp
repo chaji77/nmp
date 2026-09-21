@@ -141,6 +141,7 @@ function getContract(seq) {
   <span class='more'>
     <a class='btn' href='Invoice.jsp'>수기발행</a>
     <a href='<%=request.getContextPath()%>/mgr/etax/' class='btn'>연동관리</a>
+    <a onclick='document.frmToExcel.submit();' class='btn white' title='excel download'><i class="fa-solid fa-download"></i>엑셀다운로드</a>
   </span>
 </div>
 
@@ -169,7 +170,10 @@ function getContract(seq) {
           </ul>
         </td>
         <td class='fill'></td>
-        <td class='btn' style='text-align:right;'><a onclick="goPage(1);"><i class="fa fa-search" aria-hidden="true" style="font-size:1.7em;margin-right:10px;"></i></a></td>
+        <td class='btn' style='text-align:right;'>
+          <a onclick="goPage(1);"><i class="fa fa-search" aria-hidden="true" style="font-size:1.7em;margin-right:10px;"></i></a>
+          <a href='TaxList.jsp'><i class="fa-solid fa-rotate-right" style='font-size:1.7em;margin-right:10px;'></i></a>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -250,4 +254,12 @@ if (arr!=null && arr.size()>0) {
   </div>
 
 <iframe name="work" id="work" height="800" width="1000" style="display:none;"></iframe>
+<form name='frmToExcel' method='post' action='TaxListForExcel.jsp' target='FrameForExcel'>
+  <input type='hidden' name="senderKey" value="<%=strSenderKey %>" />
+  <input type='hidden' name="start_dt" value="<%=startDate %>" />
+  <input type='hidden' name="end_dt" value="<%=endDate %>" />
+  <input type='hidden' name="cn" value="<%=strInvoiceeCorpNum %>" />
+  <input type='hidden' name="strCorpNm" value="<%=strCorpName %>" />
+</form>
+<iframe name='FrameForExcel' id='FrameForExcel' style="display: none;"></iframe>
 <%@ include file="../Footer.jsp" %>

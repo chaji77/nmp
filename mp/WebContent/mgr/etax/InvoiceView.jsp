@@ -28,6 +28,11 @@ System.out.println(vo.toString());
   <style>
   body {padding:20px;}
   </style>
+  <script>
+  function openEdit(seq) {
+    window.open('InvoiceEdit.jsp?seq='+seq,'invoiceEdit','width=900,height=700,left=100,top=100,scrollbars=yes,resizable=yes');
+  }
+  </script>
 </head>
 <body>
 
@@ -237,6 +242,16 @@ if (intItemCnt<3) {
       </tr>
       </tbody>
     </table>
+
+<%
+if (StrUtil.nvl(vo.EMP_NM).length() > 0 && vo.BILL_STATUS == 0) {
+%>
+    <div style="text-align:right; margin-top:15px;">
+      <a href="javascript:openEdit(<%=vo.BILL_SEQ %>);" class="btn">수정</a>
+    </div>
+<%
+}
+%>
 
 </body>
 </html>

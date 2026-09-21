@@ -166,7 +166,7 @@ $(document).ready(function() {
 <input type='hidden' name='active_desc' value=''>
 <ul>
   <li>
-    <input type='radio' name='code_type' value='1' style='width:auto;' onclick='changeCategory(1)'>MP1
+    <input type='radio' name='code_type' value='1' style='width:auto;' onclick='changeCategory(1)'>WELLCAMP
     <input type='radio' name='code_type' value='2' style='width:auto;' onclick='changeCategory(2)'>담보보증
     <input type='radio' name='code_type' value='3' style='width:auto;' onclick='changeCategory(3)'>거래 외 
     <input type='radio' name='code_type' value='4' style='width:auto;' onclick='changeCategory(4)'>메모

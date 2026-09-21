@@ -92,6 +92,14 @@ $(document).ready(function(){
     <label></label>
     <input type='checkbox' name='sms_yn' style='width: 16px;' value='1' <%=pvo.PRS_SMS.equals("1")?"checked":"" %> >거래진행 안내 문자(SMS) 수신
   </li>
+  <li>
+    <label>직위</label>
+    <input type='text' name='login_pstn' value='<%=pvo.PRS_PSTN %>' maxlength='50' placeholder='직위'>
+  </li>
+  <li>
+    <label>내선번호</label>
+    <input type='text' name='login_extn' value='<%=pvo.PRS_EXTN %>' maxlength='4' placeholder='내선번호'>
+  </li>
   <li style='margin-top:15px;'>
     <label></label>
     <a onclick='modifyManager();' class='btn lurian'>수정</a>

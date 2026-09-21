@@ -11,8 +11,8 @@ String category = StrUtil.nvl(request.getParameter("category"));
 CompanyVO pvo = new CompanyVO();
 pvo.PAGE    = Integer.parseInt(StrUtil.nvl(request.getParameter("page"), "1"));
 pvo.ROW_CNT = 5;
-pvo.CPY_BUSINESS_NO = StrUtil.nvl(request.getParameter("search"), "");
-pvo.CPY_NAME        = StrUtil.nvl(request.getParameter("search"), "");
+pvo.CPY_BUSINESS_NO = StrUtil.nvl(request.getParameter("search"), "").replace("-", "").trim();
+pvo.CPY_NAME        = StrUtil.nvl(request.getParameter("search"), "").trim();
 if (category.equals("cpy_name")) {
   pvo.CPY_BUSINESS_NO = "";
 } else pvo.CPY_NAME = "";

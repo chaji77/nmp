@@ -28,6 +28,8 @@ pvo.PRS_PASSWD = CryptoDESUtil.encrypt(StrUtil.nvl(request.getParameter("login_p
 pvo.PRS_EMAIL = StrUtil.xss(request.getParameter("email"));
 pvo.PRS_MOBILE_NO = StrUtil.xss(request.getParameter("cell_tel"));
 pvo.PRS_SMS = StrUtil.nvl(request.getParameter("sms_yn"), "0");
+pvo.PRS_PSTN = StrUtil.xss(request.getParameter("login_pstn"));
+pvo.PRS_EXTN = StrUtil.xss(request.getParameter("login_extn"));
 
 intResult = new CustomerBean().PERSON_MOD_PROC(intCpyId, pvo);
 out.print(intResult);

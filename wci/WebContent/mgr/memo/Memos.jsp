@@ -28,7 +28,7 @@ pvo.WRITE_ID    = StrUtil.nvl(request.getParameter("w"));
 String strCpyNm = StrUtil.nvl(request.getParameter("cpy_nm"));
 
 ArrayList<CodeVO> arrCodes = CodeBean.C_CODE_PROC("ACTIVE_MANAGEMENT.ACTIVE_KIND");
-ArrayList<MemoVO> arr = new MemoBean().ACTIVE_MANAGEMENT_LIST_PROC(pvo);
+ArrayList<MemoVO> arrMemos = new MemoBean().ACTIVE_MANAGEMENT_LIST_PROC(pvo);
 
 ManagerVO pmvo = new ManagerVO();
 pmvo.PAGE      = 1;
@@ -85,6 +85,17 @@ $(document).ready(function(){
     if ($("table.searchbox").is(":visible")) $("table.searchbox").slideUp();
     else $("table.searchbox").slideDown();
   });
+<%
+if (arrMemos!=null && arrMemos.size()>0) {
+  for (MemoVO t : arrMemos) {
+    if (t.COMMENT_YN.equals("Y")) {
+%>
+  loadComments(<%=t.ACTIVE_ID %>);
+<%
+    }
+  }
+}
+%>
 });
 </script>
 
@@ -169,9 +180,9 @@ if (pvo.CPY_ID>0) {
   </thead>
   <tbody>
 <%
-if (arr!=null && arr.size()>0) {
+if (arrMemos!=null && arrMemos.size()>0) {
   String strCodeName = "";
-  for (MemoVO t : arr) {
+  for (MemoVO t : arrMemos) {
     intTotalCnt = t.TOTAL_CNT;
     if (arrCodes!=null && arrCodes.size()>0) {
       for (CodeVO c : arrCodes) {
@@ -183,7 +194,7 @@ if (arr!=null && arr.size()>0) {
     String toUser  = StrUtil.nvl(t.TO_USER_NM, "");
     if (!toUser.equals("")) toUser = "<span class='to'><i class='fa-solid fa-location-dot'></i> "+toUser+"</span> ";
 %>
-    <tr>
+    <tr id='memo_row_<%=t.ACTIVE_ID %>'>
       <td class='mobile_hide'><%=strCodeName %></td>
       <td class='mobile_hide'><a href='<%=request.getContextPath() %>/mgr/customer/Company.jsp?cpy_id=<%=IntegerCryptoUtil.crypt(t.CPY_ID) %>'><%=t.CPY_NAME %></a></td>
       <td class='mobile_hide'><%=FormatUtil.addDashBizNo(t.CPY_BUSINESS_NO) %></td>
@@ -191,7 +202,8 @@ if (arr!=null && arr.size()>0) {
       <td class='mobile_hide'><%=t.USER_NM  %></td>
       <td class='center mobile_hide'><%=t.WRITE_DATE.substring(0, 16) %></td>
       <td class='left'>
-        <a href='<%=request.getContextPath() %>/mgr/memo/MemosPerCustomer.jsp?cpy_id=<%=IntegerCryptoUtil.crypt(t.CPY_ID) %>' class='btn'>상세</a><div class='mobile_show'><br><br></div>
+        <a href='<%=request.getContextPath() %>/mgr/memo/MemosPerCustomer.jsp?cpy_id=<%=IntegerCryptoUtil.crypt(t.CPY_ID) %>' class='btn'>상세</a>
+        <a onclick='addComment(<%=t.ACTIVE_ID %>);' class='btn'>댓글추가</a><div class='mobile_show'><br><br></div>
         <% if (strManagerId.equals(t.WRITE_ID)) { %>
         <a onclick='editMemo(<%=t.CPY_ID %>, <%=t.ACTIVE_ID %>);' class='btn lurian'>수정</a>
         <a onclick='dropMemo(<%=t.ACTIVE_ID %>);' class='btn darkred'>삭제</a>

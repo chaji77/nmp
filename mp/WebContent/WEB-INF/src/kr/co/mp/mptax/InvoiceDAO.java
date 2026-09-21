@@ -98,6 +98,34 @@ public class InvoiceDAO extends BaroBill {
   }
 
 
+  public int T_BILL_DETAIL_MOD_PROC(InvoiceVO vo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    int intResult = 0;
+    ResultSet rs = null;
+    try {
+      String query = "EXEC DBO.T_BILL_DETAIL_MOD_PROC ?, ?, ?";
+      ps = new WrapPreparedStatementUtil(conn, query);
+      int i = 1;
+      ps.setInt(i++, Integer.parseInt(vo.BILL_SEQ));
+      ps.setString(i++, vo.strWriteDate); //작성일자 (YYYYMMDD)
+      ps.setString(i++, getItemXML(vo));
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      while(rs.next()) {
+        intResult = rs.getInt("RESULT");
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return intResult;
+  }
+
+
   public ArrayList<InvoiceVO> T_BILL_STANDBY_PROC(String strSenderKey, int intPage, String strWriteDate, String strInvoiceeCorpNum, String strEmpId, String strInvoiceeCorpName) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
     WrapPreparedStatementUtil ps = null;
@@ -114,6 +142,51 @@ public class InvoiceDAO extends BaroBill {
       ps.setString(i++, strInvoiceeCorpNum);
       ps.setString(i++, strEmpId);
       ps.setString(i++, strInvoiceeCorpName);
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      while(rs.next()) {
+        InvoiceVO vo = new InvoiceVO();
+        vo.BILL_SEQ       = rs.getString("BILL_SEQ");
+        vo.BILL_SENDER_KEY    = rs.getString("BILL_SENDER_KEY");
+        vo.BILL_STATUS      = rs.getInt("BILL_STATUS");
+        vo.strWriteDate     = rs.getString("WRITE_DATE");
+        vo.intInvoiceType     = rs.getInt("INVOICE_TYPE");
+        vo.intTaxType       = rs.getInt("TAX_TYPE");
+        vo.intPurposeType     = rs.getInt("PURPOSE_TYPE");
+        vo.strModifyCode    = rs.getString("MODIFY_CODE");
+        vo.strAmountTotal     = rs.getString("AMT");
+        vo.strTaxTotal      = rs.getString("TAX");
+        vo.strTotalAmount     = rs.getString("TOTAL_AMT");
+        vo.INVOICER_CORP_NAME = rs.getString("INVOICER_CORP_NAME");
+        vo.strToCorpNm      = rs.getString("INVOICEE_CORP_NAME");
+        vo.strToBizNo       = rs.getString("INVOICEE_CORP_NUM");
+        vo.REG_ID       = rs.getInt("REG_ID");
+        vo.DEP_NM       = StrUtil.nvl(rs.getString("DEP_NM"));
+        vo.EMP_NM       = StrUtil.nvl(rs.getString("EMP_NM"));
+        vo.TCNT         = rs.getInt("TCNT");
+        vo.CTIDS        = rs.getString("CTID");
+        arr.add(vo);
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
+
+  public ArrayList<InvoiceVO> T_BILL_AUTO_STANDBY_PROC(String strSenderKey) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ArrayList<InvoiceVO> arr = new ArrayList<>();
+    ResultSet rs = null;
+    try {
+      String query = "EXEC DBO.T_BILL_AUTO_STANDBY_PROC ?";
+      ps = new WrapPreparedStatementUtil(conn, query);
+      int i = 1;
+      ps.setString(i++, strSenderKey);
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       while(rs.next()) {
@@ -333,6 +406,60 @@ public class InvoiceDAO extends BaroBill {
         vo.TCNT         = rs.getInt("TCNT");
         vo.CTIDS         = rs.getString("CTIDS");
         vo.SUM_TOTAL = rs.getString("SUM_TOTAL");
+        arr.add(vo);
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
+
+  public ArrayList<InvoiceVO> T_BILL_EXCEL_LIST_PROC(String strSenderKey, int intPage, String startDate, String endDate, String strInvoiceeCorpNum, int intStatus, String strEmpId, String strInvoiceeCorpName) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ArrayList<InvoiceVO> arr = new ArrayList<>();
+    ResultSet rs = null;
+    try {
+      String query = "EXEC DBO.T_BILL_EXCEL_LIST_PROC ?, ?, ?, ?, ?, ?, ?, ? ";
+      ps = new WrapPreparedStatementUtil(conn, query);
+      int i = 1;
+      ps.setString(i++, strSenderKey);
+      ps.setInt(   i++, intPage);
+      ps.setString(i++, startDate);
+      ps.setString(i++, endDate);
+      ps.setString(i++, strInvoiceeCorpNum);
+      ps.setInt(   i++, intStatus);
+      ps.setString(i++, strEmpId);
+      ps.setString(i++, strInvoiceeCorpName);
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      while(rs.next()) {
+        InvoiceVO vo = new InvoiceVO();
+        vo.BILL_SEQ       = rs.getString("BILL_SEQ");
+        vo.BILL_SENDER_KEY    = rs.getString("BILL_SENDER_KEY");
+        vo.BILL_STATUS      = rs.getInt("BILL_STATUS");
+        vo.strWriteDate     = rs.getString("WRITE_DATE");
+        vo.intInvoiceType     = rs.getInt("INVOICE_TYPE");
+        vo.intTaxType       = rs.getInt("TAX_TYPE");
+        vo.intPurposeType     = rs.getInt("PURPOSE_TYPE");
+        vo.strModifyCode    = rs.getString("MODIFY_CODE");
+        vo.strAmountTotal     = rs.getString("AMT");
+        vo.strTaxTotal      = rs.getString("TAX");
+        vo.strTotalAmount     = rs.getString("TOTAL_AMT");
+        vo.INVOICER_CORP_NAME = rs.getString("INVOICER_CORP_NAME");
+        vo.strToCorpNm      = rs.getString("INVOICEE_CORP_NAME");
+        vo.strToBizNo       = rs.getString("INVOICEE_CORP_NUM");
+        vo.REG_ID       = rs.getInt("REG_ID");
+        vo.DEP_NM       = StrUtil.nvl(rs.getString("DEP_NM"));
+        vo.EMP_NM       = StrUtil.nvl(rs.getString("EMP_NM"));
+        vo.TCNT         = rs.getInt("TCNT");
+        vo.CTIDS         = rs.getString("CTIDS");
+        vo.SUM_TOTAL = rs.getString("SUM_TOTAL");
+        vo.ITEM_NM = StrUtil.nvl(rs.getString("ITEM_NM"));
         arr.add(vo);
       }
     } catch (Exception e) {

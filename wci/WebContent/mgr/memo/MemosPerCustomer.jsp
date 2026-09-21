@@ -62,7 +62,17 @@ function dropMemo(aid) {
 }
 
 $(document).ready(function(){
-
+<%
+if (arr!=null && arr.size()>0) {
+  for (MemoVO t : arr) {
+    if (t.COMMENT_YN.equals("Y")) {
+%>
+  loadComments(<%=t.ACTIVE_ID %>, 2);
+<%
+    }
+  }
+}
+%>
 });
 </script>
 
@@ -113,13 +123,14 @@ if (arr!=null && arr.size()>0) {
     String toUser  = StrUtil.nvl(t.TO_USER_NM, "");
     if (!toUser.equals("")) toUser = "<span class='to'><i class='fa-solid fa-location-dot'></i> "+toUser+"</span> ";
 %>
-    <tr>
+    <tr id='memo_row_<%=t.ACTIVE_ID %>'>
       <td class='mobile_hide'><%=strCodeName %></td>
       <td class='mobile_hide'><%=t.CALL_TYPE.equals("1")?"IN":"OUT" %></td>
       <td style='white-space:wrap;'><div class='mobile_show'><%=strCodeName %><br/><%=t.USER_NM  %> (<%=t.WRITE_DATE.substring(0, 16) %>)<br/></div><%=toUser%><%=strDesc %></td>
       <td class='mobile_hide'><%=t.USER_NM  %></td>
       <td class='center mobile_hide'><%=t.WRITE_DATE.substring(0, 16) %></td>
       <td class='center'>
+      <a onclick='addComment(<%=t.ACTIVE_ID %>);' class='btn'>댓글추가</a>
 <% if (loggedInManager.equals(t.WRITE_ID)) { %>
       <a onclick='editMemo(<%=intCpyId %>, <%=t.ACTIVE_ID %>)' class='btn lurian'>수정</a> <a onclick='dropMemo(<%=t.ACTIVE_ID %>);' class='btn darkred'>삭제</a>
 <% } %>

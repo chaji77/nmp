@@ -113,8 +113,12 @@ $(document).ready(function(){
   else out.print("구매&amp;판매사");
   %>
   </li>
+  <li class='th'></li>
+  <li class='td'></li>
   <li class='th'>대표자명</li>
   <li class='td'><%=cvo.CPY_CEO_NAME%></li>
+  <li class='th'>대표자 휴대폰번호</li>
+  <li class='td'><%=cvo.CPY_CEO_HP%></li>
   <li class='th'>기업형태</li>
   <li class='td'>
   <%
@@ -144,6 +148,10 @@ $(document).ready(function(){
   <li class='td'><%=pvo.PRS_TEL %></li>
   <li class='th'>휴대전화번호</li>
   <li class='td'><%=pvo.PRS_MOBILE_NO%></li>
+  <li class='th'>직위</li>
+  <li class='td'><%=pvo.PRS_PSTN%></li>
+  <li class='th'>내선번호</li>
+  <li class='td'><%=pvo.PRS_EXTN%></li>
 </ul>
 
 <div class='page-title-block' style='margin-bottom:15px;'>
@@ -162,10 +170,10 @@ $(document).ready(function(){
 </div>
 
 <ul class='detail'>
-  <li class='th'>확인결제</li>
+  <%-- <li class='th'>확인결제</li>
   <li class='td'><%=(cvo.CONFIRM_SETTLE_YN.equals("Y"))?"신청":"미신청" %></li>
   <li class='th'>월합세금계산서</li>
-  <li class='td'><%=(cvo.MPTAX_MONTH_USE_YN.equals("Y"))?"신청":"미신청" %></li>
+  <li class='td'><%=(cvo.MPTAX_MONTH_USE_YN.equals("Y"))?"신청":"미신청" %></li> --%>
   <li class='th'>스크랩 거래</li>
   <li class='td'><%=(cvo.CU_USE_YN.equals("Y"))?"거래 기업으로 등록":"취급하지 않음" %></li>
   <li class='th'>본·지사 사업자</li>
@@ -179,10 +187,10 @@ $(document).ready(function(){
     out.print(strRelationCompanies.substring(2));
   }
   %></li>
-  <li class='th'>모바일 승인</li>
+  <%-- <li class='th'>모바일 승인</li>
   <li class='td'><%=(cvo.MOBILE_YN.equals("Y"))?"신청":"미신청" %></li>
   <li class='th'>계약서 역발행</li>
-  <li class='td'><%=(cvo.REVERSE_YN.equals("Y"))?"신청":"미신청" %></li>
+  <li class='td'><%=(cvo.REVERSE_YN.equals("Y"))?"신청":"미신청" %></li> --%>
 </ul>
 
 <p style='margin-top:10px;'><i class="fa-solid fa-circle-exclamation" style='color:hotpink;'></i> 부가정보는 관리자의 확인 및 등록이 필요합니다. 고객센터(<a href='tel:<%=ConfigurationMgr.getInstance().getString("OWNER_TEL") %>'><%=ConfigurationMgr.getInstance().getString("OWNER_TEL") %></a>)로 문의하십시오.</p>

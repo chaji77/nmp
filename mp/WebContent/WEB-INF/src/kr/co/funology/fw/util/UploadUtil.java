@@ -153,14 +153,17 @@ public class UploadUtil  {
             long    lngByteSize    = item.getSize();
 
             setUploadFiledFile(item, strFileName, lngByteSize);
-            System.out.println("FileUpload : " + strFileName + "(" + lngByteSize + "byte, " + strContentType + ")");
+            System.out.println("FileUpload start: " + strFileName + "(" + lngByteSize + "byte, " + strContentType + ")");
 
             try {
                 File uploadedFile = new File(getUploadFilePath(), strFileName);
                 item.write(uploadedFile);
                 item.delete();
+                System.out.println("FileUpload success : " + uploadedFile.getAbsolutePath());
             } catch (Exception e) {
-                System.out.println("File Upload is Failure." + e.toString());
+                System.out.println("FileUpload failure : " + getUploadFilePath() + strFileName + " / " + e.toString());
+                System.out.println("FileUpload failure cause : " + e.getCause());
+                e.printStackTrace();
             }
         }
 
@@ -180,14 +183,15 @@ public class UploadUtil  {
             long    lngByteSize    = item.getSize();
 
             setUploadFiledFile(item, strFileName, lngByteSize);
-            System.out.println("FileUpload : " + strFileName + "(" + lngByteSize + "byte, " + strContentType + ")");
+            logger.info("FileUpload start : " + strFileName + "(" + lngByteSize + "byte, " + strContentType + ")");
 
             try {
                 File uploadedFile = new File(getUploadFilePath() + strSubPath, strFileName);
                 item.write(uploadedFile);
                 item.delete();
+                logger.info("FileUpload success : " + uploadedFile.getAbsolutePath());
             } catch (Exception e) {
-                System.out.println("File Upload is Failure." + e.toString());
+                logger.error("FileUpload failure : " + getUploadFilePath() + strSubPath + strFileName + " / " + e.toString());
             }
         }
     }

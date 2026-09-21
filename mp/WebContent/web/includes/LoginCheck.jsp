@@ -60,6 +60,7 @@ pageContext.setAttribute("MOBILE_YN",         StrUtil.nvl(lvo_for_login_check.MO
 pageContext.setAttribute("SIGN_EXCLUDE_YN",   StrUtil.nvl(lvo_for_login_check.SIGN_EXCLUDE_YN));
 pageContext.setAttribute("CRG_ID",            StrUtil.nvl(lvo_for_login_check.CRG_ID));
 pageContext.setAttribute("PAPER_BILL_YN",     StrUtil.nvl(lvo_for_login_check.PAPER_BILL_YN));
+pageContext.setAttribute("FEE_MOD_YN",        StrUtil.nvl(lvo_for_login_check.FEE_MOD_YN));
 
 /* trade statuses */
 int intTradeStatusBuyerSent      = 0;

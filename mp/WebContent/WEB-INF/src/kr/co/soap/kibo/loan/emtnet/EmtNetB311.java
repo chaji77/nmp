@@ -124,7 +124,10 @@ public class EmtNetB311 extends Kibo_b311 {
             String bill_dt = this.xmlB311VO.BILL_DT;
             
             if (koditFundPayIds.contains(this.xmlB311VO.PAY_ID)) {
-                //작성일 유효성 체크
+            	if ("KN".equalsIgnoreCase(this.xmlB311VO.BNK_CD) && this.xmlB311VO.PAY_ID == 14) {
+                    // 31일 체크하지 않음
+                } else {
+
                 if (Integer.parseInt(bill_dt) < Integer.parseInt(DateTimeUtil.diff(DateTimeUtil.getCurrentDate(""), -30))) {    //30 일 이전 
                     if(chkBnkcd.contains(this.xmlB311VO.BNK_CD)){ //작성일 31일 체크 은행
                         if (checkAfterAddOneDate(bill_dt, 30)==false) {
@@ -135,7 +138,7 @@ public class EmtNetB311 extends Kibo_b311 {
                     }
                 }
             }
-            
+          }  
         }                
 
         return commonElement;

@@ -242,6 +242,36 @@ public class GuaranteeDAO {
     }
 
     // ─────────────────────────────────────────
+    // INFO_GUARANTEE_CONDITION 조건행 생성 (F221 조건변경 수신 시)
+    //  - SEQNO 채번 / 기간시작(직전만기+1) / 금액승계 / 중복방지는 프로시저가 처리
+    //  - 반환: 1=등록, 0=이미존재(생략), -1=오류
+    // ─────────────────────────────────────────
+    protected int addGuaranteeCondition(String applNo, String endYmd, String amt) {
+        Connection conn = ConnectionMgr.getInstance().getConnetion();
+        WrapPreparedStatementUtil ps = null;
+        ResultSet rs = null;
+        int result = -1;
+        try {
+            ps = new WrapPreparedStatementUtil(conn,
+                "EXEC DBO.INS_GUARANTEE_CONDITION_PROC ?, ?, ?, ?;");
+            int i = 0;
+            ps.setString(++i, StrUtil.getParameter(applNo, "", 20));
+            ps.setString(++i, StrUtil.getParameter(endYmd, "", 8));
+            ps.setString(++i, StrUtil.getParameter(amt,    "", 20));
+            ps.setString(++i, "F221");
+            logger.debug(ps.getQueryString());
+            rs = ps.executeQuery();
+            if (rs != null && rs.next()) result = rs.getInt("RESULT");
+        } catch (Exception e) {
+            logger.error("addGuaranteeCondition error: " + e.toString());
+            result = -1;
+        } finally {
+            ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+        }
+        return result;
+    }
+
+    // ─────────────────────────────────────────
     // F221 INSERT
     // ─────────────────────────────────────────
     protected int receiveXmlF221(GuaranteeVO.F221VO vo) {

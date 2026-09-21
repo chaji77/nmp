@@ -25,8 +25,17 @@ public class CustomerBean {
   public CompanyVO COMPANY_DETAIL_PROC(int intCpyId) {
     return this.dao.COMPANY_DETAIL_PROC(intCpyId);
   }
+  public CompanyVO COMPANY_MOREINFO_PROC(int intCpyId) {
+    return this.dao.COMPANY_MOREINFO_PROC(intCpyId);
+  }
+  public int COMPANY_MOREINFO_MOD_PROC(CompanyVO cvo) {
+    return this.dao.COMPANY_MOREINFO_MOD_PROC(cvo);
+  }
   public ArrayList<CompanyVO> COMPANY_SEARCH_PROC(CompanyVO cvo) {
     return this.dao.COMPANY_SEARCH_PROC(cvo);
+  }
+  public ArrayList<CompanyVO> COMPANY_SALES_SEARCH_PROC(CompanyVO cvo) {
+    return this.dao.COMPANY_SALES_SEARCH_PROC(cvo);
   }
   public ArrayList<CompanyVO> CT_MYCOMPANY_LIST_PROC(int intCpyId, int intPrsId) {
     return this.dao.CT_MYCOMPANY_LIST_PROC(intCpyId, intPrsId);

@@ -16,4 +16,5 @@ public class MemoVO extends CommonVO {
   public String TO_USER_NM;
   public String CPY_NAME;
   public String CPY_BUSINESS_NO;
+  public String COMMENT_YN;
 }

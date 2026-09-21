@@ -16,9 +16,10 @@ int intPage =  Integer.parseInt(StrUtil.nvl(request.getParameter("page"), "1"));
 int intTotalCnt = 0;
 String strWriteDate = StrUtil.nvl(request.getParameter("wd"), "");
 String strInvoiceeCorpNum = StrUtil.nvl(request.getParameter("cn"), "");
+String strCorpName = StrUtil.nvl(request.getParameter("strCorpNm"), "");
 
 String strEmpId = "0";
-ArrayList<InvoiceVO> arr = new InvoiceDAO().T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate.replaceAll("/", ""), strInvoiceeCorpNum.replaceAll("-", ""), strEmpId);
+ArrayList<InvoiceVO> arr = new InvoiceDAO().T_BILL_STANDBY_PROC(strSenderKey, intPage, strWriteDate.replaceAll("/", ""), strInvoiceeCorpNum.replaceAll("-", ""), strEmpId, strCorpName);
 
 %>
 <%@ include file="../Header.jsp" %>
@@ -36,6 +37,8 @@ $(function() {
         goPage(1);
       }
   });
+  $(document).on("change", ".billseq", updateSumAmount);
+  updateSumAmount();
 });
 </script>
 
@@ -81,6 +84,20 @@ function toggleCheckAll() {
   $(".billseq").each(function(index, item) {
     this.checked = isChecked;
   });
+  updateSumAmount();
+}
+
+function updateSumAmount() {
+  var all = $(".billseq");
+  var checked = $(".billseq:checked");
+  var useAll = checked.length == 0 || checked.length == all.length;
+  var target = useAll ? all : checked;
+  var sum = 0;
+  target.each(function(index, item) {
+    sum += Number($(item).data("amt")) || 0;
+  });
+  $("#sumAmountLabel").text(useAll ? "합계금액" : "선택항목 합계금액");
+  $("#sumAmount").text(sum.toLocaleString());
 }
 
 function goPage(page) {
@@ -109,21 +126,48 @@ function getContract(seq) {
   <span class='title'>계산서발행신청관리</span>
   <span class='more'>
     <a class='btn' href='Invoice.jsp'>수기발행</a>
+    <a onclick='document.frmToExcel.submit();' class='btn white' title='excel download'><i class="fa-solid fa-download"></i>엑셀다운로드</a>
   </span>
 </div>
 
   <form name='frmSearch' method='post'>
   <input type='hidden' name='page' value='<%=intPage %>'>
   <input type='hidden' name='senderKey' value='<%=strSenderKey%>'>
-  <input type='hidden' name='wd' class='datepicker' value='<%=strWriteDate%>'>
-  <input type='hidden' name='cn' value='<%=strInvoiceeCorpNum%>'>
+<%--   <input type='hidden' name='wd' class='datepicker' value='<%=strWriteDate%>'>
+  <input type='hidden' name='cn' value='<%=strInvoiceeCorpNum%>'> --%>
   <input type='hidden' name='seq'>
+  <table class="list searchbox mobile_hide">
+	<tbody>
+	  <tr>
+	    <td>
+	      <ul>
+	        <li>
+	          <label>회사명</label>
+	          <input type='text' name='strCorpNm' value='<%=strCorpName%>' placeholder="회사명">
+	        </li>
+	        <li>
+	          <label>사업자번호</label>
+	          <input type='text' name='cn' value='<%=strInvoiceeCorpNum%>' placeholder="사업자번호">
+	        </li>
+	      </ul>
+	    </td>
+	    <td class='fill'></td>
+	    <td class='btn' style='text-align:right;'>
+	      <a onclick="goPage(1);">
+	        <i class="fa fa-search" aria-hidden="true" style="font-size:1.7em;margin-right:10px;"></i>
+	      </a>
+	    </td>
+	  </tr>
+	</tbody>
+  </table>
   </form>
-
+  
   <div class='control_bar'>
     <a href='javascript:publish();' class='btn'>발행</a>
     <a href='javascript:cancel();' class='btn darkorange'>삭제</a>
+    <span style='float:right;font-weight:bold;'><span id='sumAmountLabel'>합계금액</span>: <span id='sumAmount'>0</span>원</span>
   </div>
+  
 
   <form name='frmEnt'>
   <table class='list'>
@@ -153,7 +197,7 @@ if (arr!=null && arr.size()>0) {
 %>
       <tr>
         <td class='left'>
-          <input type='checkbox' name='billseq' class='billseq' value='<%=vo.BILL_SEQ %>'>
+          <input type='checkbox' name='billseq' class='billseq' value='<%=vo.BILL_SEQ %>' data-amt='<%=vo.strTotalAmount %>'>
         </td>
         <td><a href='javascript:view(<%=vo.BILL_SEQ %>);'><b><%=vo.BILL_SENDER_KEY %><%=vo.BILL_SEQ %></b></a></td>
         <td><%=InvoiceUtil.getStatus(vo) %></td>
@@ -195,4 +239,11 @@ if (arr!=null && arr.size()>0) {
   </div>
 
 <iframe name="work" id="work" height="800" width="1000" style="display:none;"></iframe>
+<iframe id='ifmContract'></iframe>
+<form name='frmToExcel' method='post' action='TaxRequestListForExcel.jsp' target='FrameForExcel'>
+  <input type='hidden' name="strSenderKey" value="<%=strSenderKey %>" />
+  <input type='hidden' name="strWriteDate" value="<%=strWriteDate %>" />
+  <input type='hidden' name="strInvoiceeCorpNum" value="<%=strInvoiceeCorpNum %>" />
+</form>
+<iframe name='FrameForExcel' id='FrameForExcel' style="display: none;"></iframe>
 <%@ include file="../Footer.jsp" %>

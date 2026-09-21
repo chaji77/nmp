@@ -42,6 +42,11 @@ function addCompany(cid) {
     <% } %>
   });
 }
+function showNewSellerReg() {
+  $("#element_to_pop_up").bPopup().close();
+  $("#element_to_pop_up").empty();
+  $("#element_to_pop_up").bPopup({loadUrl:strContextPath + '/web/customer/regreq/RegReqReg.jsp'});
+}
 $(document).ready(function(){
   $("input[name='mycompany_bizno'],input[name='mycompany_nm']").keydown(function(key) {
     if (key.keyCode == 13) searchCompany(1);
@@ -60,9 +65,11 @@ $(document).ready(function(){
     <span>&nbsp;또는</span><span class='mobile_hide'>&nbsp;상호&nbsp;</span>
     <input type='text' name='mycompany_nm' value='' style='width:90px;' placeholder='상호' autocomplete="off">
     <a onclick='searchCompany(1);' class='btn' style='padding-top:7px;padding-bottom:7px;'>검색</a>
+    <a onclick='showNewSellerReg();' class='btn' style='padding-top:7px;padding-bottom:7px;margin-left:5px;'>등록요청</a>
   </p>
   <p>&nbsp;</p>
   <div id='my-companies-list' style='text-align:center;'></div>
   
-  <div style='text-align:center;margin-top:50px;margin-bottom:30px;'><i class="fa-solid fa-xmark" onclick='closePopup();' style='cursor:pointer;font-size:2em;'></i></div>
+  <div style='text-align:center;margin-top:20px;'>※ 거래하고자 하는 기업이 가입되어있지 않은 경우, <b>등록요청</b> 버튼을 눌러주세요.</div>
+  <div style='text-align:center;margin-top:20px;margin-bottom:10px;'><i class="fa-solid fa-xmark" onclick='closePopup();' style='cursor:pointer;font-size:2em;'></i></div>
 </div>

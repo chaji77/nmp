@@ -78,9 +78,12 @@ $(window).on('resize', function(){
             <li><a href='<%=request.getContextPath()%>/web/trade/ContractsSent.jsp'>보낸계약서</a></li>
             <li><a href='<%=request.getContextPath()%>/web/trade/ContractsReceived.jsp'>받은계약서</a></li>
             <li><a href='<%=request.getContextPath()%>/web/trade/ContractsMaturityComing.jsp'>만기 미도래 계약서</a></li>
+            <% if (!"2".equals((String)pageContext.getAttribute("CPY_GUBUN"))) { %>
             <li><a href='<%=request.getContextPath()%>/web/trade/Invoices.jsp'>거래세금계산서관리</a></li>
+            <% } %>
             <li><a href='<%=request.getContextPath()%>/web/trade/MyCompanies.jsp'>거래처관리</a></li>
             <li><a href='<%=request.getContextPath()%>/web/trade/MPInvoices.jsp'>MP세금계산서</a></li>
+            <li><a href='<%=request.getContextPath()%>/web/customer/regreq/index.jsp'>판매기업 등록요청</a></li>
           </ul>
         </li>
         <li class='navigation-li-col'>

@@ -55,6 +55,7 @@ public class InvoiceVO {
     public String BILL_SENDER_KEY      ;
     public int    BILL_STATUS          ;
     public String CTIDS                ;
+    public String ITEM_NM              ;
     public int    CPY_ID               ;
     public int    REG_ID               ;
     public String DEP_NM               ;

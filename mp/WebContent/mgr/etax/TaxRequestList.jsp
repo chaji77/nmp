@@ -37,6 +37,8 @@ $(function() {
         goPage(1);
       }
   });
+  $(document).on("change", ".billseq", updateSumAmount);
+  updateSumAmount();
 });
 </script>
 
@@ -82,6 +84,20 @@ function toggleCheckAll() {
   $(".billseq").each(function(index, item) {
     this.checked = isChecked;
   });
+  updateSumAmount();
+}
+
+function updateSumAmount() {
+  var all = $(".billseq");
+  var checked = $(".billseq:checked");
+  var useAll = checked.length == 0 || checked.length == all.length;
+  var target = useAll ? all : checked;
+  var sum = 0;
+  target.each(function(index, item) {
+    sum += Number($(item).data("amt")) || 0;
+  });
+  $("#sumAmountLabel").text(useAll ? "합계금액" : "선택항목 합계금액");
+  $("#sumAmount").text(sum.toLocaleString());
 }
 
 function goPage(page) {
@@ -149,8 +165,9 @@ function getContract(seq) {
   <div class='control_bar'>
     <a href='javascript:publish();' class='btn'>발행</a>
     <a href='javascript:cancel();' class='btn darkorange'>삭제</a>
+    <span style='float:right;font-weight:bold;'><span id='sumAmountLabel'>합계금액</span>: <span id='sumAmount'>0</span>원</span>
   </div>
-  
+
 
   <form name='frmEnt'>
   <table class='list'>
@@ -180,7 +197,7 @@ if (arr!=null && arr.size()>0) {
 %>
       <tr>
         <td class='left'>
-          <input type='checkbox' name='billseq' class='billseq' value='<%=vo.BILL_SEQ %>'>
+          <input type='checkbox' name='billseq' class='billseq' value='<%=vo.BILL_SEQ %>' data-amt='<%=vo.strTotalAmount %>'>
         </td>
         <td><a href='javascript:view(<%=vo.BILL_SEQ %>);'><b><%=vo.BILL_SENDER_KEY %><%=vo.BILL_SEQ %></b></a></td>
         <td><%=InvoiceUtil.getStatus(vo) %></td>

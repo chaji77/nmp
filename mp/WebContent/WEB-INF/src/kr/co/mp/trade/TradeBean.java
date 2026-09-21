@@ -71,6 +71,9 @@ public class TradeBean {
   public ArrayList<CtHeaderVO> CT_HEADER_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd, int intTargetCpyId, String strPageCode, int intPrsId) {
     return this.dao.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd.replaceAll("-",  ""), strEndYmd.replaceAll("-",  ""), intTargetCpyId, strPageCode, intPrsId);
   }
+  public ArrayList<CtHeaderVO> CT_HEADER_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd, int intTargetCpyId, String strPageCode, int intPrsId, String strGuarInstCd) {
+    return this.dao.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd.replaceAll("-",  ""), strEndYmd.replaceAll("-",  ""), intTargetCpyId, strPageCode, intPrsId, strGuarInstCd);
+  }
   public ArrayList<CtHeaderVO> CT_HEADER_COMING_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd) {
     return this.dao.CT_HEADER_COMING_LIST_PROC(pvo, intCpyId, StrUtil.nvl(strStartYmd, "20200101").replaceAll("-",  ""), StrUtil.nvl(strEndYmd, "20801231").replaceAll("-",  ""));
   }

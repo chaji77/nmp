@@ -29,6 +29,7 @@ pvo.SIGN_EXCLUDE_YN    = StrUtil.nvl(request.getParameter("sign_exclude_yn"), "X
 pvo.CONFIRM_SETTLE_YN  = StrUtil.nvl(request.getParameter("confirm_settle_yn"), "X");
 pvo.MPTAX_MONTH_USE_YN = StrUtil.nvl(request.getParameter("mptax_month_use_yn"), "X");
 pvo.CST_ID             = StrUtil.nvl(request.getParameter("cst_id"), "0");
+pvo.PHONE              = StrUtil.nvl(request.getParameter("tel")).replaceAll("-", "");
 
 ArrayList<CompanyVO> arr = new CustomerBean().COMPANY_SEARCH_PROC(pvo);
 int intTotalCnt = 0;
@@ -38,6 +39,10 @@ int intTotalCnt = 0;
 <title>회원관리</title>
 <style>
 .bigo span {padding:2px;border:1px solid #bbb;margin-right:5px;}
+.searchbox label.long {
+  display: inline-block;
+  min-width: 80px;
+}
 </style>
 <script>
 function goPage(p) {
@@ -53,7 +58,7 @@ function goDetail(url) {
   document.frmSearch.submit();
 }
 $(document).ready(function(){
-  $(".searchbox input[name='bizno'], .searchbox input[name='nm']").keydown(function(key) {
+  $(".searchbox input[name='bizno'], .searchbox input[name='nm'], .searchbox input[name='tel']").keydown(function(key) {
     if (key.keyCode == 13) goPage(1);
   });
   $("a.magnify").on("click", function() {
@@ -85,8 +90,12 @@ $(document).ready(function(){
           <input type='text' name='bizno' maxlength='12' pattern="[0-9]+" onkeypress='return checkNumber(event)' value='<%=pvo.CPY_BUSINESS_NO %>' placeholder='사업자번호'>
         </li>
         <li>
-          <label>회사명</label>
-          <input type='text' name='nm' maxlength='20' value='<%=pvo.CPY_NAME %>' placeholder='회사명'>
+          <label class= "long">회사명/대표자</label>
+		  <input type='text' name='nm' maxlength='20' value='<%=pvo.CPY_NAME %>' placeholder='회사명 또는 대표자명'>
+        </li>
+        <li>
+          <label class= "long">담당자 전화번호</label>
+		  <input type='text' name='tel' maxlength='20' value='<%=pvo.PHONE %>' placeholder='담당자 전화번호'>
         </li>
         <li>
           <label>회원구분</label>

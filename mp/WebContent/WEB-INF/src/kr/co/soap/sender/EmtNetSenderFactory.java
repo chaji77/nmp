@@ -42,6 +42,24 @@ public class EmtNetSenderFactory {
 		        return new EmtNetC211Adapter(sender);
 		    }
 		}
+
+		// ★ B211 매매계약서 발송 분기 추가
+		if ("B211".equals(xmlGubn)) {
+		    if ("KODIT".equals(fund)) {
+		        kr.co.soap.kodit.loan.emtnet.EmtNetB211 sender =
+		            new kr.co.soap.kodit.loan.emtnet.EmtNetB211(vo.orderNo, vo.b211SeqNo);
+		        return new EmtNetB211Adapter(sender);
+		    }
+		}
+
+		// ★ K231 결제전문 발송 분기 추가
+		if ("K231".equals(xmlGubn)) {
+		    if ("KODIT".equals(fund)) {
+		        kr.co.soap.kodit.loan.emtnet.EmtNetK231 sender =
+		            new kr.co.soap.kodit.loan.emtnet.EmtNetK231(vo.orderNo, vo.k231SeqNo);
+		        return new EmtNetK231Adapter(sender);
+		    }
+		}
 		
 		if ("B311".equals(xmlGubn)) {
 	        if ("KODIT".equals(fund)) {

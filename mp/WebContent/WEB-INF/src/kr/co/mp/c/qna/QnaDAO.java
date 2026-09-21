@@ -105,6 +105,7 @@ public class QnaDAO {
           vo.Q_CONTENTS = StrUtil.nvl(rs.getString("Q_CONTENTS"));
           vo.A_CONTENTS = StrUtil.nvl(rs.getString("A_CONTENTS"));
           vo.CPY_NAME   = StrUtil.nvl(rs.getString("CPY_NAME"));
+          vo.Q_CODE     = StrUtil.nvl(rs.getString("CODE"));
     }
     } catch (Exception e) {
         logger.error(ps.getQueryString());
@@ -121,14 +122,17 @@ public class QnaDAO {
      ResultSet rs = null;
      ArrayList<QnaVO> arr = new ArrayList<>();
      try {
-       ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.C_QNA_LIST_PROC ?, ?, ?, ?, ?;");
+       ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.C_QNA_LIST_PROC ?, ?, ?, ?, ?, ?, ?;");
        int i = 0;
-       ps.setInt   (++i, vo.SEQ);
-       ps.setInt   (++i, vo.CPY_ID);
-       ps.setInt   (++i, vo.PAGE);
-       ps.setInt   (++i, vo.ROW_CNT);
-       ps.setString(++i, vo.ANS_YN);
-       
+       ps.setInt    (++i, vo.SEQ);
+       ps.setInt    (++i, vo.CPY_ID);
+       ps.setInt    (++i, vo.PAGE);
+       ps.setInt    (++i, vo.ROW_CNT);
+       ps.setString (++i, vo.ANS_YN);
+       ps.setBoolean(++i, false);
+       String qCode = StrUtil.nvl(vo.Q_CODE);
+       ps.setInt    (++i, (!qCode.isEmpty() && StrUtil.isOnlyNumeric(qCode)) ? Integer.parseInt(qCode) : 0);
+
        logger.debug(ps.getQueryString());
        rs = ps.executeQuery();
       if (rs!=null) {
@@ -144,6 +148,7 @@ public class QnaDAO {
           v.A_CONTENTS= StrUtil.nvl(rs.getString("A_CONTENTS"));
           v.ANS_YN    = rs.getString("ANS_YN");
           v.REG_DT    = StrUtil.nvl(rs.getString("REG_DT"));
+          v.Q_CODE   = StrUtil.nvl(rs.getString("CODE"));
           v.CPY_NAME  = StrUtil.nvl(rs.getString("CPY_NAME"));
           arr.add(v);
          }
@@ -165,12 +170,14 @@ public class QnaDAO {
     int intSeq = 0;
 
     try {
-        ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.C_QNA_CUSTOMER_ADD_PROC ?, ?, ?, ?;");
+        ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.C_QNA_CUSTOMER_ADD_PROC ?, ?, ?, ?, ?;");
         int i = 0;
         ps.setString(++i, StrUtil.xss(vo.Q_TITLE));
         ps.setInt(++i,vo.CPY_ID);
         ps.setString(++i, StrUtil.xss(vo.REG_NM));
-        ps.setString(++i, StrUtil.xss(StrUtil.nvl(vo.Q_CONTENTS).replace("\r\n", "<br>"))); 
+        ps.setString(++i, StrUtil.xss(StrUtil.nvl(vo.Q_CONTENTS).replace("\r\n", "<br>")));
+        String qCode = StrUtil.nvl(vo.Q_CODE);
+        ps.setInt(++i, (!qCode.isEmpty() && StrUtil.isOnlyNumeric(qCode)) ? Integer.parseInt(qCode) : 0);
         logger.debug(ps.getQueryString());
         rs = ps.executeQuery();
         if (rs != null && rs.next()) {

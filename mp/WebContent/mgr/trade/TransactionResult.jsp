@@ -13,6 +13,29 @@ String getDocName(String strDocNum) {
 String getResponseName(String strCode) {
   return (strCode.equals("0000")) ? "정상" : strCode;
 }
+String formatResponseMsg(String strMsg) {
+  String[] labels = {
+    "구매기업 휴폐업 여부", "판매기업 휴폐업 여부",
+    "구매기업 기준 관계기업 여부", "판매기업 기준 관계기업 여부",
+    "구매기업 신용불량 여부", "구매기업 중점관리기업 여부",
+    "구매기업 단기연체 여부", "보증서 발급전 거래 여부",
+    "기타 오류 여부", "예외처리 여부"
+  };
+  String[] parts = strMsg.split("\\|");
+  if (parts.length != 11) return strMsg;
+  StringBuilder sb = new StringBuilder();
+  for (int i = 0; i < 10; i++) {
+    if ("Y".equals(parts[i].trim())) {
+      if (sb.length() > 0) sb.append("<br/>");
+      sb.append(labels[i]);
+    }
+  }
+  if (sb.length() > 0) sb.append("<br/>");
+  if (!parts[10].trim().equals("000")) {
+    sb.append("기타 오류 코드 : ").append(parts[10].trim());
+  }
+  return sb.toString();
+}
 %>
 <%
 request.setCharacterEncoding("utf-8");
@@ -70,7 +93,7 @@ function syncTransaction(encid, seqno) {
        out.print("<td>" + FormatUtil.addSeparatorDate(v.TRANSACTIONDATE, "/") + "</td>");
        out.print("<td>" + v.TRANSACTIONTIME + "</td>");
        out.print("<td>" + getResponseName(v.RESRESPONSECODE) + "</td>");
-       out.print("<td>" + v.RESRESPONSEMSG  + "</td>");
+       out.print("<td>" + formatResponseMsg(v.RESRESPONSEMSG)  + "</td>");
        out.print("<td><a onclick='syncTransaction(\""+IntegerCryptoUtil.crypt(intCtId)+"\",\"" + v.SEQNO  + "\");' class='btn'>A181</a>");
        /* out.print("<td>");
        if (!v.RESRESPONSECODE.equals("0000")) {

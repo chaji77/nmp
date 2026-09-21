@@ -41,9 +41,17 @@ if (!strVal.equals(strCalVal)) {
     if (commonElement.getResponseCode().equals("0000")) {
       out.print("{\"is\":true,\"msg\":\"전송완료되었습니다.\"}");
     } else {
-      logger.debug("{\"is\":false,\"msg\":\""+commonElement.getResponseMessage()+"\"}");
-      out.print("{\"is\":false,\"msg\":\""+ConfigurationMgr.getInstance().getString("ERR_B311_MSG")+"\"}");
+     // logger.debug("{\"is\":false,\"msg\":\""+commonElement.getResponseMessage()+"\"}");
+      String responseCode = commonElement.getResponseCode();
+      String responseMessage = commonElement.getResponseMessage();
+      logger.debug("B311 Response Code : " + responseCode);
+      logger.debug("B311 Response Message : " + responseMessage);
       
+      if("0094".equals(responseCode)) {
+    	  out.print("{\"is\":false,\"msg\":\""+responseMessage+"\"}");
+      } else {
+    	  out.print("{\"is\":false,\"msg\":\""+ConfigurationMgr.getInstance().getString("ERR_B311_MSG")+"\"}");
+      }      
     }
   } catch(Exception e) {
     out.print("{\"is\":false,\"msg\":\"보증기관 및 은행과의 통신이 원할하지 않습니다.\"}");

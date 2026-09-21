@@ -98,6 +98,34 @@ public class InvoiceDAO extends BaroBill {
   }
 
 
+  public int T_BILL_DETAIL_MOD_PROC(InvoiceVO vo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    int intResult = 0;
+    ResultSet rs = null;
+    try {
+      String query = "EXEC DBO.T_BILL_DETAIL_MOD_PROC ?, ?, ?";
+      ps = new WrapPreparedStatementUtil(conn, query);
+      int i = 1;
+      ps.setInt(i++, Integer.parseInt(vo.BILL_SEQ));
+      ps.setString(i++, vo.strWriteDate); //작성일자 (YYYYMMDD)
+      ps.setString(i++, getItemXML(vo));
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      while(rs.next()) {
+        intResult = rs.getInt("RESULT");
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return intResult;
+  }
+
+
   public ArrayList<InvoiceVO> T_BILL_STANDBY_PROC(String strSenderKey, int intPage, String strWriteDate, String strInvoiceeCorpNum, String strEmpId, String strInvoiceeCorpName) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
     WrapPreparedStatementUtil ps = null;
@@ -347,7 +375,6 @@ public class InvoiceDAO extends BaroBill {
       int i = 1;
       ps.setString(i++, strSenderKey);
       ps.setInt(   i++, intPage);
-     /* ps.setString(i++, strWriteDate);*/
       ps.setString(i++, startDate);
       ps.setString(i++, endDate);
       ps.setString(i++, strInvoiceeCorpNum);

@@ -93,8 +93,8 @@ public class CommissionDAO {
       
       ps.setString(++i, StrUtil.nvl(pvo.MAX_YN, "N"));
       ps.setString(++i, StrUtil.nvl(pvo.MODID, ""));
-      ps.setString(++i, StrUtil.nvl(pvo.START_DT));
-      ps.setString(++i, StrUtil.nvl(pvo.END_DT));
+      ps.setString(++i, StrUtil.nvl(pvo.START_DT, ""));
+      ps.setString(++i, StrUtil.nvl(pvo.END_DT, ""));
 
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();

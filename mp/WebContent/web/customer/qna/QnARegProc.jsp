@@ -22,6 +22,7 @@ vo.Q_TITLE      = StrUtil.xss(request.getParameter("title"));
 vo.CPY_ID       = Integer.parseInt((String)pageContext.getAttribute("CPY_ID"));
 vo.REG_NM       = (String)pageContext.getAttribute("USER_LOGIN");
 vo.Q_CONTENTS   = StrUtil.nvl(request.getParameter("contents"));
+vo.Q_CODE       = StrUtil.nvl(request.getParameter("code"));
 
 // DB에 저장
 if (vo.SEQ == 0) vo.SEQ = bean.C_QNA_CUSTOMER_ADD_PROC(vo);

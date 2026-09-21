@@ -21,14 +21,15 @@ CtHeaderVO pvo     = new CtHeaderVO();
 pvo.PAGE           = Integer.parseInt(StrUtil.nvl(request.getParameter("page"), "1"));
 pvo.ROW_CNT        = 20;
 pvo.STATUS         = StrUtil.nvl(request.getParameter("status"), "");
+pvo.GUAR_INST_CD   = StrUtil.nvl(request.getParameter("guar_inst_cd"), "");
 pvo.CTNO           = StrUtil.nvl(request.getParameter("ctno"), "");
 pvo.SBDATE         = StrUtil.nvl(request.getParameter("sbdate"), "R");
 String strStartYmd = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 31, "-"));
 String strEndYmd   = StrUtil.nvl(request.getParameter("end_ymd"), DateTimeUtil.getCurrentDate("-"));
-if (!pvo.CTNO.equals("")) {
-  strStartYmd = "1970-07-28";
-  strEndYmd   = DateTimeUtil.getCurrentDate("-");
-}
+// if (!pvo.CTNO.equals("")) {
+//   strStartYmd = "1970-07-28";
+//   strEndYmd   = DateTimeUtil.getCurrentDate("-");
+// }
 int intTotalCnt    = 0;
 
 TradeBean bean = new TradeBean();
@@ -36,7 +37,7 @@ ArrayList<CtHeaderVO> arr = null;
 ArrayList<UnusualTransactionVO> arrUnusuals = null;
 ArrayList<TransactionResultVO> arrK311Results = null;
 try {
-  arr = bean.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd, strEndYmd, 0, "A", 0);
+  arr = bean.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd, strEndYmd, 0, "A", 0, pvo.GUAR_INST_CD);
   intTotalCnt = (arr.get(0)).TOTAL_CNT;
   String strCtIds = "";
   String strCtNos = "";
@@ -96,7 +97,7 @@ function goPage(p) {
   document.frmSearch.submit();
 }
 function calc(ctid) {
-  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommission.jsp", {'ctid':ctid}, function(data) {
+  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommissionFixed.jsp", {'ctid':ctid}, function(data) {
     showAlert(data);
   });
 }
@@ -297,6 +298,16 @@ $(document).ready(function(){
             <option value="090" <%=(pvo.STATUS.equals("090"))?"selected":""%>>삭제</option>
           </select>
         </li>
+        <li class='search-option-status'>
+          <label>결제기관</label>
+          <select name='guar_inst_cd' onChange="goPage(1);">
+            <option value=''>전체</option>
+            <option value="신보" <%=(pvo.GUAR_INST_CD.equals("신보"))?"selected":""%>>신보</option>
+            <option value="기보" <%=(pvo.GUAR_INST_CD.equals("기보"))?"selected":""%>>기보</option>
+            <option value="재단" <%=(pvo.GUAR_INST_CD.equals("재단"))?"selected":""%>>재단</option>
+            <option value="기타" <%=(pvo.GUAR_INST_CD.equals("기타"))?"selected":""%>>기타</option>
+          </select>
+        </li>
       </ul>
     </td>
     <td class='fill'></td>
@@ -359,6 +370,8 @@ if (arr!=null && arr.size()>0) {
         <% } %>
       </td>
       <td class='left'><%=FormatUtil.addSeparatorDate(vo.MTYDATE) %>
+        <% Long mtyDiffDay = DateTimeUtil.diff(vo.REGTIME.substring(0, 8), vo.MTYDATE, "") + 1; %>
+        <span style="color:red;">(<%=mtyDiffDay %>)</span>
         <% if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) { %>
         <br/><a onclick='sendMessage("M005", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a><% } %>
       </td>

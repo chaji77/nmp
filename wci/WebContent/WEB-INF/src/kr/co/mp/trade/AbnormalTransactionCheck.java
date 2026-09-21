@@ -354,10 +354,8 @@ public class AbnormalTransactionCheck {
    */
   public boolean KD004() {
     this.logger.debug("KD004");
-    String buyer  = StrUtil.nvl(this.buyerVo.CPY_ADDR).trim().replaceAll("[^a-zA-Z0-9가-힣]", "");
-    String seller = StrUtil.nvl(this.sellerVo.CPY_ADDR).trim().replaceAll("[^a-zA-Z0-9가-힣]", "");
-//    String buyer  = StrUtil.nvl(this.buyerVo.CPY_ADDR + StrUtil.nvl(this.buyerVo.CPY_ADDR2)).trim().replaceAll("[^a-zA-Z0-9가-힣]", "");
-//    String seller = StrUtil.nvl(this.sellerVo.CPY_ADDR + StrUtil.nvl(this.sellerVo.CPY_ADDR2)).trim().replaceAll("[^a-zA-Z0-9가-힣]", "");
+    String buyer  = StrUtil.nvl(this.buyerVo.CPY_ADDR + StrUtil.nvl(this.buyerVo.CPY_ADDR2)).trim().replaceAll("[^a-zA-Z0-9가-힣]", "");
+    String seller = StrUtil.nvl(this.sellerVo.CPY_ADDR + StrUtil.nvl(this.sellerVo.CPY_ADDR2)).trim().replaceAll("[^a-zA-Z0-9가-힣]", "");
     boolean isDuplicated = buyer.equals(seller);
     if (isDuplicated) { // 동일사업장이상거래예외테이블 조회
       int intBuyer  = Integer.parseInt(StrUtil.nvl(hvo.CPYBUYER, "0"));

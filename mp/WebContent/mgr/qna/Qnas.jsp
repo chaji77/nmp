@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Map" %>
 <%@ page import="kr.co.funology.fw.util.StrUtil" %>
 <%@ page import="kr.co.funology.fw.util.WebPageCtrlUtil" %>
 <%@ page import="kr.co.funology.fw.util.IntegerCryptoUtil" %>
@@ -17,6 +18,8 @@ else pvo.PAGE = 1;
 pvo.ROW_CNT = 20;
 String searchStatus = StrUtil.nvl(request.getParameter("searchStatus"), "");
 pvo.ANS_YN = searchStatus;
+String searchCode = StrUtil.nvl(request.getParameter("code"), "");
+pvo.Q_CODE = searchCode;
 
 ArrayList<QnaVO> arr = new QnaBean().C_QNA_LIST_PROC(pvo);
 int intTotalCnt = 0;
@@ -33,7 +36,14 @@ $(document).ready(function() {
   selectElement.on('change', function () {
     updateSearchCondition(this.value);
   });
-  
+
+  const codeElement = $('#code');
+  if (codeElement) {
+    codeElement.on('change', function () {
+      resetPageAndSubmit();
+    });
+  }
+
   $('#target-list').on('click', function (event) {
     const target = event.target;
     const tr = target.closest('tr');
@@ -54,7 +64,13 @@ $(document).ready(function() {
 function updateSearchCondition(status) {
   const form = document.forms['frmSearch'];
   form.searchStatus.value = status;
-  form.page.value = 1; 
+  form.page.value = 1;
+  form.submit();
+}
+
+function resetPageAndSubmit() {
+  const form = document.forms['frmSearch'];
+  form.page.value = 1;
   form.submit();
 }
 	
@@ -120,6 +136,21 @@ function search() {
             </select>
           </div>
         </li>
+        <li>
+          <div>
+            <label>유형</label>
+            <select id="code" name="code">
+              <option value="" <%= "".equals(pvo.Q_CODE) ? "selected" : "" %>>전체</option>
+              <%
+              for (Map.Entry<String, String> entry : QnaVO.getQTypeMap().entrySet()) {
+              %>
+                            <option value="<%= entry.getKey() %>" <%= entry.getKey().equals(pvo.Q_CODE) ? "selected" : "" %>><%= entry.getValue() %></option>
+              <%
+              }
+              %>
+            </select>
+          </div>
+        </li>
       </ul>
     </td>
    </tr>
@@ -129,16 +160,19 @@ function search() {
 
 <table id='target-list' class='list detail clickable-tr'>
   <colgroup>
+    <col width='5%' />
+    <col width='8%' />
+    <col width='43%' />
+    <col width='12%' />
+    <col width='8%' />
     <col width='10%' />
-    <col width='50%' />
-    <col width='10%' />
-    <col width='10%' />
-    <col width='10%' class='mobile_hide' />
+    <col width='8%' class='mobile_hide' />
     <col width='*' />
   </colgroup>
   <thead>
     <tr>
       <th class='left'>번호</th>
+      <th class='left'>유형</th>
       <th class='left'>제목</th>
       <th class='left'>회사명</th>
       <th class='left'>작성자</th>
@@ -153,9 +187,11 @@ if (arr != null && arr.size() > 0) {
 	for (QnaVO v : arr) {
       intTotalCnt = v.TOTAL_CNT;
       String answerStatus = "Y".equals(v.ANS_YN) ? "처리완료" : "미처리";
+      String qTypeLabel = QnaVO.getQCodeLabel(v.Q_CODE);
 %>
     <tr data-mid="<%= v.SEQ %>" onclick='goDetail("<%= IntegerCryptoUtil.crypt(v.SEQ) %>");'>
       <td class='left'><%= v.SEQ %></td>
+      <td class='left'><%= qTypeLabel %></td>
       <td><%= StrUtil.nvl(v.Q_TITLE) %></td>
       <td class='left'><%= StrUtil.nvl(v.CPY_NAME) %></td>
       <td class='left'><%= StrUtil.nvl(v.REG_NM) %></td>
@@ -172,7 +208,7 @@ if (arr != null && arr.size() > 0) {
     </tr>
 <%
   }
-} else out.println("<tr><td colspan='7' class='noentry'>조회된 문의가 없습니다.</td></tr>");
+} else out.println("<tr><td colspan='8' class='noentry'>조회된 문의가 없습니다.</td></tr>");
 %>
   </tbody>
 </table>

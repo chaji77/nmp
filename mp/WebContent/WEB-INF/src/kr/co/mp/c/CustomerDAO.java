@@ -87,7 +87,7 @@ public class CustomerDAO {
     int intCpyId = 0;
     try {
       String q = "";
-      for (int a=0; a<26; a++) {
+      for (int a=0; a<29; a++) {
         q += ", ?";
       }
       q = q.substring(1);
@@ -121,6 +121,9 @@ public class CustomerDAO {
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_SMS, "0", 1));
       ps.setString(++i, StrUtil.nvl(cvo.MP_CODE, ConfigurationMgr.getInstance().getString("OWNER_MPCODE")));
       ps.setString(++i, StrUtil.nvl(cvo.SALES_AMT, "0"));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_PSTN, "", 50));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_EXTN, "", 4));
+      ps.setString(++i, StrUtil.getParameter(cvo.CPY_CEO_HP, "", 13));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null && rs.next()) {
@@ -142,7 +145,7 @@ public class CustomerDAO {
     int intCpyId = 0;
     try {
       String q = "";
-      for (int a=0; a<25; a++) {
+      for (int a=0; a<28; a++) {
         q += ", ?";
       }
       q = q.substring(1);
@@ -175,6 +178,9 @@ public class CustomerDAO {
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_MOBILE_NO, "", 13));
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_SMS, "0", 1));
       ps.setString(++i, StrUtil.nvl(cvo.SALES_AMT, "0"));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_PSTN, "", 50));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_EXTN, "", 4));
+      ps.setString(++i, StrUtil.getParameter(cvo.CPY_CEO_HP, "", 13));
 
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
@@ -238,6 +244,98 @@ public class CustomerDAO {
         vo.SIGN_EXCLUDE_YN     = StrUtil.nvl(rs.getString("SIGN_EXCLUDE_YN   ".trim()));
         vo.CPY_MEMO            = "";
         vo.SELLER_CLEAR_YN     = StrUtil.nvl(rs.getString("SELLER_CLEAR_YN   ".trim()));
+        vo.FEE_MOD_YN           = StrUtil.nvl(rs.getString("FEE_MOD_YN        ".trim()));
+        vo.CPY_CEO_HP          = StrUtil.nvl(rs.getString("CPY_CEO_HP        ".trim()));
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return vo;
+  }
+  protected int COMPANY_MOREINFO_MOD_PROC(CompanyVO cvo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    int intResult = 0;
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.COMPANY_MOREINFO_MOD_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?;");
+      int i = 0;
+      ps.setInt(   ++i, cvo.CPY_ID);
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_CREDIT_GRADE));
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_INDUSTRY_CODE));
+      ps.setString(++i, StrUtil.nvl(cvo.INDUSTRY_DETAIL));
+      ps.setString(++i, cvo.EXPORT_YN);  // '-' 선택 시 null(NULL), 'Y'/'N' 그대로
+      ps.setString(++i, cvo.PATENT_YN);
+      ps.setString(++i, cvo.MAINBIZ_YN);
+      ps.setString(++i, cvo.INNOBIZ_YN);
+      ps.setString(++i, cvo.LAB_YN);
+      ps.setString(++i, cvo.SALES_YEAR);   // 빈 값이면 null(NULL) 그대로 저장
+      ps.setString(++i, cvo.SALES_AMOUNT);
+      ps.setString(++i, cvo.CPY_SCALE);
+      ps.setString(++i, cvo.EMPLOYEE_COUNT);
+      logger.debug(ps.getQueryString());
+      ps.executeUpdate();
+      intResult = 1;
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+      intResult = -1;
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps);
+    }
+    return intResult;
+  }
+  protected CompanyVO COMPANY_MOREINFO_PROC(int intCpyId) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    CompanyVO vo = new CompanyVO();
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.COMPANY_MOREINFO_PROC ?;");
+      int i = 0;
+      ps.setInt(++i, intCpyId);
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null && rs.next()) {
+        vo.CPY_ID             = rs.getInt("CPY_ID");
+        vo.CRG_ID              = StrUtil.nvl(rs.getString("CRG_ID"));
+        vo.CST_ID               = StrUtil.nvl(rs.getString("CST_ID"));
+        vo.CPY_NAME            = StrUtil.nvl(rs.getString("CPY_NAME"));
+        vo.BUSINESS_TYPE       = StrUtil.nvl(rs.getString("BUSINESS_TYPE"));
+        vo.INDUSTRY            = StrUtil.nvl(rs.getString("INDUSTRY"));
+        vo.CPY_FAX             = StrUtil.nvl(rs.getString("CPY_FAX"));
+        vo.CPY_BUSINESS_DESC   = StrUtil.nvl(rs.getString("CPY_BUSINESS_DESC"));
+        vo.CPY_BUSINESS_NO     = StrUtil.nvl(rs.getString("CPY_BUSINESS_NO"));
+        vo.CPY_INCORPORATE_NO  = StrUtil.nvl(rs.getString("CPY_INCORPORATE_NO"));
+        vo.CPY_CEO_NAME        = StrUtil.nvl(rs.getString("CPY_CEO_NAME"));
+        vo.CPY_FOUNDYEAR       = StrUtil.nvl(rs.getString("CPY_FOUNDYEAR"));
+        vo.CPY_GUBUN           = StrUtil.nvl(rs.getString("CPY_GUBUN"));
+        vo.MP_CODE             = StrUtil.nvl(rs.getString("MP_CODE"));
+        vo.CPY_DISHONOR        = StrUtil.nvl(rs.getString("CPY_DISHONOR"));
+        vo.CPY_ZIPCODE         = StrUtil.nvl(rs.getString("CPY_ZIPCODE"));
+        vo.CPY_ADDR            = StrUtil.nvl(rs.getString("CPY_ADDR"));
+        vo.CPY_ADDR2           = StrUtil.nvl(rs.getString("CPY_ADDR2"));
+        vo.LAST_LOGIN_DT       = StrUtil.nvl(rs.getString("LAST_LOGIN_DT"));
+        vo.BIZ_DOC_FILE_URL    = StrUtil.nvl(rs.getString("BIZ_DOC_FILE_URL"));
+        vo.CU_USE_YN           = StrUtil.nvl(rs.getString("CU_USE_YN"));
+        vo.MOBILE_YN           = StrUtil.nvl(rs.getString("MOBILE_YN"));
+        vo.REVERSE_YN          = StrUtil.nvl(rs.getString("REVERSE_YN"));
+        vo.CPY_CREDIT_GRADE    = StrUtil.nvl(rs.getString("CREDIT_GRADE"));
+        vo.CPY_INDUSTRY_CODE   = StrUtil.nvl(rs.getString("INDUSTRY_CODE"));
+        vo.INDUSTRY_DETAIL     = StrUtil.nvl(rs.getString("INDUSTRY_DETAIL"));
+        vo.EXPORT_YN           = StrUtil.nvl(rs.getString("EXPORT_YN"));
+        vo.PATENT_YN           = StrUtil.nvl(rs.getString("PATENT_YN"));
+        vo.MAINBIZ_YN          = StrUtil.nvl(rs.getString("MAINBIZ_YN"));
+        vo.INNOBIZ_YN          = StrUtil.nvl(rs.getString("INNOBIZ_YN"));
+        vo.LAB_YN              = StrUtil.nvl(rs.getString("LAB_YN"));
+        vo.SALES_YEAR          = StrUtil.nvl(rs.getString("SALES_YEAR"));
+        vo.SALES_AMOUNT        = StrUtil.nvl(rs.getString("SALES_AMOUNT"));
+        vo.CPY_SCALE           = StrUtil.nvl(rs.getString("CPY_SCALE"));
+        vo.EMPLOYEE_COUNT      = StrUtil.nvl(rs.getString("EMPLOYEE_COUNT"));
       }
     } catch (Exception e) {
       logger.error(ps.getQueryString());
@@ -254,7 +352,7 @@ public class CustomerDAO {
     ResultSet rs = null;
     ArrayList<CompanyVO> arr = new ArrayList<>();
     try {
-      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.COMPANY_SEARCH_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?;");
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.COMPANY_SEARCH_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?;");
       int i = 0;
       ps.setInt(   ++i, cvo.PAGE);
       ps.setInt(   ++i, cvo.ROW_CNT);
@@ -268,6 +366,7 @@ public class CustomerDAO {
       ps.setString(++i, StrUtil.nvl(cvo.MPTAX_MONTH_USE_YN, "X"));
       ps.setString(++i, StrUtil.nvl(cvo.CPY_GUBUN, "0"));
       ps.setInt(   ++i, Integer.parseInt(StrUtil.nvl(cvo.CST_ID, "0")));
+      ps.setString(++i, StrUtil.nvl(cvo.PHONE, ""));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null) {
@@ -289,6 +388,61 @@ public class CustomerDAO {
           v.SIGN_EXCLUDE_YN    = StrUtil.nvl(rs.getString("SIGN_EXCLUDE_YN"));
           v.CPY_ADDR           = StrUtil.nvl(rs.getString("CPY_ADDR"));
           v.MPTAX_MONTH_USE_YN = StrUtil.nvl(rs.getString("MPTAX_MONTH_USE_YN"));
+          v.FEE_MOD_YN         = StrUtil.nvl(rs.getString("FEE_MOD_YN"));
+          arr.add(v);
+        }
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
+  protected ArrayList<CompanyVO> COMPANY_SALES_SEARCH_PROC(CompanyVO cvo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    ArrayList<CompanyVO> arr = new ArrayList<>();
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.COMPANY_SALES_SEARCH_PROC ?, ?, ?, ?, ?, ?, ?, ?;");
+      int i = 0;
+      ps.setInt(   ++i, cvo.PAGE);
+      ps.setInt(   ++i, cvo.ROW_CNT);
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_BUSINESS_NO));
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_NAME));
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_CREDIT_GRADE));
+      ps.setInt(   ++i, Integer.parseInt(StrUtil.nvl(cvo.CST_ID, "0")));
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_SCALE));
+      ps.setString(++i, StrUtil.nvl(cvo.CPY_GUBUN, "0"));
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null) {
+        while (rs.next()) {
+          CompanyVO v = new CompanyVO();
+          v.RN                = rs.getInt("RN");
+          v.TOTAL_CNT         = rs.getInt("TOTAL_CNT");
+          v.CPY_ID            = rs.getInt("CPY_ID");
+          v.CPY_NAME          = StrUtil.nvl(rs.getString("CPY_NAME"));
+          v.CPY_BUSINESS_NO   = StrUtil.nvl(rs.getString("CPY_BUSINESS_NO"));
+          v.CPY_CEO_NAME      = StrUtil.nvl(rs.getString("CPY_CEO_NAME"));
+          v.CPY_CREDIT_GRADE  = StrUtil.nvl(rs.getString("CREDIT_GRADE"));
+          v.CPY_ADDR          = StrUtil.nvl(rs.getString("CPY_ADDR"));
+          v.CPY_INDUSTRY_CODE = StrUtil.nvl(rs.getString("INDUSTRY_CODE"));
+          v.EXPORT_YN         = StrUtil.nvl(rs.getString("EXPORT_YN"));
+          v.PATENT_YN         = StrUtil.nvl(rs.getString("PATENT_YN"));
+          v.MAINBIZ_YN        = StrUtil.nvl(rs.getString("MAINBIZ_YN"));
+          v.INNOBIZ_YN        = StrUtil.nvl(rs.getString("INNOBIZ_YN"));
+          v.LAB_YN            = StrUtil.nvl(rs.getString("LAB_YN"));
+          v.CPY_SCALE         = StrUtil.nvl(rs.getString("CPY_SCALE"));
+          v.INDUSTRY_DETAIL   = StrUtil.nvl(rs.getString("INDUSTRY_DETAIL"));
+          v.SALES_YEAR        = StrUtil.nvl(rs.getString("SALES_YEAR"));
+          v.SALES_AMOUNT      = StrUtil.nvl(rs.getString("SALES_AMOUNT"));
+          v.EMPLOYEE_COUNT    = StrUtil.nvl(rs.getString("EMPLOYEE_COUNT"));
+          v.CPY_GUBUN         = StrUtil.nvl(rs.getString("CPY_GUBUN"));
+          v.CPY_FOUNDYEAR     = StrUtil.nvl(rs.getString("CPY_FOUNDYEAR"));
           arr.add(v);
         }
       }
@@ -411,6 +565,8 @@ public class CustomerDAO {
           vo.PRS_EMAIL     = StrUtil.nvl(rs.getString("PRS_EMAIL    ".trim()));
           vo.PRS_MOBILE_NO = StrUtil.nvl(rs.getString("PRS_MOBILE_NO".trim()));
           vo.PRS_SMS       = StrUtil.nvl(rs.getString("PRS_SMS      ".trim()));
+          vo.PRS_PSTN      = StrUtil.nvl(rs.getString("PRS_PSTN     ".trim()));
+          vo.PRS_EXTN      = StrUtil.nvl(rs.getString("PRS_EXTN     ".trim()));
           arr.add(vo);
         }
       }
@@ -430,7 +586,7 @@ public class CustomerDAO {
     int intPrsId = 0;
     try {
       String q = "";
-      for (int a=0; a<8; a++) {
+      for (int a=0; a<10; a++) {
         q += ", ?";
       }
       q = q.substring(1);
@@ -444,6 +600,8 @@ public class CustomerDAO {
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_EMAIL, "", 40));
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_MOBILE_NO, "", 13));
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_SMS, "0", 1));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_PSTN, "", 50));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_EXTN, "", 4));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null && rs.next()) {
@@ -465,7 +623,7 @@ public class CustomerDAO {
     int intPrsId = 0;
     try {
       String q = "";
-      for (int a=0; a<8; a++) {
+      for (int a=0; a<10; a++) {
         q += ", ?";
       }
       q = q.substring(1);
@@ -479,6 +637,8 @@ public class CustomerDAO {
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_EMAIL, "", 40));
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_MOBILE_NO, "", 13));
       ps.setString(++i, StrUtil.getParameter(pvo.PRS_SMS, "0", 1));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_PSTN, "", 50));
+      ps.setString(++i, StrUtil.getParameter(pvo.PRS_EXTN, "", 4));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null && rs.next()) {

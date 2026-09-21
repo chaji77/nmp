@@ -39,11 +39,15 @@ TradeBean bean = new TradeBean();
 ArrayList<CtHeaderVO> arr = null;
 ArrayList<UnusualTransactionVO> arrUnusuals = null;
 ArrayList<TransactionResultVO> arrK311Results = null;
+String strTotalMpFee = "0";
+String strTotalPayAmt = "0";
 try {
   arr = bean.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd, strEndYmd, 0, "A", 0);
   intTotalCnt = (arr.get(0)).TOTAL_CNT;
   String strCtIds = "";
   String strCtNos = "";
+  strTotalMpFee = arr.stream().map(vo -> StrUtil.nvl(vo.MPFEE_TOTALAMT)).filter(s -> !s.equals("")).mapToLong(Long::parseLong).sum() + "";
+  strTotalPayAmt = arr.stream().map(vo -> StrUtil.nvl(vo.TOTALCONTRACTAMT)).filter(s -> !s.equals("")).mapToLong(Long::parseLong).sum() + "";
   for (CtHeaderVO v : arr) {
     strCtIds += ","+v.CTID;
     strCtNos += ","+v.CTNO;
@@ -91,7 +95,7 @@ function goPage(p) {
   document.frmSearch.submit();
 }
 function calc(ctid) {
-  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommission.jsp", {'ctid':ctid}, function(data) {
+  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommissionFixed.jsp", {'ctid':ctid}, function(data) {
     showAlert(data);
   });
 }
@@ -123,7 +127,7 @@ function checkAbnormal(strMpFeeCpyId, intCtId) {
 }
 function showTransactionResult(intCtId) {
   closePopup();
-  $("#element_to_pop_up").bPopup({loadUrl:'/wci/mgr/trade/TransactionResult.jsp?seq='+intCtId});
+  $("#element_to_pop_up").bPopup({loadUrl:'/mp/mgr/trade/TransactionResult.jsp?seq='+intCtId});
 }
 function cancelTransaction(encid) {
   $.ajax({
@@ -300,6 +304,11 @@ $(document).ready(function(){
 </table>
 </form>
 
+<div style="text-align: right; margin-top: 10px; margin-bottom: 10px; font-size: 1.2em;">
+  <strong>해당 결제금액 총합: <font color="red"><%=StrUtil.addComma(strTotalPayAmt) %></font> 원</strong>
+  &nbsp;//&nbsp;
+  <strong>해당 수수료 총합: <font color="red"><%=StrUtil.addComma(strTotalMpFee) %></font> 원</strong>
+</div>
 <table class='detail'>
   <thead>
     <tr>
@@ -348,6 +357,8 @@ if (arr!=null && arr.size()>0) {
         <% } %>
       </td>
       <td class='left'><%=FormatUtil.addSeparatorDate(vo.MTYDATE) %>
+        <% Long mtyDiffDay = DateTimeUtil.diff(vo.REGTIME.substring(0, 8), vo.MTYDATE, "") + 1; %>
+        <span style="color:red;">(<%=mtyDiffDay %>)</span>
         <% if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) { %>
         <br/><a onclick='sendMessage("M005", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a><% } %>
       </td>

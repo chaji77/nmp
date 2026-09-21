@@ -146,7 +146,7 @@ public class EmtNetB311 extends Kodit_B311 {
                    String today   = DateTimeUtil.getCurrentDate("");
                    String valDate = TradeBean.getPermittedDateOfTaxInvoice(StrUtil.extractInteger(this.xmlB311VO.BILL_DT), StrUtil.nvl(this.xmlB311VO.BNK_CD)); // 은행별 결제신청 마감일 가져옴
                    if (Integer.parseInt(today) > Integer.parseInt(valDate)) { // 마감일 기준이 지났으면
-                       return setErrorResponse(commonElement, "0094", "(전자)세금계산서의 작성일이 은행의 결제신청 마감일 기준을 지났습니다.");
+                       return setErrorResponse(commonElement, "0094", "(전자)세금계산서의 작성일이 은행의 결제신청 마감일 기준을 초과했습니다.");
                    }
                }
             }

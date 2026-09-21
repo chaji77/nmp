@@ -16,15 +16,22 @@ String strDateSeparator = ConfigurationMgr.getInstance().getString("DEFAULT_DATE
 String strSenderKey = StrUtil.nvl(request.getParameter("senderKey"), ConfigurationMgr.getInstance().getString("ETAX_SENDER_CODE"));
 int intPage =  Integer.parseInt(StrUtil.nvl(request.getParameter("page"), "1"));
 int intTotalCnt = 0;
-String strWriteDate = StrUtil.nvl(request.getParameter("wd"), "");
+String totalSum = "0";
+//String strWriteDate = StrUtil.nvl(request.getParameter("wd"), "");
+String startDate = StrUtil.nvl(request.getParameter("start_dt"), "");
+String endDate   = StrUtil.nvl(request.getParameter("end_dt"), "");
 String strInvoiceeCorpNum = StrUtil.nvl(request.getParameter("cn"), "");
+String strCorpName = StrUtil.nvl(request.getParameter("strCorpNm"), "");
 int intStatus = 1;
 
 InvoiceDAO dao = new InvoiceDAO();
 String strEmpId = "0";
-ArrayList<InvoiceVO> arr = dao.T_BILL_LIST_PROC(strSenderKey, intPage, strWriteDate.replaceAll("/", ""), strInvoiceeCorpNum.replaceAll("-", ""), intStatus, strEmpId);
+ArrayList<InvoiceVO> arr = dao.T_BILL_LIST_PROC(strSenderKey, intPage, startDate.replaceAll("/", ""), endDate.replaceAll("/", ""), strInvoiceeCorpNum.replaceAll("-", ""), intStatus, strEmpId, strCorpName);
 ArrayList<InvoiceVO> arrStandBy = dao.T_BILL_STATUS_PROC(strSenderKey);
 int intStandBy = (arrStandBy!=null) ? arrStandBy.size() : 0;
+if (arr != null && arr.size() > 0) {
+    totalSum = arr.get(0).SUM_TOTAL;
+}
 %>
 <%@ include file="../Header.jsp" %>
 <title>세금계산서관리</title>
@@ -134,6 +141,7 @@ function getContract(seq) {
   <span class='more'>
     <a class='btn' href='Invoice.jsp'>수기발행</a>
     <a href='<%=request.getContextPath()%>/mgr/etax/' class='btn'>연동관리</a>
+    <a onclick='document.frmToExcel.submit();' class='btn white' title='excel download'><i class="fa-solid fa-download"></i>엑셀다운로드</a>
   </span>
 </div>
 
@@ -148,7 +156,12 @@ function getContract(seq) {
           <ul>
             <li>
               <label>작성일</label>
-              <input type='text' name='wd' class='datepicker' value='<%=strWriteDate%>'>
+              <input type='text' name='start_dt' class='datepicker' value='<%=startDate%>'>
+              <input type='text' name='end_dt' class='datepicker' value='<%=endDate%>'>
+            </li>
+             <li>
+              <label>회사명</label>
+              <input type='text' name='strCorpNm' value='<%=strCorpName%>' placeholder="회사명">
             </li>
             <li>
                <label>사업자번호</label>
@@ -157,7 +170,10 @@ function getContract(seq) {
           </ul>
         </td>
         <td class='fill'></td>
-        <td class='btn' style='text-align:right;'><a onclick="goPage(1);"><i class="fa fa-search" aria-hidden="true" style="font-size:1.7em;margin-right:10px;"></i></a></td>
+        <td class='btn' style='text-align:right;'>
+          <a onclick="goPage(1);"><i class="fa fa-search" aria-hidden="true" style="font-size:1.7em;margin-right:10px;"></i></a>
+          <a href='TaxList.jsp'><i class="fa-solid fa-rotate-right" style='font-size:1.7em;margin-right:10px;'></i></a>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -165,6 +181,7 @@ function getContract(seq) {
 
   <div style='text-align:right;padding-bottom:10px;'>
   미완료건 : <%=intStandBy %>
+  총합계 : <%=StrUtil.addComma(totalSum)%>
   </div>
 
   <table class='list'>
@@ -237,4 +254,12 @@ if (arr!=null && arr.size()>0) {
   </div>
 
 <iframe name="work" id="work" height="800" width="1000" style="display:none;"></iframe>
+<form name='frmToExcel' method='post' action='TaxListForExcel.jsp' target='FrameForExcel'>
+  <input type='hidden' name="senderKey" value="<%=strSenderKey %>" />
+  <input type='hidden' name="start_dt" value="<%=startDate %>" />
+  <input type='hidden' name="end_dt" value="<%=endDate %>" />
+  <input type='hidden' name="cn" value="<%=strInvoiceeCorpNum %>" />
+  <input type='hidden' name="strCorpNm" value="<%=strCorpName %>" />
+</form>
+<iframe name='FrameForExcel' id='FrameForExcel' style="display: none;"></iframe>
 <%@ include file="../Footer.jsp" %>

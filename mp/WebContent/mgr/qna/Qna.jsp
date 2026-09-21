@@ -25,7 +25,7 @@ if (IntegerCryptoUtil.isEncrypted(strId)) {
   return; 
 }
 
-
+String qTypeLabel = QnaVO.getQCodeLabel(vo.Q_CODE);
 %>
 
 <%@ include file="../Header.jsp" %>
@@ -86,6 +86,10 @@ function goHistoryBack() {
   </li>
   <li class='th'>작 &nbsp;성 &nbsp;자</li>
   <li class='td'><%=StrUtil.input(vo.REG_NM) %></li>
+  <li class='th'>유형</li>
+  <li class='td'><%=StrUtil.input(qTypeLabel) %></li>
+  <li class='th'></li>
+  <li class='td'></li>
   <li class='th'>문의내용</li>
   <li class='td wide'><%=StrUtil.nvl(vo.Q_CONTENTS) %></li>
   <% if ("Y".equals(vo.ANS_YN)){ %>

@@ -96,7 +96,7 @@ function openTaxBill(seq) {
   $("#element_to_pop_up").bPopup({loadUrl:'<%=request.getContextPath()%>/common/Tax.jsp?seq='+seq});
 }
 function calc(ctid) {
-  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommission.jsp", {'ctid':ctid}, function(data) {
+  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommissionFixed.jsp", {'ctid':ctid}, function(data) {
     showAlert(data);
   });
 }

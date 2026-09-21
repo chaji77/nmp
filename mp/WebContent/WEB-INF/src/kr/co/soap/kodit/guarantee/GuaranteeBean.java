@@ -202,6 +202,18 @@ public class GuaranteeBean {
                 vo.GuaranteeExpirationDate, ""
             );
 
+            // ★ INFO_GUARANTEE_CONDITION 최초 조건행 생성 (발급 시)
+            //   - 발급(E211/E221)만, 발급취소(E225)는 제외
+            //   - SEQNO 채번 / 기간시작(ISSUEYMD) / 금액승계 / 중복방지는 프로시저가 처리
+            if (!"E225".equals(transNO)
+                    && vo.GuaranteeExpirationDate != null && !vo.GuaranteeExpirationDate.isEmpty()) {
+                String amtStr = (vo.GuaranteeAMT != null) ? vo.GuaranteeAMT.toPlainString() : "";
+                int condRs = dao.addGuaranteeCondition(
+                        vo.ApplicationNO, vo.GuaranteeExpirationDate, amtStr);
+                logger.info("[GuaranteeBean] " + transNO + " 최초 조건행 처리(" + condRs + "): "
+                            + vo.ApplicationNO + " ~" + vo.GuaranteeExpirationDate);
+            }
+
             // INFO_GUARANTEE_STATUS INSERT
             dao.addInfoGuaranteeStatus(
                 vo.ApplicationNO, transNO,
@@ -299,11 +311,16 @@ public class GuaranteeBean {
             }
 
             // INFO_GUARANTEE 보증만료일 업데이트 (보증기한 변경 시)
+            // + 보증금액 변경분도 함께 추출 (조건행 생성용)
             String chgExpireYmd = "";
+            String chgAmt       = "";
             for (int c = 0; c < vo.CArticles.length; c++) {
-                if ("보증기한".equals(vo.CArticles[c]) && c < vo.Afters.length) {
-                    chgExpireYmd = convertFullWidthDate(vo.Afters[c]);
-                    break;
+                String article = (vo.CArticles[c] == null) ? "" : vo.CArticles[c].trim();
+                String after   = (c < vo.Afters.length && vo.Afters[c] != null) ? vo.Afters[c] : "";
+                if ("보증기한".equals(article)) {
+                    chgExpireYmd = convertFullWidthDate(after);
+                } else if (article.contains("보증금액") || article.contains("보증한도")) {
+                    chgAmt = convertFullWidthNumber(after);
                 }
             }
 
@@ -311,6 +328,16 @@ public class GuaranteeBean {
                 vo.ApplicationNO, transNO, "",
                 "", null, "", chgExpireYmd, ""
             );
+
+            // ★ INFO_GUARANTEE_CONDITION 조건행 생성 (보증기한 변경 시)
+            //   - SEQNO 채번 / 기간시작(직전만기+1) / 금액승계 / 중복방지는 프로시저가 처리
+            //   - F225(조건변경취소)는 조건행을 만들지 않음
+            if (!chgExpireYmd.isEmpty() && !"F225".equals(transNO)) {
+                int condRs = dao.addGuaranteeCondition(vo.ApplicationNO, chgExpireYmd, chgAmt);
+                logger.info("[GuaranteeBean] " + transNO + " 조건행 처리(" + condRs + "): "
+                            + vo.ApplicationNO + " ~" + chgExpireYmd
+                            + (chgAmt.isEmpty() ? "" : " / AMT=" + chgAmt));
+            }
 
             // INFO_GUARANTEE_STATUS INSERT
             dao.addInfoGuaranteeStatus(
@@ -366,20 +393,45 @@ public class GuaranteeBean {
             // XML_H211 INSERT
             dao.receiveXmlH211(vo);
 
+            // 부분해지(감액) 판단 : 해지 후 잔액(GuaranteeBalance)이 남아 있으면 발급 유지
+            //   신보 프로토콜 - 감액은 H211(부분해지) + F221(조건변경) 한 쌍으로 옴
+            //   GuaranteeBalance > 0  → 부분해지 → 050(발급) 유지 (F221이 조건행/금액 갱신)
+            //   GuaranteeBalance = 0  → 완전해지 → 080(해지)
+            boolean isPartial =
+                    "H211".equals(transNO)
+                    && vo.GuaranteeBalance != null
+                    && vo.GuaranteeBalance.compareTo(java.math.BigDecimal.ZERO) > 0;
+
             // INFO_GUARANTEE 상태 업데이트
-            // H211: 080(해지), H215: 050(발급으로 복구)
-            String status = "H215".equals(transNO) ? "050" : "080";
+            // H211: 080(해지) [부분해지면 050 유지], H215: 050(발급으로 복구)
+            String status;
+            String clearYmd;
+            if ("H215".equals(transNO)) {
+                status = "050"; clearYmd = "";           // 해지취소 → 발급 복구
+            } else if (isPartial) {
+                status = "050"; clearYmd = "";           // 부분해지(감액) → 발급 유지, 해지일 미기록
+            } else {
+                status = "080"; clearYmd = vo.TransactionDate;  // 완전해지
+            }
             dao.updateInfoGuarantee(
                 vo.ApplicationNO, transNO, status,
                 "", null,
-                "", "", vo.TransactionDate
+                "", "", clearYmd
             );
 
             // INFO_GUARANTEE_STATUS INSERT
+            String hDesc;
+            if (isPartial) {
+                hDesc = transNO + " 부분해지(감액) 해지"
+                        + (vo.ClearAMT != null ? vo.ClearAMT.toPlainString() : "")
+                        + " / 잔액" + vo.GuaranteeBalance.toPlainString();
+            } else {
+                hDesc = transNO + " 보증해지처리";
+            }
             dao.addInfoGuaranteeStatus(
                 vo.ApplicationNO, transNO,
                 vo.ClearAMT,
-                transNO + " 보증해지처리"
+                hDesc
             );
 
             logger.info("[GuaranteeBean] " + transNO + " 처리완료: " + vo.ApplicationNO);
@@ -403,6 +455,21 @@ public class GuaranteeBean {
                 sb.append((char)('0' + (c - '０')));
             }
             // 구분자(－ 또는 -) 는 제거
+        }
+        return sb.toString();
+    }
+
+    // ─────────────────────────────────────────
+    // 전각문자 금액 변환
+    // ８０，０００，０００원 -> 80000000
+    // ─────────────────────────────────────────
+    private String convertFullWidthNumber(String val) {
+        if (val == null || val.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        for (char c : val.toCharArray()) {
+            if (c >= '０' && c <= '９')     sb.append((char)('0' + (c - '０')));
+            else if (c >= '0' && c <= '9') sb.append(c);
+            // 콤마(，,) / 원 / 공백 등은 제거
         }
         return sb.toString();
     }

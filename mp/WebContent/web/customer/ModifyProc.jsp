@@ -27,6 +27,7 @@ try {
   cvo.CPY_NAME = StrUtil.xss(request.getParameter("cpy_nm"));
   cvo.CPY_GUBUN = StrUtil.extractDigits(request.getParameter("cpy_type"), 1);
   cvo.CPY_CEO_NAME = StrUtil.xss(request.getParameter("cpy_ceo_nm"));
+  cvo.CPY_CEO_HP = StrUtil.xss(request.getParameter("cpy_ceo_hp"));
   cvo.CRG_ID = StrUtil.extractDigits(request.getParameter("biz_type"), 1);
   cvo.CPY_INCORPORATE_NO = StrUtil.extractDigits(request.getParameter("cpy_no"), 13);
   cvo.BUSINESS_TYPE = StrUtil.xss(request.getParameter("uptae"));
@@ -52,6 +53,8 @@ try {
   pvo.PRS_SMS = StrUtil.nvl(request.getParameter("sms_yn"), "0");
   pvo.PRS_EMAIL = StrUtil.xss(request.getParameter("login_email"));
   cvo.SALES_AMT = StrUtil.extractAndFormat(StrUtil.nvl(request.getParameter("sale_amt"), "0").replaceAll("[^0-9]", ""), 13, 3);
+  pvo.PRS_PSTN = StrUtil.xss(request.getParameter("login_pstn"));
+  pvo.PRS_EXTN = StrUtil.xss(request.getParameter("login_extn"));
   
   if (!isError && !cvo.CPY_GUBUN.equals("1") && !cvo.CPY_GUBUN.equals("2") && !cvo.CPY_GUBUN.equals("3")) {
     strErrorMsg = "회원구분을 확인하십시오.";

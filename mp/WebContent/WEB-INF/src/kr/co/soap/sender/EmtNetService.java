@@ -12,7 +12,7 @@ public class EmtNetService {
 		String fund;
 		// ★ C211(담보보증)은 신보 고정 → GET_FUND_PROC 우회
 		//   TODO(4): 향후 다기관 대응 필요 시 분기 추가
-		if ("C211".equals(vo.xmlGubn)) {
+		if ("C211".equals(vo.xmlGubn) || "B211".equals(vo.xmlGubn) || "K231".equals(vo.xmlGubn)) {
 			fund = "KODIT";
 		} else {
 			String gubun = ("A311".equals(vo.xmlGubn) || "A311S".equals(vo.xmlGubn)) ? "N" : "Y";

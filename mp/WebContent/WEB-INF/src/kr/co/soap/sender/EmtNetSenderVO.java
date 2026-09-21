@@ -17,4 +17,11 @@ public class EmtNetSenderVO {
     // ★ C211 추가
     public String applNo;        // 담보보증 신청번호 (INFO_GUARANTEE PK)
     public String creUser;       // 작업자 ID (CREUSER 적재용)
+
+    // ★ B211 추가
+    public String orderNo;       // 매매계약 주문번호 (XML_B211 PK)
+    public String b211SeqNo;     // 매매계약 일련번호 (기본 001)
+
+    // ★ K231 추가
+    public String k231SeqNo;     // 결제전문 상환순번 (기본 001)
 }

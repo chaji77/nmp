@@ -161,7 +161,7 @@ if (StrUtil.nvl(vo.CTTYPE).equals("S") && StrUtil.nvl(vo.STATUS).equals("020")) 
   $("input[name='mp_pay_cpy'], input[name='tax_biz_type']").prop("disabled", true);
   $("#bill-item-list input").prop("readonly", true);
   $("#items tfoot").show();
-  $("div.btns").html("<a onclick='save(<%=(SIGN_EXCLUDE_YN.equals("Y"))?"goSubmit":"loadCert"%>);'><i class='fa fa-paper-plane'></i> &nbsp;승인</a>");
+  $("div.btns").html("<a onclick='save(<%=(SIGN_EXCLUDE_YN.equals("Y"))?"goSubmit":"loadCert"%>);'><i class='fa fa-paper-plane'></i> &nbsp;승인</a><a onclick='cancel();' class='cancel'>계약취소</a>");
 <%
 }
 %>

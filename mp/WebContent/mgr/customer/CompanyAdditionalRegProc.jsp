@@ -42,6 +42,11 @@ switch (title) {
     pvo.SIGN_EXCLUDE_YN = StrUtil.nvl(request.getParameter("useYN"));
     intResult = new MgrCustomerBean().M_COMPANY_SIGN_EXCLUDE_YN_MOD_PROC(pvo);
     break;
+  case "feemod":
+    pvo.FEE_MOD_YN = StrUtil.nvl(request.getParameter("useYN"));
+    intResult = new MgrCustomerBean().M_COMPANY_FEE_MOD_PROC(pvo);
+    break;
+  default:
 }
 out.print(intResult);
 %>

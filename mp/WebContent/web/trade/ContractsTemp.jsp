@@ -40,8 +40,18 @@ if (MOBILE_YN.equals("Y") && MobileUtil.isMobile(request)) SIGN_EXCLUDE_YN = "Y"
 <link rel="stylesheet" type="text/css" href="ContractReg.css?<%=DateTimeUtil.getCurrentDateTime()%>" />
 <script type='text/javascript' src="<%=request.getContextPath()%>/static/js/pop.js"></script>
 <script>
+var gTotalCount = 0;
+var gSuccessCount = 0;
+var gFailCount = 0;
 function sendMulti() {
-  <% 
+  gTotalCount = $('#contract_list').find('input[name="seq"]:checked').length;
+  if (gTotalCount == 0) {
+    toast("선택된 매매계약서가 없습니다.");
+    return;
+  }
+  gSuccessCount = 0;
+  gFailCount = 0;
+  <%
   if (SIGN_EXCLUDE_YN.equals("Y")) out.println("goLoopSubmit();");
   else out.println("loadCert();");
   %>
@@ -87,6 +97,24 @@ window.addEventListener("message", function(e) {
   }
   return;
 });
+function removeSelected() {
+  var seqs = $('#contract_list').find('input[name="seq"]:checked').map(function() {
+    return $(this).val();
+  }).get();
+  if (seqs.length == 0) {
+    toast("선택된 매매계약서가 없습니다.");
+    return;
+  }
+  showCustomConfirm("선택한 " + seqs.length + "건을 삭제하시겠습니까?", function() {
+    var done = 0;
+    $.each(seqs, function(idx, seq) {
+      $.post("ContractDropProc.jsp", { seq: seq }, function() {
+        done++;
+        if (done === seqs.length) location.reload(true);
+      });
+    });
+  }, function() {});
+}
 function toggleAllCheckContracts() {
   var isChecked = $("input[name='AllCheckContracts']").is(":checked");
   console.log(isChecked);
@@ -99,6 +127,9 @@ function getToSend() {
   } else {
     return 0;
   }
+}
+function markFailed(seq) {
+  $('#contract_list').find('input[name="seq"][value="' + seq + '"]').prop("checked", false);
 }
 
 function send(toSend, token, callback) {
@@ -113,12 +144,11 @@ function send(toSend, token, callback) {
       if (json.is) {
         callback(true); // 성공 시 true 반환
       } else {
-        showAlert("전송하지 못했습니다. 사유는 아래와 같습니다.<br/><br/>" + json.msg);
+        console.log("전송 실패: " + json.msg);
         callback(false); // 실패 시 false 반환
       }
     },
     error: function(request, status, error) {
-      showAlert("전송에 문제가 있습니다. 잠시 후 다시 시도하십시오.");
       console.log(request.status + " : " + request.responseText + " : " + error);
       callback(false); // 실패 시 false 반환
     },
@@ -144,6 +174,7 @@ function goLoopSubmit() {
         try {
           var json = JSON.parse(data);
           if (json.step == "complete") { // STANDBY-CONFIRM
+            gSuccessCount++;
             $('#contract_list').find('input[name="seq"][value="' + toSend + '"]').closest('tr').remove();
             goLoopSubmit();
           } else if (json.step == "send") { // DIRECT-SEND
@@ -151,28 +182,37 @@ function goLoopSubmit() {
             var token = json.msg.split("____")[2];
             send(enid, token, function(isSuccess) {
               if (isSuccess) {
+                gSuccessCount++;
                 $('#contract_list').find('input[name="seq"][value="' + toSend + '"]').closest('tr').remove();
-                goLoopSubmit();
+              } else {
+                gFailCount++;
+                markFailed(toSend);
               }
+              goLoopSubmit();
+            });
+          } else if (json.step === "session") {
+            showAlert(json.msg, function() {
+              location.href = "<%=request.getContextPath()%>/web/Login.jsp";
             });
           } else {
-            showAlert(json.msg, function() {
-              if (json.step === "session") {
-                location.href = "<%=request.getContextPath()%>/web/Login.jsp";
-              }
-            });
-            $("div.result-message").addClass("error-message");
+            gFailCount++;
+            console.log("전송 실패(" + toSend + "): " + json.msg);
+            markFailed(toSend);
+            goLoopSubmit();
           }
         } catch (e) {
-          // JSON 파싱 오류 처리
-          showAlert("서버 응답 형식이 올바르지 않습니다.");
+          gFailCount++;
+          markFailed(toSend);
           console.error(e);
+          goLoopSubmit();
         }
       },
       error: function(request, status, error) {
         hideSpinner();
-        showAlert("통신에 문제가 있습니다. 잠시 후 다시 시도하십시오.");
+        gFailCount++;
+        markFailed(toSend);
         console.log(request.status + " : " + request.responseText + " : " + error);
+        goLoopSubmit();
       },
       beforeSend: function() {
         showSpinner("발송 중입니다.");
@@ -180,6 +220,16 @@ function goLoopSubmit() {
     });
   } else {
     hideSpinner();
+    showAlert(
+      "전체 " + gTotalCount + "건 중 성공 " + gSuccessCount + "건, 실패 " + gFailCount + "건 처리되었습니다.",
+      function() {
+        if (gFailCount == 0) {
+          location.href = "<%=request.getContextPath()%>/web/trade/ContractsSent.jsp";
+        } else {
+          location.reload(true);
+        }
+      }
+    );
   }
 }
 $(document).ready(function(){

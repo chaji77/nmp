@@ -21,14 +21,15 @@ CtHeaderVO pvo     = new CtHeaderVO();
 pvo.PAGE           = Integer.parseInt(StrUtil.nvl(request.getParameter("page"), "1"));
 pvo.ROW_CNT        = 20;
 pvo.STATUS         = StrUtil.nvl(request.getParameter("status"), "");
+pvo.GUAR_INST_CD   = StrUtil.nvl(request.getParameter("guar_inst_cd"), "");
 pvo.CTNO           = StrUtil.nvl(request.getParameter("ctno"), "");
 pvo.SBDATE         = StrUtil.nvl(request.getParameter("sbdate"), "R");
 String strStartYmd = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 31, "-"));
 String strEndYmd   = StrUtil.nvl(request.getParameter("end_ymd"), DateTimeUtil.getCurrentDate("-"));
-if (!pvo.CTNO.equals("")) {
-  strStartYmd = "1970-07-28";
-  strEndYmd   = DateTimeUtil.getCurrentDate("-");
-}
+// if (!pvo.CTNO.equals("")) {
+//   strStartYmd = "1970-07-28";
+//   strEndYmd   = DateTimeUtil.getCurrentDate("-");
+// }
 int intTotalCnt    = 0;
 
 TradeBean bean = new TradeBean();
@@ -36,7 +37,7 @@ ArrayList<CtHeaderVO> arr = null;
 ArrayList<UnusualTransactionVO> arrUnusuals = null;
 ArrayList<TransactionResultVO> arrK311Results = null;
 try {
-  arr = bean.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd, strEndYmd, 0, "A", 0);
+  arr = bean.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd, strEndYmd, 0, "A", 0, pvo.GUAR_INST_CD);
   intTotalCnt = (arr.get(0)).TOTAL_CNT;
   String strCtIds = "";
   String strCtNos = "";
@@ -78,7 +79,7 @@ span.not-solve:hover {background-color:hotpink;}
 <script>
 function searchCompany() {
   closePopup();
-  $("#element_to_pop_up").bPopup({loadUrl:'/mp/mgr/customer/CompaniesForPopup.jsp'});
+  $("#element_to_pop_up").bPopup({loadUrl:'/wci/mgr/customer/CompaniesForPopup.jsp'});
 }
 function choiceCompany(obj) {
   document.frmSearch.cpy_id.value = $(obj).attr("cid");
@@ -96,7 +97,7 @@ function goPage(p) {
   document.frmSearch.submit();
 }
 function calc(ctid) {
-  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommission.jsp", {'ctid':ctid}, function(data) {
+  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommissionFixed.jsp", {'ctid':ctid}, function(data) {
     showAlert(data);
   });
 }
@@ -177,7 +178,7 @@ function sendMessage(tid, cpyid, ctid) {
   $.ajax({
     url:"<%=request.getContextPath()%>/common/kakaotalk/Send.jsp", 
     type: 'post',
-    data:{"tid":tid,"cpyid":cpyid,"ctid":ctid}, 
+    data:{"tcd":tid,"cpyid":cpyid,"ctid":ctid}, 
     async: true,
     success: function(data) {
       if (data=="SUCCESS") showAlert("전송되었습니다.");
@@ -244,6 +245,7 @@ $(document).ready(function(){
 <div class='page-title-block'>
   <span class='title'>거래관리</span>
   <span class='more'>
+    <a onclick='document.frmToExcel.submit();' class='btn white' title='excel download'><i class="fa-solid fa-download"></i>엑셀다운로드</a>
     <a class='btn white magnify mobile_show'>검색</a>
   </span>
 </div>
@@ -294,6 +296,16 @@ $(document).ready(function(){
             <option value="030" <%=(pvo.STATUS.equals("030"))?"selected":""%>>전송오류</option>
             <option value="080" <%=(pvo.STATUS.equals("080"))?"selected":""%>>취소</option>
             <option value="090" <%=(pvo.STATUS.equals("090"))?"selected":""%>>삭제</option>
+          </select>
+        </li>
+        <li class='search-option-status'>
+          <label>결제기관</label>
+          <select name='guar_inst_cd' onChange="goPage(1);">
+            <option value=''>전체</option>
+            <option value="신보" <%=(pvo.GUAR_INST_CD.equals("신보"))?"selected":""%>>신보</option>
+            <option value="기보" <%=(pvo.GUAR_INST_CD.equals("기보"))?"selected":""%>>기보</option>
+            <option value="재단" <%=(pvo.GUAR_INST_CD.equals("재단"))?"selected":""%>>재단</option>
+            <option value="기타" <%=(pvo.GUAR_INST_CD.equals("기타"))?"selected":""%>>기타</option>
           </select>
         </li>
       </ul>
@@ -349,13 +361,17 @@ if (arr!=null && arr.size()>0) {
     }
 %>
     <tr>
-      <td class='left'><%=FormatUtil.addSeparatorDate(vo.CONTRACTDATE) %><br/><%=FormatUtil.addSeparatorDate(vo.REGDATE) %></td>
-      <td class='left'><%=FormatUtil.addSeparatorDate(vo.SETTLEDUEDATE) %>
-        <% if (vo.STATUS.equals("040") || vo.STATUS.equals("070")) { %>
+      <td class='left'><%=FormatUtil.addSeparatorDate(vo.CONTRACTDATE) %><br/><%=FormatUtil.addSeparatorDateTime(vo.REGTIME, "/").substring(0, 16)%></td>
+      <td class='left'><%=FormatUtil.addSeparatorDate(vo.SETTLEDUEDATE)%>
+        <%
+        String today = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+        if ((vo.STATUS.equals("040") || vo.STATUS.equals("050")) && vo.SETTLEDUEDATE.equals(today)) { %>
         <br/><a onclick='sendMessage("M006", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a>
         <% } %>
       </td>
       <td class='left'><%=FormatUtil.addSeparatorDate(vo.MTYDATE) %>
+        <% Long mtyDiffDay = DateTimeUtil.diff(vo.REGTIME.substring(0, 8), vo.MTYDATE, "") + 1; %>
+        <span style="color:red;">(<%=mtyDiffDay %>)</span>
         <% if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) { %>
         <br/><a onclick='sendMessage("M005", <%=vo.CPYBUYER %>, <%=vo.CTID %>);' class='btn white'>알림</a><% } %>
       </td>
@@ -371,20 +387,24 @@ if (arr!=null && arr.size()>0) {
         <a onclick='showTransactionResult(<%=vo.CTID%>);' class='underline'><%=vo.CODE_NM %></a>
         <% } else { %>
         <%=vo.CODE_NM %>
-        <% } %>
+        <% } %>     
         <% 
         if (vo.STATUS.equals("040") || (vo.STATUS.equals("050") && vo.BNK_CD.equals("TB"))) {
           out.println("<a onclick='cancelTransaction(\""+IntegerCryptoUtil.crypt(vo.CTID)+"\");' class='btn darkred'>전송취소</a>");
+          if ("C".equals(vo.DIRTYPE)){
+        	out.print("<br/><i class='fa-solid fa-arrow-down'></i> " + FormatUtil.addSeparatorDateTime(vo.APPRTIME, "/").substring(0, 16));
+          }
         }
         if (vo.STATUS.equals("030") || vo.STATUS.equals("707")) {
           out.println("<a onclick='sendTransaction(\"N\",\""+IntegerCryptoUtil.crypt(vo.CTID)+"\", \""+CryptoDESUtil.encrypt(vo.CTID+"cjdmasmRlsrmeosnsqlcdms").replaceAll("[^a-zA-Z]", "")+"\");' class='btn lurian'>재전송</a>");
           out.println("<a onclick='sendTransaction(\"Y\",\""+IntegerCryptoUtil.crypt(vo.CTID)+"\", \""+CryptoDESUtil.encrypt(vo.CTID+"cjdmasmRlsrmeosnsqlcdms").replaceAll("[^a-zA-Z]", "")+"\");' class='btn white'>결변재전송</a>");
         }
-        if (vo.STATUS.equals("060") || vo.STATUS.equals("070")) {
+        if (vo.STATUS.equals("050") || vo.STATUS.equals("060") || vo.STATUS.equals("070")) {
           if (arrK311Results!=null && arrK311Results.size()>0) {
             for (TransactionResultVO tvo : arrK311Results) {
               if (tvo.ORDERNO.equals(vo.CTNO)) {
-                out.print("<br/><i class='fa-solid fa-arrow-down'></i> " + FormatUtil.addSeparatorDate(tvo.TRANSACTIONDATE));
+       		   String dateTime = tvo.TRANSACTIONDATE + tvo.TRANSACTIONTIME;
+               out.print("<br/><i class='fa-solid fa-arrow-down'></i> " + FormatUtil.addSeparatorDateTime(dateTime, "/").substring(0, 16));
               }
             }
           }
@@ -425,4 +445,15 @@ if (arr!=null && arr.size()>0) {
 </div>
 
 <iframe id='ifmContract'></iframe>
+<form name='frmToExcel' method='post' action='ContractsForExcel.jsp' target='FrameForExcel'>
+  <input type='hidden' name="cpy_id" value="<%=intCpyId %>" />
+  <input type='hidden' name="cpy_nm" value="<%=strCpyNm %>" />
+  <input type='hidden' name="page" value="1" />
+  <input type='hidden' name="status" value="<%=pvo.STATUS %>" />
+  <input type='hidden' name="ctno" value="<%=pvo.CTNO %>" />
+  <input type='hidden' name="sbdate" value="<%=pvo.SBDATE %>" />
+  <input type='hidden' name="start_ymd" value="<%=strStartYmd %>" />
+  <input type='hidden' name="end_ymd" value="<%=strEndYmd %>" />
+</form>
+<iframe name='FrameForExcel' id='FrameForExcel' style="display: none;"></iframe>
 <%@ include file="../Footer.jsp" %>

@@ -43,6 +43,9 @@ public class MgrCustomerBean {
   public int M_COMPANY_SIGN_EXCLUDE_YN_MOD_PROC(CompanyVO cvo) {
 	return this.dao.M_COMPANY_SIGN_EXCLUDE_YN_MOD_PROC(cvo);
   }
+  public int M_COMPANY_FEE_MOD_PROC(CompanyVO cvo) {
+	return this.dao.M_COMPANY_FEE_MOD_PROC(cvo);
+  }
   public int M_COMPANY_MPTAX_REG_PROC(CompanyVO cvo) {
 	return this.dao.M_COMPANY_MPTAX_REG_PROC(cvo); 
   }

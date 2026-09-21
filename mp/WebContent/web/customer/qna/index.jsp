@@ -73,6 +73,7 @@ function goDetail(mid) {
   <thead>
     <tr>
       <th class='left'>작성일</th>
+      <th class='left'>유형</th>
       <th class='left' style='width:80%;'>제목</th>
       <th class='left'>진행상태</th>
     </tr>
@@ -83,15 +84,17 @@ if (arr != null && arr.size() > 0) {
   for (QnaVO v : arr) {
       intTotalCnt = v.TOTAL_CNT;
       String strAnswer = (StrUtil.nvl(v.ANS_YN).equals("Y")) ? "<strong>답변완료</strong>" : "<font color='#aaa'>관리자확인중</font>";
+      String qTypeLabel = QnaVO.getQCodeLabel(v.Q_CODE);
 %>
     <tr onclick='goDetail("<%= IntegerCryptoUtil.crypt(v.SEQ) %>");'>
       <td><%= ((StrUtil.nvl(v.REG_DT)).split(" ")[0]).replaceAll("-", strDateSeparator) %></td>
+      <td><%= qTypeLabel %></td>
       <td><%= StrUtil.nvl(v.Q_TITLE) %></td>
       <td><%=strAnswer %></td>
     </tr>
 <%
   }
-} else out.println("<tr><td colspan='3' class='noentry'>등록하신 문의가 없습니다.<br/><br/>문의 내용은 타인에게 내용이 공개되지 않으며,<br/>문자나 이메일로 답변완료 여부를 알릴 수 있으니 참고바랍니다.<br/><br/><a href='QnAReg.jsp' class='btn'>등록</a></td></tr>");
+} else out.println("<tr><td colspan='4' class='noentry'>등록하신 문의가 없습니다.<br/><br/>문의 내용은 타인에게 내용이 공개되지 않으며,<br/>문자나 이메일로 답변완료 여부를 알릴 수 있으니 참고바랍니다.<br/><br/><a href='QnAReg.jsp' class='btn'>등록</a></td></tr>");
 %>
   </tbody>
 </table>

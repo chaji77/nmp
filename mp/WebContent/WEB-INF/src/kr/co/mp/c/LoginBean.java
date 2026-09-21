@@ -32,6 +32,7 @@ public class LoginBean {
     strToken += "\"SIGN_EXCLUDE_YN\":\""  + StrUtil.nvl(p.SIGN_EXCLUDE_YN) + "\",";
     strToken += "\"CRG_ID\":\""  + StrUtil.nvl(p.CRG_ID) + "\",";
     strToken += "\"PAPER_BILL_YN\":\""  + StrUtil.nvl(p.PAPER_BILL_YN) + "\",";
+    strToken += "\"FEE_MOD_YN\":\""     + StrUtil.nvl(p.FEE_MOD_YN) + "\",";
     strToken += "\"TAIL\":\"TAIL\"";
     strToken += "}";
     strToken = CryptoDESUtil.encrypt(strToken);
@@ -64,6 +65,7 @@ public class LoginBean {
         if (e.getKey().equals("SIGN_EXCLUDE_YN")) v.SIGN_EXCLUDE_YN = StrUtil.nvl(e.getValue().toString());
         if (e.getKey().equals("CRG_ID")) v.CRG_ID = StrUtil.nvl(e.getValue().toString());
         if (e.getKey().equals("PAPER_BILL_YN")) v.PAPER_BILL_YN = StrUtil.nvl(e.getValue().toString());
+        if (e.getKey().equals("FEE_MOD_YN")) v.FEE_MOD_YN = StrUtil.nvl(e.getValue().toString());
       }
       v.VALID_IP_YN = (v.REMOTE_IP.equals(LoginUtil.getClientIpAddr(request))) ? "Y" : "N";
     } catch (Exception e) {

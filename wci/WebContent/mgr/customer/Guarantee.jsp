@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.LinkedHashMap" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%@ page import="kr.co.funology.fw.mgr.ConfigurationMgr" %>
 <%@ page import="kr.co.funology.fw.util.DateTimeUtil" %>
 <%@ page import="kr.co.funology.fw.util.IntegerCryptoUtil" %>
@@ -33,13 +36,26 @@ String strToday = DateTimeUtil.getCurrentDate(strDateSeparator);
 ArrayList<CodeVO> arrCodes = CodeBean.C_CODE_PROC("GUARANTEE_MASTER_INFO.GUAR_STATUS");
 ArrayList<PayMethodVO> arrPayMethods = new GuaranteeBean().M_CT_MY_PAYMETHOD_PROC(intCpyId);  // MY GUARANTEES
 
-ArrayList<String> arr = new ArrayList<>();
+LinkedHashMap<String, ArrayList<PayMethodVO>> mapPayGroups = new LinkedHashMap<>();
+final Map<String, String> mapMaxValDate = new java.util.HashMap<>();
 if (arrPayMethods!=null && arrPayMethods.size()>0) {
   for (PayMethodVO t : arrPayMethods) {
-    arr.add("<option value='"+t.BNK_CD+"xx"+t.PAY_ID+"'>"+t.BNK_NAME+" "+t.PAY_SDESC+"</option>");
+    String strGroupKey = t.BNK_CD+"xx"+t.PAY_ID;
+    ArrayList<PayMethodVO> arrGroup = mapPayGroups.get(strGroupKey);
+    if (arrGroup==null) {
+      arrGroup = new ArrayList<>();
+      mapPayGroups.put(strGroupKey, arrGroup);
+    }
+    arrGroup.add(t);
+    if (t.GUAR_VAL_DATE.compareTo(StrUtil.nvl(mapMaxValDate.get(strGroupKey)))>0) mapMaxValDate.put(strGroupKey, t.GUAR_VAL_DATE);
   }
 }
-HashSet<String> arrUniques = new HashSet<>(arr);
+List<Map.Entry<String, ArrayList<PayMethodVO>>> arrSortedGroups = new ArrayList<>(mapPayGroups.entrySet());
+Collections.sort(arrSortedGroups, new java.util.Comparator<Map.Entry<String, ArrayList<PayMethodVO>>>() {
+  public int compare(Map.Entry<String, ArrayList<PayMethodVO>> a, Map.Entry<String, ArrayList<PayMethodVO>> b) {
+    return mapMaxValDate.get(b.getKey()).compareTo(mapMaxValDate.get(a.getKey()));
+  }
+});
 
 long lngTotalGuaranteeAmt = 0L;
 %>
@@ -48,13 +64,15 @@ long lngTotalGuaranteeAmt = 0L;
 <title>보증서정보</title>
 <style>
 .current {background-color:#eef;}
+body {display:flex;flex-direction:column;}
+main {flex:1 0 auto;}
+footer {flex-shrink:0;}
 </style>
 <script>
 function add() {
   location.href = "GuaranteeReg.jsp?cpy_id=<%=strCpyId%>";
 }
-function extend(obj, seq) {
-  var pid = $(obj).parent().parent().attr("payid");
+function extend(pid, seq) {
   showCustomConfirm("연장하시겠습니까?", function() {
 	$.post("<%=request.getContextPath()%>/mgr/customer/GuaranteeExtendOrDropProc.jsp", {'cid':'<%=strCpyId%>', 'payId':pid, 'seq': seq, 'action':'extend'}, function(data){
 		if (data==0) showAlert("연장된 보증서가 있습니다.");
@@ -102,21 +120,25 @@ function a311() {
 }
 $(document).ready(function(){
   $("select[name='payment']").on("change", function() {
-    $("table.detail>tbody>tr").each(function(idx, item){
-      if ($(item).attr("payid").indexOf($("select[name='payment']").val())>-1) {
+    var val = $(this).val();
+    $("table.detail>tbody>tr").show();
+    $("div.pay-group").each(function(idx, item){
+      if (val=="" || $(item).attr("payid")==val) {
         $(item).show();
       } else $(item).hide();
     });
     $("input[name='only-valid']").prop("checked", false);
   });
-  $("input[name='only-valid']").on("click", function(){
-    if ($(this).is(":checked")) {
+  function applyOnlyValidFilter() {
+    if ($("input[name='only-valid']").is(":checked")) {
       $("table.detail>tbody>tr").hide();
       $("table.detail>tbody>tr.current").show();
     } else {
       $("select[name='payment']").change();
     }
-  });
+  }
+  $("input[name='only-valid']").on("click", applyOnlyValidFilter);
+  applyOnlyValidFilter();
 });
 </script>
 
@@ -137,14 +159,15 @@ $(document).ready(function(){
 
 
 <div style='padding:0 0 20px 0;line-height:2em;'>
-  <input type='checkbox' name='only-valid'> 유효보증
+  <input type='checkbox' name='only-valid' checked> 유효보증
   <select name='payment' style='width:200px;'>
-  <option></option>
+  <option value='' selected>---선택---</option>
 <%
-if (arrUniques!=null && arrUniques.size()>0) {
-  for (String t : arrUniques) {
-   out.println(t);
-  }
+for (Map.Entry<String, ArrayList<PayMethodVO>> e : arrSortedGroups) {
+  PayMethodVO tFirst = e.getValue().get(0);
+%>
+  <option value='<%=e.getKey()%>'><%=tFirst.BNK_NAME%> <%=tFirst.PAY_SDESC%></option>
+<%
 }
 %>
   </select>
@@ -152,27 +175,39 @@ if (arrUniques!=null && arrUniques.size()>0) {
   <span class='more' style='font-weight:bold;font-size:1.2em;'>보증총액 <span id='total-amt'></span>원</span>
 </div>
 
+<%
+for (Map.Entry<String, ArrayList<PayMethodVO>> ent : arrSortedGroups) {
+  ArrayList<PayMethodVO> arrGroup = ent.getValue();
+  PayMethodVO tFirst = arrGroup.get(0);
+  String strFirstCodeName = tFirst.GUAR_STATUS;
+  if (arrCodes!=null && arrCodes.size()>0) {
+    for (CodeVO c : arrCodes) {
+      if (c.CODE_CD.trim().equals(tFirst.GUAR_STATUS.trim())) strFirstCodeName = c.CODE_NM;
+    }
+  }
+  String strFirstStatus = tFirst.GUAR_STATUS.trim();
+  String strStatusColor = (strFirstStatus.equals("110") || strFirstStatus.equals("52") || strFirstStatus.equals("54")) ? "color:red;" : "";
+%>
+<div class='pay-group' payid='<%=ent.getKey()%>'>
+<h4 style='<%=strStatusColor%>'><%=tFirst.BNK_NAME%> <%=tFirst.PAY_SDESC%> (<%=strFirstCodeName%>) <a onclick='extend("<%=ent.getKey()%>", <%=tFirst.CPY_GUAR_SEQ %>)' class='btn'>연장</a></h4>
 <table class='detail'>
   <thead>
     <tr>
-      <th class='left mobile_hide'>은행</th>
-      <th class='left'><span class='mobile_hide'>결제수단</span><span class='mobile_show'>내용</span></th>
-      <th class='mobile_hide'>보증기간</th>
-      <th class='mobile_hide'>유효만기일</th>
-      <th class='right mobile_hide'>보증액</th>
-      <th class='right mobile_hide'>변동액</th>
-      <th class='left mobile_hide'>메모</th>
-      <th class='left mobile_hide'>등록</th>
-      <th class='left mobile_hide'>수정</th>
+      <th class='left mobile_only'>내용</th>
+      <th class='mobile_hide' style='width:12%;'>보증기간</th>
+      <th class='mobile_hide' style='width:7%;'>유효만기일</th>
+      <th class='right mobile_hide' style='width:7%;'>보증액</th>
+      <th class='right mobile_hide' style='width:7%;'>변동액</th>
+      <th class='left mobile_hide' style='width:32%;'>메모</th>
+      <th class='left mobile_hide' style='width:12%;'>등록</th>
+      <th class='left mobile_hide' style='width:12%;'>수정</th>
       <th style='width:10%;'>명령</th>
     </tr>
   </thead>
   <tbody>
 <%
-if (arrPayMethods!=null && arrPayMethods.size()>0) {
-  String strPayCode = "";
-  for (PayMethodVO t : arrPayMethods) {
-    strPayCode = t.BNK_CD+"xx"+t.PAY_ID;
+  String strPayCode = ent.getKey();
+  for (PayMethodVO t : arrGroup) {
     String strCodeName = t.GUAR_STATUS;
     if (arrCodes!=null && arrCodes.size()>0) {
       for (CodeVO c : arrCodes) {
@@ -189,14 +224,10 @@ if (arrPayMethods!=null && arrPayMethods.size()>0) {
 %>
 
     <tr payid='<%=strPayCode%>' class='<%=strCurrent%>'>
-      <td class='mobile_hide'><%=t.BNK_NAME %></td>
-      <td style='white-space:wrap;'>
-        <span class='mobile_show'><%=t.BNK_NAME %></span><%=t.PAY_SDESC %>
-        <div class='mobile_show'>
-          <br/>유효만기일 : <%=t.GUAR_VAL_DATE.substring(0, 10)  %>
-          <br/>보증액 : <%=StrUtil.addCommaAfterRound(t.GUAR_TOTAL_AMT) %>원
-          <br/><br/><span style='border-top:1px solid #ddd;padding-top:10px;'><%=t.MEMO %></span>
-        </div>
+      <td class='mobile_only' style='white-space:wrap;'>
+        <br/>유효만기일 : <%=t.GUAR_VAL_DATE.substring(0, 10)  %>
+        <br/>보증액 : <%=StrUtil.addCommaAfterRound(t.GUAR_TOTAL_AMT) %>원
+        <br/><br/><span style='border-top:1px solid #ddd;padding-top:10px;'><%=t.MEMO %></span>
       </td>
       <td class='center mobile_hide'><%=strFrom  %> ~ <%=strTo  %></td>
       <td class='center mobile_hide'><%=t.GUAR_VAL_DATE.substring(0, 10)  %></td>
@@ -205,15 +236,18 @@ if (arrPayMethods!=null && arrPayMethods.size()>0) {
       <td class='mobile_hide' style='white-space:wrap;'><%=t.MEMO %></td>
       <td class='mobile_hide'><%=t.WRITE_ID %> (<%=getOnlyDate(t.WRITE_DATE) %>)</td>
       <td class='mobile_hide'><%=(t.MODIFY_ID + " (" + getOnlyDate(t.MODIFY_DATE) +")").replace(" ()", "") %></td>
-      <td class='center'><a onclick='modify(this, <%=t.CPY_GUAR_SEQ %>);' class='btn lurian'>수정</a> <a onclick='extend(this, <%=t.CPY_GUAR_SEQ %>)' class='btn'>연장</a> <a onclick='drop(this, <%=t.CPY_GUAR_SEQ %>)' class='btn darkred'>삭제</a>
+      <td class='center'><a onclick='modify(this, <%=t.CPY_GUAR_SEQ %>);' class='btn lurian'>수정</a> <a onclick='drop(this, <%=t.CPY_GUAR_SEQ %>)' class='btn darkred'>삭제</a>
       </td>
     </tr>
 <%
   }
-}
 %>
   </tbody>
 </table>
+</div>
+<%
+}
+%>
 <script>
 $("#total-amt").text("<%=StrUtil.addComma(lngTotalGuaranteeAmt)%>");
 </script>

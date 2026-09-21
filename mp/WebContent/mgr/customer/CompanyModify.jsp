@@ -60,6 +60,7 @@ function fillData() {
   $("input[name='cpy_nm']").val("<%=cvo.CPY_NAME%>");
   $("input[name='cpy_type'][value='<%=cvo.CPY_GUBUN%>']").prop("checked", true);
   $("input[name='cpy_ceo_nm']").val("<%=cvo.CPY_CEO_NAME%>");
+  $("input[name='cpy_ceo_hp']").val("<%=cvo.CPY_CEO_HP%>");
   $("input[name='biz_type'][value='<%=cvo.CRG_ID%>']").prop("checked", true);
   <%
   if (cvo.CRG_ID.equals("2")) out.println("cpy_no_open(true);");
@@ -83,6 +84,8 @@ function fillData() {
   $("input[name='login_cell_tel']").val("<%=pvo.PRS_MOBILE_NO%>");
   $("input[name='sms_yn']").prop("checked", <%= "1".equals(pvo.PRS_SMS) ? "true" : "false" %>);
   $("input[name='login_email']").val("<%=pvo.PRS_EMAIL%>");
+  $("input[name='login_pstn']").val("<%=pvo.PRS_PSTN%>");
+  $("input[name='login_extn']").val("<%=pvo.PRS_EXTN%>");
   $("input[name='tax_nm']").val("<%=cvo.MPTAX_USER_NM%>");
   $("input[name='tax_email']").val("<%=cvo.MPTAX_EMAIL%>");
 }
@@ -123,9 +126,14 @@ function maxLengthCheck(object){
     <input type='radio' name='cpy_type' value='2'> 판매사
     <input type='radio' name='cpy_type' value='3'> 구매&amp;판매사
   </li>
+  <li></li>
   <li>
     <label>대표자명 <i class="fa-solid fa-asterisk"></i></label>
     <input type='text' name='cpy_ceo_nm' value='' maxlength='30' placeholder='사업자등록증상의 대표자명' required>
+  </li>
+  <li>
+    <label>대표자 전화번호</label>
+    <input type='text' name='cpy_ceo_hp' value='' maxlength='13' placeholder='01012345678' pattern="[0-9]+" onkeypress='return checkNumber(event)'>
   </li>
   <li class='not-has-input'>
     <label>기업형태 <i class="fa-solid fa-asterisk"></i></label>
@@ -208,6 +216,14 @@ function maxLengthCheck(object){
   <li>
     <label>메일주소</label>
     <input type='email' name='login_email' value='' maxlength='40' placeholder='메일주소' pattern='[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$'>
+  </li>
+  <li>
+    <label>직위</label>
+    <input type='text' name='login_pstn' value='' maxlength='50' placeholder='직위'>
+  </li>
+  <li>
+    <label>내선번호</label>
+    <input type='text' name='login_extn' value='' maxlength='4' placeholder='내선번호'>
   </li>
 </ul>
 

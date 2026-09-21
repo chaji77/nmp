@@ -43,6 +43,7 @@ public class MemoDAO {
           vo.TO_USER_NM  = StrUtil.nvl(rs.getString("TO_USER_NM  ".trim()));
           vo.CPY_NAME    = StrUtil.nvl(rs.getString("CPY_NAME    ".trim()));
           vo.CPY_BUSINESS_NO = StrUtil.nvl(rs.getString("CPY_BUSINESS_NO"));
+          vo.COMMENT_YN  = StrUtil.nvl(rs.getString("COMMENT_YN"));
           arr.add(vo);
         }
       }
@@ -220,6 +221,7 @@ public class MemoDAO {
             vo.TO_USER_NM  = StrUtil.nvl(rs.getString("TO_USER_NM  ".trim()));
             vo.CPY_NAME    = StrUtil.nvl(rs.getString("CPY_NAME    ".trim()));
             vo.CPY_BUSINESS_NO = StrUtil.nvl(rs.getString("CPY_BUSINESS_NO"));
+            vo.COMMENT_YN  = StrUtil.nvl(rs.getString("COMMENT_YN"));
             arr.add(vo);
           }
         }

@@ -301,9 +301,30 @@ public class MgrCustomerDAO {
       intResult = -1;
     } finally {
       ConnectionMgr.getInstance().closeConnection(conn, ps);
-    } 
-    return intResult;
     }
+    return intResult;
+  }
+  protected int M_COMPANY_FEE_MOD_PROC(CompanyVO cvo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    int intResult = 0;
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.M_COMPANY_FEE_MOD_PROC ?, ?;");
+      int i = 0;
+      ps.setInt(++i, cvo.CPY_ID);
+      ps.setString(++i, cvo.FEE_MOD_YN);
+      logger.debug(ps.getQueryString());
+      ps.executeUpdate();
+    } catch(Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+      intResult = -1;
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps);
+    }
+    return intResult;
+  }
   protected int M_COMPANY_APPROVE_REGISTRATION(int cpyId) {
 	Connection conn = ConnectionMgr.getInstance().getConnetion();
 	WrapPreparedStatementUtil ps = null;

@@ -32,6 +32,8 @@ if (intCpyId != vo.CPY_ID) {
   return;
 }
 
+String qTypeLabel = QnaVO.getQCodeLabel(vo.Q_CODE);
+
 %>
 
 <%@ include file="../../includes/Header.jsp" %>
@@ -77,6 +79,8 @@ function modify() {
   <li class='td'><%=StrUtil.input(vo.CPY_NAME) %></li>
   <li class='th'>작 &nbsp;성 &nbsp;자</li>
   <li class='td'><%=StrUtil.input(vo.REG_NM) %></li>
+  <li class='th'>유　　형</li>
+  <li class='td wide'><%=  qTypeLabel %></li>
   <li class='th'>문의내용</li>
   <li class='td wide'><%=StrUtil.nvl(vo.Q_CONTENTS) %></li>
   <% if ("Y".equals(vo.ANS_YN)){ %>

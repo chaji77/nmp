@@ -71,6 +71,9 @@ public class TradeBean {
   public ArrayList<CtHeaderVO> CT_HEADER_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd, int intTargetCpyId, String strPageCode, int intPrsId) {
     return this.dao.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd.replaceAll("-",  ""), strEndYmd.replaceAll("-",  ""), intTargetCpyId, strPageCode, intPrsId);
   }
+  public ArrayList<CtHeaderVO> CT_HEADER_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd, int intTargetCpyId, String strPageCode, int intPrsId, String strGuarInstCd) {
+    return this.dao.CT_HEADER_LIST_PROC(pvo, intCpyId, strStartYmd.replaceAll("-",  ""), strEndYmd.replaceAll("-",  ""), intTargetCpyId, strPageCode, intPrsId, strGuarInstCd);
+  }
   public ArrayList<CtHeaderVO> CT_HEADER_COMING_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd) {
     return this.dao.CT_HEADER_COMING_LIST_PROC(pvo, intCpyId, StrUtil.nvl(strStartYmd, "20200101").replaceAll("-",  ""), StrUtil.nvl(strEndYmd, "20801231").replaceAll("-",  ""));
   }
@@ -145,8 +148,18 @@ public class TradeBean {
     CtHeaderVO headerVo = this.CT_HEADER_DETAIL_PROC(intCtId);
     ArrayList<CtItemVO> arrItems = this.CT_ITEM_LIST_PROC(intCtId);
     
-    if (headerVo.CTTYPE.equals("B")) headerVo.SELLER_IP = strRemoteIP;
-    else headerVo.BUYER_IP = strRemoteIP;
+	/*
+	 * if (headerVo.CTTYPE.equals("B")) headerVo.SELLER_IP = strRemoteIP; else
+	 * headerVo.BUYER_IP = strRemoteIP;
+	 */
+    if (String.valueOf(intCpyId).equals(headerVo.CPYBUYER)) {
+        headerVo.BUYER_IP = strRemoteIP;
+        headerVo.SGN_ID   = String.valueOf(intSignSeq);
+
+    } else if (String.valueOf(intCpyId).equals(headerVo.CPYSELLER)) {
+        headerVo.SELLER_IP = strRemoteIP;
+        headerVo.SELLER_APP_SGN_ID = String.valueOf(intSignSeq);
+    }
     
     /********** CHECH ABNORMAL TRANSACTION ************/
     AbnormalTransactionCheck abnormal = new AbnormalTransactionCheck();

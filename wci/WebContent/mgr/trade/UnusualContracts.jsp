@@ -54,7 +54,7 @@ span.not-solve:hover {background-color:hotpink;}
 <script>
 function searchCompany() {
   closePopup();
-  $("#element_to_pop_up").bPopup({loadUrl:'/mp/mgr/customer/CompaniesForPopup.jsp'});
+  $("#element_to_pop_up").bPopup({loadUrl:'/wci/mgr/customer/CompaniesForPopup.jsp'});
 }
 function choiceCompany(obj) {
   document.frmSearch.cpy_id.value = $(obj).attr("cid");
@@ -75,7 +75,7 @@ function goPage(p) {
   document.frmSearch.submit();
 }
 function calc(ctid) {
-  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommission.jsp", {'ctid':ctid}, function(data) {
+  $.post("<%=request.getContextPath()%>/mgr/mpfee/CalcCommissionFixed.jsp", {'ctid':ctid}, function(data) {
     showAlert(data);
   });
 }
@@ -272,7 +272,7 @@ if (arr!=null && arr.size()>0) {
         <%=vo.BUYER_NM %><%=(vo.CTTYPE.equals("B"))?" <span class='w'>작성</span>":"" %><%=(StrUtil.nvl(vo.MPPAYCPY).equals("2"))?" <span class='w'>부담</span>":"" %><br/>
         <%=vo.SELLER_NM %><%=(vo.CTTYPE.equals("S"))?" <span class='w'>작성</span>":"" %><%=(StrUtil.nvl(vo.MPPAYCPY).equals("1"))?" <span class='w'>부담</span>":"" %>
       </td>
-      <td class='right'><%=StrUtil.addComma(vo.TOTALCONTRACTAMT) %><br/><%=strMpFeeAmt %></td>
+      <td class='right'><%=StrUtil.addComma(vo.TOTALCONTRACTAMT) %></td>
       <td class='left'>
         <% if (vo.STATUS.equals("030") || vo.STATUS.equals("040") || vo.STATUS.equals("050") || vo.STATUS.equals("060") || vo.STATUS.equals("070") || vo.STATUS.equals("080") || vo.STATUS.equals("090")) { %>
         <a onclick='showTransactionResult(<%=vo.CTID%>);' class='underline'><%=vo.CODE_NM %></a>

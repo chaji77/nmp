@@ -304,6 +304,10 @@ $(document).ready(function(){
     <input type='radio' name='biz_type' value='2' onclick='cpy_no_open(true);'> 개인사업자
   </li>
   <li>
+    <label>대표자 휴대폰번호</label>
+    <input type='text' name='cpy_ceo_hp' value='' maxlength='13' pattern="[0-9]+" onkeypress='return checkNumber(event)' placeholder='01012345678'>
+  </li>
+  <li>
     <label>법인등록번호 <i class="fa-solid fa-asterisk"></i></label>
     <input type='text' name='cpy_no' value='' maxlength='14' pattern="[0-9]+" onkeypress='return checkNumber(event)' placeholder='법인등록번호'>
   </li>
@@ -364,8 +368,8 @@ $(document).ready(function(){
     <input type='text' name='login_nm' value='' maxlength='10' placeholder='담당자명' required>
   </li>
   <li>
-    <label>일반전화(내선포함)</label>
-    <input type='tel' name='login_tel' value='' maxlength='24' placeholder='일반전화(내선포함)' required>
+    <label>일반전화</label>
+    <input type='tel' name='login_tel' value='' maxlength='24' placeholder='일반전화' required>
   </li>
   <li>
     <label>휴대전화번호 <i class="fa-solid fa-asterisk"></i></label>
@@ -375,6 +379,14 @@ $(document).ready(function(){
   <li>
     <label>메일주소</label>
     <input type='email' name='login_email' value='' maxlength='30' placeholder='메일주소' pattern='[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$'>
+  </li>
+  <li>
+    <label>직위</label>
+    <input type='text' name='login_pstn' value='' maxlength='50' placeholder='직위'>
+  </li>
+  <li>
+    <label>내선번호</label>
+    <input type='text' name='login_extn' value='' maxlength='4' placeholder='내선번호'>
   </li>
 </ul>
 

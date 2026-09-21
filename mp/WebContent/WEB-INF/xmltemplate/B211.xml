@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding='EUC-KR'?>
+<sb:ContractMK xmlns:sb='http://www.shinbo.co.kr' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+ <sb:Common>
+  <sb:Sender></sb:Sender>
+  <sb:TransactionSEQNO></sb:TransactionSEQNO>
+  <sb:Receiver></sb:Receiver>
+  <sb:TransactionNO>B211</sb:TransactionNO>
+  <sb:TransactionDate></sb:TransactionDate>
+  <sb:TransactionTime></sb:TransactionTime>
+  <sb:ResponseCode>0000</sb:ResponseCode>
+ </sb:Common>
+ <sb:Transfer>
+  <sb:ApplicationNO></sb:ApplicationNO>
+  <sb:GuaranteeNO></sb:GuaranteeNO>
+  <sb:TradeDate></sb:TradeDate>
+  <sb:OrderNO></sb:OrderNO>
+  <sb:ContractDate></sb:ContractDate>
+  <sb:BuyerID></sb:BuyerID>
+  <sb:BuyerBusinessNO></sb:BuyerBusinessNO>
+  <sb:SellerID></sb:SellerID>
+  <sb:SellerBusinessNO></sb:SellerBusinessNO>
+  <sb:TotalContractAMT></sb:TotalContractAMT>
+  <sb:SettlementScheduleCount></sb:SettlementScheduleCount>
+  <sb:ScheduleDetail seq='1'>
+   <sb:ScheduleSEQNO></sb:ScheduleSEQNO>
+   <sb:SettlementType></sb:SettlementType>
+   <sb:SettlementDueAMT></sb:SettlementDueAMT>
+   <sb:DeliveryDueDate></sb:DeliveryDueDate>
+   <sb:PaymentDueDate></sb:PaymentDueDate>
+  </sb:ScheduleDetail>
+  <sb:OrderCount></sb:OrderCount>
+  <sb:OrderDetail seq='1'>
+   <sb:OrderSEQNO></sb:OrderSEQNO>
+   <sb:Item></sb:Item>
+   <sb:Size></sb:Size>
+   <sb:Quantity></sb:Quantity>
+   <sb:QuantityUnit></sb:QuantityUnit>
+   <sb:UnitPrice></sb:UnitPrice>
+   <sb:SupplyAMT></sb:SupplyAMT>
+   <sb:TaxAMT></sb:TaxAMT>
+   <sb:TotalAMT></sb:TotalAMT>
+  </sb:OrderDetail>
+ </sb:Transfer>
+</sb:ContractMK>

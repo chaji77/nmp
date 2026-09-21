@@ -38,6 +38,7 @@ public class LoginDAO {
         vo.SIGN_EXCLUDE_YN   = StrUtil.nvl(rs.getString("SIGN_EXCLUDE_YN"), "N");
         vo.CRG_ID            = StrUtil.nvl(rs.getString("CRG_ID"), "1");
         vo.PAPER_BILL_YN     = StrUtil.nvl(rs.getString("PAPER_BILL_YN"), "N");
+        vo.FEE_MOD_YN        = StrUtil.nvl(rs.getString("FEE_MOD_YN"), "N");
       }
     } catch (Exception e) {
       logger.error(ps.getQueryString());
@@ -47,7 +48,7 @@ public class LoginDAO {
     }
     return vo;
   }
-  
+
   protected LoginVO C_LOGIN_VIA_CERT_PROC(String strSSN) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
     WrapPreparedStatementUtil ps = null;
@@ -75,6 +76,7 @@ public class LoginDAO {
           vo.SIGN_EXCLUDE_YN   = StrUtil.nvl(rs.getString("SIGN_EXCLUDE_YN"), "N");
           vo.CRG_ID            = StrUtil.nvl(rs.getString("CRG_ID"), "1");
           vo.PAPER_BILL_YN     = StrUtil.nvl(rs.getString("PAPER_BILL_YN"), "N");
+          vo.FEE_MOD_YN        = StrUtil.nvl(rs.getString("FEE_MOD_YN"), "N");
       }
     } catch (Exception e) {
       logger.error(ps.getQueryString());

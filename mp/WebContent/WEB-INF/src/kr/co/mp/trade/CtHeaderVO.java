@@ -60,6 +60,7 @@ public class CtHeaderVO extends CommonVO {
   public String PAY_SDESC;
   public String CODE_NM; // NAME OF STATUS
   public String SBDATE = "C"; // 검색기준일(C=CONTRACTDATE,S=SETTLEDUEDATE,M=MTYDATE)
+  public String GUAR_INST_CD; // 결제기관코드
 
   /* FOR DETAIL */
   public String BUYER_BIZ_NO;

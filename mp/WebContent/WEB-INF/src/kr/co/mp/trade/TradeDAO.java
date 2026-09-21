@@ -384,6 +384,73 @@ public class TradeDAO {
     }
     return arr;
   }
+  protected ArrayList<CtHeaderVO> CT_HEADER_LIST_PROC (CtHeaderVO pvo, int intCpyId, String strStartYmd, String strEndYmd, int intTargetCpyId, String strPageCode, int intPrsId, String strGuarInstCd) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    ArrayList<CtHeaderVO> arr = new ArrayList<>();
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CT_HEADER_LIST_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?;");
+      int i = 0;
+      ps.setInt(   ++i, pvo.PAGE);
+      ps.setInt(   ++i, pvo.ROW_CNT);
+      ps.setInt(   ++i, intCpyId);
+      ps.setString(++i, pvo.STATUS);
+      ps.setString(++i, strStartYmd);
+      ps.setString(++i, strEndYmd);
+      ps.setInt(   ++i, intTargetCpyId);
+      ps.setString(++i, strPageCode);
+      ps.setString(++i, StrUtil.nvl(pvo.SBDATE, "C"));
+      ps.setString(++i, StrUtil.nvl(pvo.CTNO));
+      ps.setInt(   ++i, intPrsId);
+      ps.setString(++i, StrUtil.nvl(strGuarInstCd));
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null) {
+        while (rs.next()) {
+          CtHeaderVO vo = new CtHeaderVO();
+          vo.TOTAL_CNT        = rs.getInt("TOTAL_CNT");
+          vo.CTID             = StrUtil.nvl(rs.getString("CTID"));
+          vo.CTNO             = StrUtil.nvl(rs.getString("CTNO"));
+          vo.CTTYPE           = StrUtil.nvl(rs.getString("CTTYPE"));
+          vo.BNK_CD           = StrUtil.nvl(rs.getString("BNK_CD"));
+          vo.PAY_ID           = StrUtil.nvl(rs.getString("PAY_ID"));
+          vo.REGDATE          = StrUtil.nvl(rs.getString("REGDATE"));
+          vo.TRADEDATE        = StrUtil.nvl(rs.getString("TRADEDATE"));
+          vo.CONTRACTDATE     = StrUtil.nvl(rs.getString("CONTRACTDATE"));
+          vo.SETTLEDUEDATE    = StrUtil.nvl(rs.getString("SETTLEDUEDATE"));
+          vo.SETTLEDATE       = StrUtil.nvl(rs.getString("SETTLEDATE"));
+          vo.TOTALCONTRACTAMT = StrUtil.nvl(rs.getString("TOTALCONTRACTAMT"));
+          vo.CPYBUYER         = StrUtil.nvl(rs.getString("CPYBUYER"));
+          vo.CPYSELLER        = StrUtil.nvl(rs.getString("CPYSELLER"));
+          vo.REGTIME          = StrUtil.nvl(rs.getString("REGTIME"));
+          vo.APPRTIME         = StrUtil.nvl(rs.getString("APPRTIME"));
+          vo.STATUS           = StrUtil.nvl(rs.getString("STATUS"));
+          vo.BUYER_NM         = StrUtil.nvl(rs.getString("BUYER_NM"));
+          vo.BUYER_BIZ_NO     = StrUtil.nvl(rs.getString("BUYER_BIZ_NO"));
+          vo.SELLER_NM        = StrUtil.nvl(rs.getString("SELLER_NM"));
+          vo.SELLER_BIZ_NO    = StrUtil.nvl(rs.getString("SELLER_BIZ_NO"));
+          vo.BNK_NAME         = StrUtil.nvl(rs.getString("BNK_NAME"));
+          vo.PAY_SDESC        = StrUtil.nvl(rs.getString("PAY_SDESC"));
+          vo.CODE_NM          = StrUtil.nvl(rs.getString("CODE_NM"));
+          vo.MPPAYCPY         = StrUtil.nvl(rs.getString("MPPAYCPY"));
+          vo.MTYDATE          = StrUtil.nvl(rs.getString("MTYDATE"));
+          vo.MPFEE_TOTALAMT   = StrUtil.nvl(rs.getString("MPFEE_TOTALAMT"));
+          vo.SBILL_SEQ        = StrUtil.nvl(rs.getString("SBILL_SEQ"));
+          vo.TAXAPPROVALNO    = StrUtil.nvl(rs.getString("TAXAPPROVALNO"));
+          arr.add(vo);
+        }
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
+
   protected CtHeaderVO CT_HEADER_DETAIL_PROC(int intCtId) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
     WrapPreparedStatementUtil ps = null;

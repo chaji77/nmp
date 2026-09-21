@@ -172,6 +172,8 @@ function fillData() {
   $("input[name='login_cell_tel']").val("<%=StrUtil.input(pvo.PRS_MOBILE_NO)%>");
   $("input[name='sms_yn']").prop("checked", true);
   $("input[name='login_email']").val("<%=StrUtil.input(pvo.PRS_EMAIL)%>");
+  $("input[name='login_pstn']").val("<%=StrUtil.input(pvo.PRS_PSTN)%>");
+  $("input[name='login_extn']").val("<%=StrUtil.input(pvo.PRS_EXTN)%>");
 }
 </script>
 <!-- // page head block -->
@@ -204,8 +206,8 @@ function fillData() {
     <input type='text' name='login_nm' value='' maxlength='20' placeholder='담당자명' required>
   </li>
   <li>
-    <label>일반전화(내선포함)</label>
-    <input type='tel' name='login_tel' value='' maxlength='24' placeholder='일반전화(내선포함)' required>
+    <label>일반전화</label>
+    <input type='tel' name='login_tel' value='' maxlength='24' placeholder='일반전화' required>
   </li>
   <li>
     <label>휴대전화번호 <i class="fa-solid fa-asterisk"></i></label>
@@ -215,6 +217,14 @@ function fillData() {
   <li>
     <label>메일주소</label>
     <input type='email' name='login_email' value='' maxlength='30' placeholder='메일주소' pattern='[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$'>
+  </li>
+  <li>
+    <label>직위</label>
+    <input type='text' name='login_pstn' value='' maxlength='50' placeholder='직위'>
+  </li>
+  <li>
+    <label>내선번호</label>
+    <input type='text' name='login_extn' value='' maxlength='4' placeholder='내선번호'>
   </li>
 </ul>
 </form>

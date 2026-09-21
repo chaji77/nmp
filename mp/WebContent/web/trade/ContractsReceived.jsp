@@ -31,6 +31,32 @@ String strTargetCpyId = StrUtil.nvl(request.getParameter("tc"), "0");
 <%@ include file="../includes/Header.jsp" %>
 <!-- page head block -->
 <title><%=strPageTitle %></title>
+<script>
+function toggleAllCheckContracts() {
+  var isChecked = $("input[name='AllCheckContracts']").is(":checked");
+  $('#contract_list').find('input[name="seq"]').prop("checked", isChecked);
+}
+function cancelSelected() {
+  var seqs = $('#contract_list').find('input[name="seq"]:checked').map(function() {
+    return $(this).val();
+  }).get();
+  if (seqs.length == 0) {
+    toast("선택된 매매계약서가 없습니다.");
+    return;
+  }
+  showCustomConfirm("선택한 " + seqs.length + "건을 취소하시겠습니까?", function() {
+    var done = 0;
+    $.each(seqs, function(idx, seq) {
+      $.post("ContractCancelProc.jsp", { seq: seq }, function() {
+        done++;
+        if (done === seqs.length) {
+          showAlert("취소되었습니다.", function() { location.reload(true); });
+        }
+      });
+    });
+  }, function() {});
+}
+</script>
 
 
 <!-- // page head block -->

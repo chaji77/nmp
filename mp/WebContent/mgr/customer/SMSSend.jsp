@@ -28,8 +28,19 @@ function getBytes(str) {
   return bytes;
 }
 function sendSMS() {
+  var to = $("#sms_send_to").val();
+  if (to === "" || to === null) { showAlert("수신자를 선택하세요."); return; }
+  if (to === "__direct__") {
+    to = $.trim($("#sms_direct_no").val());
+    if (to === "") { showAlert("전화번호를 입력하세요."); return; }
+  }
   showLoading();
-  $.post(strContextPath + "/mgr/customer/SMSSendProc.jsp", $("form[name='frmSMSSend']").serialize(), function(data) {
+  $.post(strContextPath + "/mgr/customer/SMSSendProc.jsp", {
+    cid: $("input[name='cid']").val(),
+    active_kind: $("select[name='active_kind']").val(),
+    to: to,
+    msg: $("#msg").val()
+  }, function(data) {
     if (data!="0") {
       toast("전송하였습니다.", 1000, function() {
         closePopup();
@@ -44,6 +55,17 @@ function sendSMS() {
 }
 $(document).ready(function() {
   $("select[name='active_kind']").select2();
+  $("#sms_direct_wrap").hide();
+  $("#sms_send_to").on("change", function() {
+    var val = $(this).val();
+    if (val === "__direct__") {
+      $("#sms_direct_wrap").show();
+      $("#sms_direct_no").focus();
+    } else {
+      $("#sms_direct_no").val("");
+      $("#sms_direct_wrap").hide();
+    }
+  });
   $('#msg').on('input', function () {
     var intSMSMaxLenth = 86;
     var input = $(this).val();
@@ -78,7 +100,9 @@ if (arrCodes!=null && arrCodes.size()>0) {
 }
 %>
 </select>
-<select id='sms_send_to' name='to' style='width:100%;margin-bottom:5px;'>
+<select id='sms_send_to' style='width:100%;margin-bottom:5px;'>
+  <option value='' disabled selected>-- 선택 --</option>
+  <option value='__direct__'>직접 입력</option>
 <%
 if (arrPersons!=null && arrPersons.size()>0) {
   for (PersonVO v : arrPersons) {
@@ -89,6 +113,9 @@ if (arrPersons!=null && arrPersons.size()>0) {
 }
 %>
 </select>
+<div id='sms_direct_wrap' style='margin-bottom:5px;'>
+  <input type='text' id='sms_direct_no' placeholder='전화번호 입력 (예: 01012345678)' style='width:calc(100% - 12px);padding:5px;'>
+</div>
 <textarea id="msg" name="msg" style="height:100px;width:calc(100% - 22px);"></textarea>
 <p>최대 86바이트까지 가능합니다. (현재 <span id='sms_current_bytes'>0</span>자)</p>
 </form>

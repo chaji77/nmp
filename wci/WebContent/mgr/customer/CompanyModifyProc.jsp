@@ -51,9 +51,12 @@ try {
   pvo.PRS_MOBILE_NO = StrUtil.xss(request.getParameter("login_cell_tel"));
   pvo.PRS_SMS = StrUtil.nvl(request.getParameter("sms_yn"), "0");
   pvo.PRS_EMAIL = StrUtil.xss(request.getParameter("login_email"));
+  pvo.PRS_PSTN = StrUtil.xss(request.getParameter("login_pstn"));
+  pvo.PRS_EXTN = StrUtil.xss(request.getParameter("login_extn"));
 
   cvo.SALES_AMT = StrUtil.extractAndFormat(StrUtil.nvl(request.getParameter("sale_amt"), "0").replaceAll("[^0-9]", ""), 13, 3);
-  
+  cvo.CPY_CEO_HP = StrUtil.extractDigits(request.getParameter("cpy_ceo_hp"), 13);
+
   if (!isError && !cvo.CPY_GUBUN.equals("1") && !cvo.CPY_GUBUN.equals("2") && !cvo.CPY_GUBUN.equals("3")) {
     strErrorMsg = "회원구분을 확인하십시오.";
     isError = true;

@@ -18,6 +18,7 @@ public class LoginVO {
   public String SIGN_EXCLUDE_YN  ;
   public String CRG_ID;
   public String PAPER_BILL_YN;
+  public String FEE_MOD_YN;
 
   @Override
   public String toString() {

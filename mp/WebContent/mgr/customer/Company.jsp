@@ -147,6 +147,10 @@ function getConfirmSettlePage() {
   closePopup();
   $("#element_to_pop_up").bPopup({loadUrl:'CompanyAdditionalReg.jsp?cid=<%=intCpyId%>&yn=<%=cvo.CONFIRM_SETTLE_YN%>&title=settle'});
 }
+function getFeeModPage() {
+  closePopup();
+  $("#element_to_pop_up").bPopup({loadUrl:'CompanyFeeModReg.jsp?cid=<%=intCpyId%>&yn=<%=cvo.FEE_MOD_YN%>'});
+}
 function getMPTaxMonthPage() {
   closePopup();
   $("#element_to_pop_up").bPopup({loadUrl:'<%=request.getContextPath()%>/mgr/customer/CompanyAdditionalReg.jsp?cid=<%=intCpyId%>&yn=<%=cvo.MPTAX_MONTH_USE_YN%>&title=mptax'});
@@ -337,8 +341,12 @@ function saveToLegacy() {
   else if (cvo.CPY_GUBUN.equals("2")) out.print("판매사");
   else out.print("구매&amp;판매사");
   %></li>
+  <li class='th'></li>
+  <li class='td'></li>
   <li class='th'>대표자명</li>
   <li class='td'><%=cvo.CPY_CEO_NAME%></li>
+  <li class='th'>대표자 휴대폰번호</li>
+  <li class='td'><%=cvo.CPY_CEO_HP%></li>
   <li class='th'>기업형태</li>
   <li class='td'><%
   if (cvo.CRG_ID.equals("1")) out.print("법인사업자");
@@ -384,15 +392,15 @@ function saveToLegacy() {
   <li class='th'>최근로그인</li>
   <li class='td'><%=cvo.LAST_LOGIN_DT %></li>
   <li class='th'>담당자</li>
-  <li class='td'><%=pvo.PRS_NAME%> (<a href='mailto:<%=pvo.PRS_EMAIL%>'><%=pvo.PRS_EMAIL%></a>)</li>
-  <li class='th'>일반전화번호</li>
-  <li class='td'><a href='tel:<%=pvo.PRS_TEL %>'><%=pvo.PRS_TEL %></a></li>
-  <li class='th'>휴대전화번호</li>
-  <li class='td'><a href='tel:<%=pvo.PRS_MOBILE_NO%>'><%=pvo.PRS_MOBILE_NO%></a></li>
+  <li class='td'><%=pvo.PRS_NAME%> <%=pvo.PRS_PSTN%> (<a href='mailto:<%=pvo.PRS_EMAIL%>'><%=pvo.PRS_EMAIL%></a>)</li>
   <li class='th'>기업설명</li>
   <li class='td'><%=StrUtil.nvl(cvo.CPY_BUSINESS_DESC) %></li>
-  <li class='th'></li>
-  <li class='td'></li>
+  <li class='th'>휴대전화번호</li>
+  <li class='td'><a href='tel:<%=pvo.PRS_MOBILE_NO%>'><%=pvo.PRS_MOBILE_NO%></a></li>
+  <li class='th'>일반전화번호</li>
+  <li class='td'><a href='tel:<%=pvo.PRS_TEL %>'><%=pvo.PRS_TEL %></a></li>
+  <li class='th'>내선번호</li>
+  <li class='td'><a href='tel:<%=pvo.PRS_EXTN %>'><%=pvo.PRS_EXTN %></a></li>
 </ul>
 
 <p>&nbsp;</p>
@@ -432,6 +440,10 @@ function saveToLegacy() {
     <a onclick='sendA211();' class='btn'>사전검증조회</a>
     <a onclick='sendA411();' class='btn'>사전검증해제등록</a>
   </li>
+  <li class='th'>수수료 수정가능 여부</li>
+  <li class='td'><%=(cvo.FEE_MOD_YN.equals("Y"))?"수정가능":"수정불가" %> <a href='javascript:getFeeModPage();' class='btn'>수정</a></li>
+  <li class='th'></li>
+  <li class='td'></li>
 </ul>
 
 <p>&nbsp;</p>
@@ -607,6 +619,8 @@ if (arrNoTradeCompanies!=null && arrNoTradeCompanies.size()>0) {
     <th class='left'>휴대전화</th>
     <th class='left'>일반전화</th>
     <th class='left'>이메일</th>
+    <th class='left'>직위</th>
+    <th class='left'>내선번호</th>
     <th>명령</th>
   </tr>
 </thead>
@@ -626,6 +640,8 @@ if (arrPersons!=null && arrPersons.size()>0) {
     <td class='mobile_hide'><%=StrUtil.nvl(v.PRS_MOBILE_NO) %></td>
     <td class='mobile_hide'><%=StrUtil.nvl(v.PRS_TEL) %></td>
     <td class='mobile_hide'><%=StrUtil.nvl(v.PRS_EMAIL) %></td>
+    <td class='mobile_hide'><%=StrUtil.nvl(v.PRS_PSTN) %></td>
+    <td class='mobile_hide'><%=StrUtil.nvl(v.PRS_EXTN) %></td>
     <td class='center' width='70'>
       <a onclick='getManagerPage("<%=IntegerCryptoUtil.crypt(v.PRS_ID)%>");' class='btn lurian'>수정</a>
       <a onclick='removeManager("<%=IntegerCryptoUtil.crypt(v.PRS_ID)%>");' class='btn darkred'>삭제</a>
@@ -633,7 +649,7 @@ if (arrPersons!=null && arrPersons.size()>0) {
   </tr>
 <%
   }
-} else { out.println("<tr><td colspan='6' class='noentry'>없음</td></tr>"); }
+} else { out.println("<tr><td colspan='8' class='noentry'>없음</td></tr>"); }
 %>
 </tbody>
 </table>

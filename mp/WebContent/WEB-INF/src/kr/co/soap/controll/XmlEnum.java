@@ -19,7 +19,7 @@ public class XmlEnum {
             "F245.xml", "H221.xml", "H225.xml", "H227.xml", "B211.xml", "B213.xml", "B215.xml", 
             "K231.xml", "K235.xml", "L211.xml", "L213.xml", "L215.xml", "M211.xml", "M213.xml", 
             "M215.xml", "M221.xml", "M225.xml", "A311_KIBO.xml", "B311_KIBO.xml", "A211.xml", "A411.xml", "A181_KIBO.xml", "B315_KIBO.xml", "A311S.xml"
-            ,"C211.xml"
+            ,"C211.xml", "B211.xml", "K231.xml"
     };
     
     // 템플릿 파일 경로를 자동으로 생성
