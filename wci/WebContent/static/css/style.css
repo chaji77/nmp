@@ -267,6 +267,7 @@ img.magnify {
 
 /* mobile or printer */
 .mobile_show {display:none;}
+.mobile_only {display:none;}
 .print_show {display:none;}
 
 /* upload file */
@@ -328,6 +329,7 @@ ul.detail li.td.wide {width:calc(100% - 162px);}
 @media only screen and (max-width:767px) {
   .mobile_hide {display:none;}
   .mobile_show {display:inline;}
+  .mobile_only {display:table-cell;}
 
   body {overflow-x:auto;}
   main, header {min-width:320px;width:calc(100% - 20px);padding-left:10px;padding-right:10px;}
