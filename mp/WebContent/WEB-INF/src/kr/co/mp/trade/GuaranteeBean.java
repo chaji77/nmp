@@ -13,6 +13,9 @@ public class GuaranteeBean {
   public ArrayList<PayMethodVO> M_CT_MY_PAYMETHOD_PROC(int intCpyId) {
     return this.dao.M_CT_MY_PAYMETHOD_PROC(intCpyId);		
   }
+  public ArrayList<PayMethodVO> M_CT_MY_CYCLN_PAYMETHOD_PROC(int intCpyId) {
+    return this.dao.M_CT_MY_CYCLN_PAYMETHOD_PROC(intCpyId);
+  }
   public int GUARANTEE_MASTER_INFO_DROP_PROC(PayMethodVO pvo) {
 	return this.dao.GUARANTEE_MASTER_INFO_DROP_PROC(pvo);
   }
@@ -33,6 +36,9 @@ public class GuaranteeBean {
   }
   public ArrayList<PayMethodVO> M_GUARANTEE_LIST_PROC(PayMethodVO pvo) {
     return this.dao.M_GUARANTEE_LIST_PROC(pvo);
+  }
+  public ArrayList<PayMethodVO> M_CYCLN_GUARANTEE_LIST_PROC(PayMethodVO pvo) {
+    return this.dao.M_CYCLN_GUARANTEE_LIST_PROC(pvo);
   }
   public ArrayList<PayMethodVO> GUARANTEE_LOCATION_SEARCH_PROC(PayMethodVO pvo) {
 	return this.dao.GUARANTEE_LOCATION_SEARCH_PROC(pvo);

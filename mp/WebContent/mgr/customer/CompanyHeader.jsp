@@ -49,6 +49,9 @@ function goCompanyMenu(idx) {
   case 10 :
     url = "<%=request.getContextPath()%>/mgr/sales/SalesMemoPerCustomer.jsp";
     break;
+  case 11 :
+    url = "<%=request.getContextPath()%>/mgr/customer/CyclnGuarantee.jsp";
+    break;
   }
   document.frmCompanyHead.action = url;
   document.frmCompanyHead.submit();
@@ -88,5 +91,6 @@ function goCompanyMenu(idx) {
   <li class='category<%=(strMenuIdx.equals("7"))?" selected":""%>' onclick='goCompanyMenu(7);'>거래처</li>
   <li class='category<%=(strMenuIdx.equals("9"))?" selected":""%>' onclick='goCompanyMenu(9);'>추가정보</li>
   <li class='category<%=(strMenuIdx.equals("10"))?" selected":""%>' onclick='goCompanyMenu(10);'>영업메모</li>
+  <li class='category<%=(strMenuIdx.equals("11"))?" selected":""%>' onclick='goCompanyMenu(11);'>싸이클론보증서</li>
   <li></li>
 </ul>

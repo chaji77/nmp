@@ -18,6 +18,7 @@ DashboardVO navDashboardVO = new DashboardBean().DASHBOARD_EXIST_CHECK_PROC();
       <li class='navigation-li-col nav-003'><a href='<%=request.getContextPath()%>/mgr/etax/TaxRequestList.jsp'>정산관리</a></li>
       <li class='navigation-li-col nav-004'><a href='<%=request.getContextPath()%>/mgr/notice/Notices.jsp'>사이트관리</a><% if (navDashboardVO.QNA_EXIST) { %><span class='nav-dot'></span><% } %></li>
       <li class='navigation-li-col nav-005'><a href='<%=request.getContextPath()%>/mgr/sales/SalesCompanies.jsp'>영업업체관리</a></li>
+      <li class='navigation-li-col nav-006'><a href='<%=request.getContextPath()%>/mgr/sales/SalesCompanies.jsp'>싸이클론</a></li>
     </ul>
     <aside>
       <i class="fa-solid fa-comments manager-nav-btn" onclick="showMyMemoForNaviator();"></i>
@@ -67,6 +68,12 @@ DashboardVO navDashboardVO = new DashboardBean().DASHBOARD_EXIST_CHECK_PROC();
       <li class='navigation-li-col'>
         <ul class='nav-005'><!-- 영업업체관리 -->
           <li><a href='<%=request.getContextPath()%>/mgr/sales/SalesCompanies.jsp'>업체관리</a></li>
+        </ul>
+      </li>
+      <li class='navigation-li-col'>
+        <ul class='nav-006'><!-- 싸이클론 -->
+          <li><a href='<%=request.getContextPath()%>/mgr/sales/SalesCompanies.jsp'>거래관리</a></li>
+          <li><a href='<%=request.getContextPath()%>/mgr/customer/CyclnGuarantees.jsp'>보증서관리</a></li>
         </ul>
       </li>
     </ul>

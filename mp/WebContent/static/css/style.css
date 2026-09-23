@@ -209,7 +209,7 @@ header aside {color: white;padding: 5px;position: absolute;right:7px;cursor: poi
 #navigation>li {float:left;padding: 5px;}
 #navigation>li a {color:white;}
 #navigation>li a:hover {color: black;}
-#navigation-items-block {position: absolute;margin-top: 0px;background-color: white;width: 100%;}
+#navigation-items-block {position: absolute;top: 48px;margin-top: 0px;background-color: white;width: 100%;}
 #navigation-items>li {float:left;padding: 0 5px;}
 #navigation-items>li>ul {min-height: 200px;border-right: 1px solid #eee;}
 #navigation-items>li>ul>li {padding: 5px 0;}

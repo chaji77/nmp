@@ -93,6 +93,53 @@ public class GuaranteeDAO {
     }
     return arr;
   }
+  protected ArrayList<PayMethodVO> M_CT_MY_CYCLN_PAYMETHOD_PROC(int intCpyId) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    ArrayList<PayMethodVO> arr = new ArrayList<>();
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.M_CT_MY_CYCLN_PAYMETHOD_PROC ?;");
+      int i = 0;
+      ps.setInt(   ++i, intCpyId);
+
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null) {
+        while (rs.next()) {
+          PayMethodVO t    = new PayMethodVO();
+          t.CPY_ID         = rs.getInt("CPY_ID");
+          t.BNK_CD         = StrUtil.nvl(rs.getString("BNK_CD"));
+          t.PAY_ID         = StrUtil.nvl(rs.getString("PAY_ID"));
+          t.PAY_DESC       = StrUtil.nvl(rs.getString("PAY_DESC"));
+          t.PAY_SDESC      = StrUtil.nvl(rs.getString("PAY_SDESC"));
+          t.BNK_NAME       = StrUtil.nvl(rs.getString("BNK_NAME"));
+          t.GUAR_GUBUN     = StrUtil.nvl(rs.getString("GUAR_GUBUN"));
+          t.GUAR_STATUS    = StrUtil.nvl(rs.getString("GUAR_STATUS"));
+
+          t.GUAR_CRA_DATE  = StrUtil.nvl(rs.getString("GUAR_CRA_DATE ".trim()));
+          t.GUAR_EXP_DATE  = StrUtil.nvl(rs.getString("GUAR_EXP_DATE ".trim()));
+          t.GUAR_VAL_DATE  = StrUtil.nvl(rs.getString("GUAR_VAL_DATE ".trim()));
+          t.GUAR_TOTAL_AMT = StrUtil.nvl(rs.getString("GUAR_TOTAL_AMT".trim()));
+          t.MEMO           = StrUtil.nvl(rs.getString("MEMO          ".trim()));
+          t.WRITE_DATE     = StrUtil.nvl(rs.getString("WRITE_DATE    ".trim()));
+          t.WRITE_ID       = StrUtil.nvl(rs.getString("WRITE_ID      ".trim()));
+          t.MODIFY_DATE    = StrUtil.nvl(rs.getString("MODIFY_DATE   ".trim()));
+          t.MODIFY_ID      = StrUtil.nvl(rs.getString("MODIFY_ID     ".trim()));
+          t.CHANGE_AMT     = StrUtil.nvl(rs.getString("CHANGE_AMT    ".trim()));
+          t.CPY_GUAR_SEQ   = rs.getInt("CPY_GUAR_SEQ");
+          arr.add(t);
+        }
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
   protected int GUARANTEE_MASTER_INFO_DROP_PROC(PayMethodVO vo) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
     WrapPreparedStatementUtil ps = null;
@@ -133,7 +180,9 @@ public class GuaranteeDAO {
       ps.setString(++i, vo.WRITE_ID);
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
-      if (rs!=null && rs.next()) intResult = rs.getInt("SEQ");
+      if (rs!=null && rs.next()) {
+        intResult = rs.getInt("SEQ");
+      }
     } catch(Exception e) {
       logger.error(ps.getQueryString());
       logger.error(e.toString());
@@ -165,7 +214,9 @@ public class GuaranteeDAO {
       ps.setString(++i, vo.WRITE_ID);
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
-      if (rs!=null && rs.next()) intResult = rs.getInt("SEQ");
+      if (rs!=null && rs.next()) {
+        intResult = rs.getInt("SEQ");
+      }
     } catch(Exception e) {
       logger.error(ps.getQueryString());
       logger.error(e.toString());
@@ -198,7 +249,9 @@ public class GuaranteeDAO {
       ps.setString(++i, vo.WRITE_ID);
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
-      if (rs!=null && rs.next()) intResult = rs.getInt("SEQ");
+      if (rs!=null && rs.next()) {
+        intResult = rs.getInt("SEQ");
+      }
     } catch(Exception e) {
       logger.error(ps.getQueryString());
       logger.error(e.toString());
@@ -333,6 +386,63 @@ public class GuaranteeDAO {
     }
     return arr;
   }
+  protected ArrayList<PayMethodVO> M_CYCLN_GUARANTEE_LIST_PROC(PayMethodVO pvo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    ArrayList<PayMethodVO> arr = null;
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.M_CYCLN_GUARANTEE_LIST_PROC ?, ?, ?, ?, ?, ?;");
+      int i = 0;
+      ps.setInt(++i, pvo.CPY_ID);
+      ps.setString(++i, pvo.BNK_CD);
+      ps.setString(++i, pvo.PAY_ID);
+      ps.setString(++i, pvo.GUAR_GUBUN);
+      ps.setInt(++i, pvo.PAGE);
+      ps.setInt(++i, pvo.ROW_CNT);
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null) {
+        arr = new ArrayList<>();
+        while (rs.next()) {
+          PayMethodVO t = new PayMethodVO();
+          t.RN             = rs.getInt("RN");
+          t.TOTAL_CNT      = rs.getInt("TOTAL_CNT");
+          t.SUM_AMT        = rs.getLong("SUM_AMT");
+          t.CPY_ID         = rs.getInt("CPY_ID");
+          t.BNK_CD         = StrUtil.nvl(rs.getString("BNK_CD"));
+          t.BNK_NAME       = StrUtil.nvl(rs.getString("BNK_NAME"));
+          t.PAY_ID         = StrUtil.nvl(rs.getString("PAY_ID"));
+          t.PAY_SDESC      = StrUtil.nvl(rs.getString("PAY_SDESC"));
+          t.GUAR_STATUS    = StrUtil.nvl(rs.getString("GUAR_STATUS"));
+          t.GUAR_GUBUN     = StrUtil.nvl(rs.getString("GUAR_GUBUN"));
+          t.GUAR_CRA_DATE  = StrUtil.nvl(rs.getString("GUAR_CRA_DATE ".trim()));
+          t.GUAR_EXP_DATE  = StrUtil.nvl(rs.getString("GUAR_EXP_DATE ".trim()));
+          t.GUAR_VAL_DATE  = StrUtil.nvl(rs.getString("GUAR_VAL_DATE ".trim()));
+          t.GUAR_TOTAL_AMT = StrUtil.nvl(rs.getString("GUAR_TOTAL_AMT".trim()));
+          t.MEMO           = StrUtil.nvl(rs.getString("MEMO          ".trim()));
+          t.WRITE_DATE     = StrUtil.nvl(rs.getString("WRITE_DATE    ".trim()));
+          t.WRITE_ID       = StrUtil.nvl(rs.getString("WRITE_ID      ".trim()));
+          t.MODIFY_DATE    = StrUtil.nvl(rs.getString("MODIFY_DATE   ".trim()));
+          t.MODIFY_ID      = StrUtil.nvl(rs.getString("MODIFY_ID     ".trim()));
+          t.CHANGE_AMT     = StrUtil.nvl(rs.getString("CHANGE_AMT    ".trim()));
+          t.CPY_GUAR_SEQ   = rs.getInt("CPY_GUAR_SEQ");
+          t.GUAR_TOTAL_AMT = StrUtil.nvl(rs.getString("GUAR_TOTAL_AMT"));
+          t.CHANGE_AMT     = StrUtil.nvl(rs.getString("CHANGE_AMT"));
+          t.CPY_NAME       = StrUtil.nvl(rs.getString("CPY_NAME"));
+          t.CPY_BUSINESS_NO= StrUtil.nvl(rs.getString("CPY_BUSINESS_NO"));
+          arr.add(t);
+        }
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
   protected ArrayList<PayMethodVO> GUARANTEE_LOCATION_SEARCH_PROC(PayMethodVO pvo) {
 	Connection conn = ConnectionMgr.getInstance().getConnetion();
 	WrapPreparedStatementUtil ps = null;
@@ -377,7 +487,9 @@ public class GuaranteeDAO {
 	  ps.setString(2, managerId);
 	  logger.debug(ps.getQueryString());
 	  rs = ps.executeQuery();
-	  if (rs!=null && rs.next()) intResult = rs.getInt("intResult");
+	  if (rs!=null && rs.next()) {
+		  intResult = rs.getInt("intResult");
+	  }
 	} catch(Exception e) {
 	  logger.error(ps.getQueryString());
 	  logger.error(e.toString());
