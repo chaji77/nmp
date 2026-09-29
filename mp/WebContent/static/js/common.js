@@ -233,3 +233,37 @@ function validate(n, rule, range, errMessage) {
   }
   return true;
 }
+
+/**
+ * 숫자를 한글 금액으로 바꾼다. 예) 33016500 -> 삼천삼백일만육천오백
+ * 문자열/콤마 포함 값도 받는다. 숫자가 아니면 빈 문자열.
+ */
+function numberToKorean(num) {
+  var n = (typeof num === "number") ? num : parseInt(String(num).replace(/[^0-9-]/g, ""), 10);
+  if (isNaN(n)) return "";
+  if (n === 0) return "영";
+  var sign     = (n < 0) ? "마이너스 " : "";
+  n = Math.abs(n);
+  var units     = ["", "만", "억", "조", "경"];
+  var digits    = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
+  var positions = ["", "십", "백", "천"];
+  var result    = "";
+  var unitIndex = 0;
+  while (n > 0) {
+    var part = n % 10000; // 4자리씩 끊는다
+    n = Math.floor(n / 10000);
+    if (part > 0) {
+      var partStr = "";
+      var positionIndex = 0;
+      while (part > 0) {
+        var digit = part % 10;
+        if (digit > 0) partStr = digits[digit] + positions[positionIndex] + partStr;
+        part = Math.floor(part / 10);
+        positionIndex++;
+      }
+      result = partStr + units[unitIndex] + result;
+    }
+    unitIndex++;
+  }
+  return sign + result;
+}

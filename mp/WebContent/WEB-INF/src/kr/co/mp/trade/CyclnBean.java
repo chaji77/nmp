@@ -15,4 +15,10 @@ public class CyclnBean {
     pvo.TRADEDATE_END   = (pvo.TRADEDATE_END==null)   ? "" : pvo.TRADEDATE_END.replaceAll("-", "");
     return this.dao.CYCLN_ORDER_LIST_PROC(pvo);
   }
+  /**
+   * 싸이클론 결제전송관리 상세. 주문이 없으면 null.
+   */
+  public CyclnOrderDetailVO CYCLN_ORDER_DETAIL_PROC(String strOrderNo) {
+    return this.dao.CYCLN_ORDER_DETAIL_PROC(strOrderNo);
+  }
 }

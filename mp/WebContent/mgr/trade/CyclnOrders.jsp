@@ -178,7 +178,7 @@ if (arr!=null && arr.size()>0) {
   for (CyclnOrderVO vo : arr) {
 %>
     <tr>
-      <td class='left'><strong><%=vo.ORDERNO%></strong></td>
+      <td class='left'><a href='CyclnOrder.jsp?orderno=<%=vo.ORDERNO%>'><strong><%=vo.ORDERNO%></strong></a></td>
       <td class='left'><%=ymd(vo.TRADEDATE)%></td>
       <td class='left ordername'><%=vo.ORDERNAME%></td>
       <td class='left'><%=ymd(vo.REQDLVDATE)%></td>
