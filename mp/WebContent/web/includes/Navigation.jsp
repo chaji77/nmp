@@ -96,7 +96,8 @@ $(window).on('resize', function(){
           <ul class='nav-003'><!-- 이용안내 -->
             <li><a href='<%=request.getContextPath()%>/web/customer/guide/Service.jsp'>서비스 소개</a></li>
             <li><a href='<%=request.getContextPath()%>/web/customer/guide/BankWorkTime.jsp'>은행B2B결제시간</a></li>
-            <li><a href='<%=request.getContextPath()%>/web/customer/download/Downloads.jsp'>프로그램 다운로드</a>
+            <li><a href='<%=request.getContextPath()%>/web/customer/download/Downloads.jsp'>프로그램 다운로드</a></li>
+            <li><a href='<%=request.getContextPath()%>/web/customer/guide/cyclnGuide.jsp'>싸이클론 이용안내</a></li>
           </ul>
         </li>
         <li class='navigation-li-col'>
