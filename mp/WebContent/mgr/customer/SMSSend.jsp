@@ -88,14 +88,14 @@ $(document).ready(function() {
 });
 </script>
 
-<h3>SNS전송</h3>
+<h3>SMS전송</h3>
 <form name='frmSMSSend' autocomplete='off'>
 <input type='hidden' name='cid' value='<%=intCpyId%>'>
 <select name='active_kind' style='width:100%;margin-bottom:5px;'>
 <%
 if (arrCodes!=null && arrCodes.size()>0) {
   for (CodeVO v : arrCodes) {
-    out.println("<option value='"+v.CODE_CD+"'>"+v.CODE_NM+"</option>");
+    out.println("<option value='"+v.CODE_CD+"'"+(StrUtil.nvl(v.CODE_CD).equals("97")?" selected":"")+">"+v.CODE_NM+"</option>");
   }
 }
 %>
