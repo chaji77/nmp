@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="kr.co.funology.fw.util.StrUtil" %>
 <%@ page import="kr.co.funology.fw.util.FormatUtil" %>
+<%@ page import="kr.co.funology.fw.util.IntegerCryptoUtil" %>
 <%@ page import="kr.co.mp.trade.CyclnBean" %>
 <%@ page import="kr.co.mp.trade.CyclnOrderDetailVO" %>
 <%@ include file="../ManagerLoginCheck.jsp" %>
@@ -28,6 +29,13 @@ long num(String s) {
 // 금액 표시. 0으로 채워 넘어오는 값(0000033016500)을 정규화한 뒤 콤마를 찍는다.
 String amt(String s) {
   return StrUtil.addComma(Long.toString(num(s)));
+}
+// 회원정보 링크. CPY_ID 가 없으면 링크 없이 이름만 보인다.
+String cpyLink(String strCpyId, String strName, String strCtx) {
+  strCpyId = StrUtil.nvl(strCpyId).trim();
+  if (!StrUtil.isOnlyNumeric(strCpyId) || strCpyId.equals("")) return dash(strName);
+  return "<a href='" + strCtx + "/mgr/customer/Company.jsp?cpy_id="
+       + IntegerCryptoUtil.crypt(strCpyId) + "'>" + dash(strName) + "</a>";
 }
 // 수수료율. 결제금액 대비 수수료 비율을 소수점 3자리까지 '(0.165%)' 형태로 돌려준다.
 // 결제금액이 0이면 빈 문자열.
@@ -118,6 +126,7 @@ table.detail {font-size:110%;}
 table.detail td {line-height:1.7em;vertical-align:top;}
 table.detail tr.sum td {font-weight:bold;color:#c00;}
 table.summary th {background:#f3f3f3;}
+table.summary a {text-decoration:underline;}
 h3 {margin-top:25px;}
 </style>
 <script>
@@ -142,9 +151,9 @@ $(document).ready(function(){
       <th class='left'>매매계약번호</th>
       <td class='left'><strong><%=vo.ORDERNO%></strong></td>
       <th class='left'>구매기업</th>
-      <td class='left'><%=dash(vo.BC_NAME)%></td>
+      <td class='left'><%=cpyLink(vo.CPYBUYER, vo.BC_NAME, request.getContextPath())%></td>
       <th class='left'>판매기업</th>
-      <td class='left'><%=dash(vo.SC_NAME)%></td>
+      <td class='left'><%=cpyLink(vo.CPYSELLER, vo.SC_NAME, request.getContextPath())%></td>
     </tr>
   </tbody>
 </table>

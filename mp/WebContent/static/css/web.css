@@ -4,12 +4,16 @@ header {background-color:white;height:16px;border-bottom:1px solid #ddd;height:4
 header aside {color:transparent;padding:10px 0;cursor:default;}
 header aside:after {width:0;height:0;margin-left:0;}
 
-#navigation>li {padding:10px 5px;}
+/* 메뉴 6개 기준 폭. 상단 메뉴와 펼침메뉴가 같은 컬럼 폭을 쓰므로 세로줄이 맞는다. */
+#navigation, #navigation-items {margin-left:50px;}
+#navigation>li {padding:10px 0;}
 #navigation>li a {color:#555;font-size:1.15em;font-weight:bold;padding-bottom:5px;	transition:color .2s ease-in-out;}
 #navigation>li a:hover {color:#246CEB;border-bottom:3px solid #246CEB;}
+#navigation-items>li {padding:0;}
 #navigation-items>li>ul {border-right:0;}
+#navigation-items>li>ul>li a {white-space:nowrap;}
 
-.navigation-li-col {width: 160px;}
+.navigation-li-col {width: 150px;}
 .navigation-li-col a {padding-bottom:3px;}
 .navigation-li-col a:hover {color:#246CEB;border-bottom:1px solid #246CEB;}
 
@@ -33,6 +37,9 @@ input.invalid {border:1px solid #FF69B4;}
 a.received_contract {padding:4px 8px;background-color:#FF5733;color:white;border-radius:2px;animation:blink 2s infinite;}
 
 @media only screen and (min-width:768px) and (max-width:1100px) {
+  #navigation, #navigation-items {margin-left:40px;}
+  .navigation-li-col {width:125px;}
+  #navigation>li a {font-size:1em;}
   #navigation>li a:hover {border-bottom:0;}
   .navigation-li-col a:hover {color:#246CEB;border-bottom:0;}
 }

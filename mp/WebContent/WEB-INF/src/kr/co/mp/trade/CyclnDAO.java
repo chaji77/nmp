@@ -11,6 +11,53 @@ import kr.co.funology.fw.util.StrUtil;
 import kr.co.funology.fw.util.WrapPreparedStatementUtil;
 
 public class CyclnDAO {
+  /**
+   * 거래당사자(구매사) 기준 주문 목록. pvo.BC_ID 를 @CPY_ID 로 넘긴다.
+   */
+  protected ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PER_CPY_ID_PROC(CyclnOrderVO pvo) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    ArrayList<CyclnOrderVO> arr = new ArrayList<CyclnOrderVO>();
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PER_CPY_ID_PROC ?, ?, ?, ?, ?, ?, ?, ?;");
+      int i = 0;
+      ps.setInt(   ++i, pvo.PAGE);
+      ps.setInt(   ++i, pvo.ROW_CNT);
+      ps.setInt(   ++i, pvo.BC_ID);
+      ps.setString(++i, StrUtil.nvl(pvo.ORDERNO_COND));
+      ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_START));
+      ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_END));
+      ps.setString(++i, StrUtil.nvl(pvo.STATUS_COND));
+      ps.setString(++i, StrUtil.nvl(pvo.SC_NAME_COND));
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null) {
+        while (rs.next()) {
+          CyclnOrderVO vo = new CyclnOrderVO();
+          vo.TOTAL_CNT    = rs.getInt("TOTAL_CNT");
+          vo.RN           = rs.getInt("RN");
+          vo.ORDERNO      = StrUtil.nvl(rs.getString("ORDERNO"));
+          vo.TRADEDATE    = StrUtil.nvl(rs.getString("TRADEDATE"));
+          vo.ORDERNAME    = StrUtil.nvl(rs.getString("ORDERNAME"));
+          vo.SC_NAME      = StrUtil.nvl(rs.getString("SC_NAME"));
+          vo.REQDLVDATE   = StrUtil.nvl(rs.getString("REQDLVDATE"));
+          vo.PURC_PRIC    = StrUtil.nvl(rs.getString("PURC_PRIC"));
+          vo.CRETIME      = StrUtil.nvl(rs.getString("CRETIME"));
+          vo.STATUS       = StrUtil.nvl(rs.getString("STATUS"));
+          arr.add(vo);
+        }
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return arr;
+  }
+
   protected ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PROC(CyclnOrderVO pvo) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
     WrapPreparedStatementUtil ps = null;
@@ -60,6 +107,71 @@ public class CyclnDAO {
       ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
     }
     return arr;
+  }
+
+  /**
+   * 거래당사자용 발주내역 상세. 프로시저가 계약기본정보와 제품정보 2개를 순서대로 돌려준다.
+   * 주문이 없거나 해당 회사의 거래가 아니면 null 을 돌려준다.
+   */
+  protected CyclnOrderDetailVO CYCLN_ORDER_DETAIL_PER_CPY_ID_PROC(String strOrderNo, int intCpyId) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    CyclnOrderDetailVO vo = null;
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_DETAIL_PER_CPY_ID_PROC ?, ?;");
+      ps.setString(1, StrUtil.nvl(strOrderNo));
+      ps.setInt(   2, intCpyId);
+      logger.debug(ps.getQueryString());
+      ps.execute();
+
+      // (1) 계약기본정보
+      rs = ps.getResultSet();
+      if (rs!=null && rs.next()) {
+        vo = new CyclnOrderDetailVO();
+        vo.ORDERNO    = StrUtil.nvl(rs.getString("ORDERNO"));
+        vo.TRADEDATE  = StrUtil.nvl(rs.getString("TRADEDATE"));
+        vo.ORDERNAME  = StrUtil.nvl(rs.getString("ORDERNAME"));
+        vo.REQDLVDATE = StrUtil.nvl(rs.getString("REQDLVDATE"));
+        vo.CPYBUYER   = StrUtil.nvl(rs.getString("CPYBUYER"));
+        vo.BC_NAME    = StrUtil.nvl(rs.getString("BC_NAME"));
+        vo.CPYSELLER  = StrUtil.nvl(rs.getString("CPYSELLER"));
+        vo.SC_NAME    = StrUtil.nvl(rs.getString("SC_NAME"));
+        vo.DLVADDRESS   = StrUtil.nvl(rs.getString("DLVADDRESS"));
+        vo.STATUS       = StrUtil.nvl(rs.getString("STATUS"));
+        vo.TRX_CLS      = StrUtil.nvl(rs.getString("TRX_CLS"));
+        vo.CQ100_STATUS = StrUtil.nvl(rs.getString("CQ100_STATUS"));
+      }
+      if (vo==null) return null;
+
+      // (2) 제품정보
+      if (ps.getMoreResults()) {
+        rs = ps.getResultSet();
+        while (rs.next()) {
+          CyclnOrderDetailVO.ItemVO r = new CyclnOrderDetailVO.ItemVO();
+          r.PRD_ID      = StrUtil.nvl(rs.getString("PRD_ID"));
+          r.PRD_TITLE   = StrUtil.nvl(rs.getString("PRD_TITLE"));
+          r.REQQTY      = StrUtil.nvl(rs.getString("REQQTY"));
+          r.UNIT        = StrUtil.nvl(rs.getString("UNIT"));
+          r.REQPRICE    = StrUtil.nvl(rs.getString("REQPRICE"));
+          r.QTY         = StrUtil.nvl(rs.getString("QTY"));
+          r.PRICE       = StrUtil.nvl(rs.getString("PRICE"));
+          r.SUPPLYAMT   = StrUtil.nvl(rs.getString("SUPPLYAMT"));
+          r.TAXAMT      = StrUtil.nvl(rs.getString("TAXAMT"));
+          r.TOTALAMT    = StrUtil.nvl(rs.getString("TOTALAMT"));
+          r.DESCRIPTION = StrUtil.nvl(rs.getString("DESCRIPTION"));
+          vo.ITEMS.add(r);
+        }
+      }
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+      vo = null;
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return vo;
   }
 
   /**

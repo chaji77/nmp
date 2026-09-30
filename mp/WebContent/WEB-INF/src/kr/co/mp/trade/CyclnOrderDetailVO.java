@@ -16,8 +16,10 @@ public class CyclnOrderDetailVO {
   public String BC_NAME    = ""; // 구매기업명
   public String CPYSELLER  = ""; // 판매기업 CPY_ID
   public String SC_NAME    = ""; // 판매기업명
-  public String DLVADDRESS = ""; // 도착지
-  public String STATUS     = ""; // 발주계약서 상태
+  public String DLVADDRESS   = ""; // 도착지
+  public String STATUS       = ""; // 발주계약서 상태
+  public String TRX_CLS      = ""; // 거래구분(CL100.TRX_CLS) 01-결제, 02-취소
+  public String CQ100_STATUS = ""; // 결제상태(CYCLN_QUEUE.STATUS)
 
   public ArrayList<ItemVO>  ITEMS = new ArrayList<ItemVO>();  // (2) 제품 목록
   public ArrayList<Cl080VO> CL080 = new ArrayList<Cl080VO>(); // (3) 매매계약정보
@@ -26,14 +28,17 @@ public class CyclnOrderDetailVO {
 
   /** 제품 목록 */
   public static class ItemVO {
-    public String PRD_ID    = ""; // 제품코드
-    public String PRD_TITLE = ""; // 제품명
-    public String REQQTY    = ""; // 요청수량(단위포함)
-    public String REQPRICE  = ""; // 요청단가
-    public String QTY       = ""; // 납품수량(단위포함)
-    public String PRICE     = ""; // 납품단가
-    public String TAXAMT    = ""; // 세액
-    public String TOTALAMT  = ""; // 합계금액
+    public String PRD_ID      = ""; // 제품코드
+    public String PRD_TITLE   = ""; // 제품명
+    public String REQQTY      = ""; // 요청수량(수정 대상이라 단위를 빼고 숫자만)
+    public String UNIT        = ""; // 단위
+    public String REQPRICE    = ""; // 요청단가
+    public String QTY         = ""; // 납품수량(단위포함)
+    public String PRICE       = ""; // 납품단가
+    public String SUPPLYAMT   = ""; // 공급가액
+    public String TAXAMT      = ""; // 세액
+    public String TOTALAMT    = ""; // 합계금액
+    public String DESCRIPTION = ""; // 기타제품사양
   }
 
   /** 매매계약정보 CL080 */
