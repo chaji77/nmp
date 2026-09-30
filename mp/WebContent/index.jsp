@@ -37,7 +37,7 @@ body {overflow-x: hidden;}
 header {z-index:4;position:fixed;top:0;width:100%;background-color:rgba(255, 255, 255, 0);border-bottom:0;}
 header:hover {background-color:white;}
 
-#navigation-items-block {position:fixed;margin-top:57px !important;background-color:rgba(255, 255, 255, 0.95);}
+#navigation-items-block {position:fixed;top:57px;margin-top:0 !important;background-color:rgba(255, 255, 255, 0.95);}
 main {clear:both;min-height:0;}
 
 div.banner {

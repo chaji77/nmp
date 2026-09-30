@@ -12,7 +12,8 @@ import kr.co.funology.fw.util.WrapPreparedStatementUtil;
 
 public class CyclnDAO {
   /**
-   * 거래당사자(구매사) 기준 주문 목록. pvo.BC_ID 를 @CPY_ID 로 넘긴다.
+   * 거래당사자 기준 주문 목록.
+   * pvo.ROLE 이 B 면 구매기업(발주계약서), S 면 판매기업(납품내역관리) 기준으로 찾는다.
    */
   protected ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PER_CPY_ID_PROC(CyclnOrderVO pvo) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
@@ -21,16 +22,17 @@ public class CyclnDAO {
     ResultSet rs = null;
     ArrayList<CyclnOrderVO> arr = new ArrayList<CyclnOrderVO>();
     try {
-      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PER_CPY_ID_PROC ?, ?, ?, ?, ?, ?, ?, ?;");
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PER_CPY_ID_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?;");
       int i = 0;
       ps.setInt(   ++i, pvo.PAGE);
       ps.setInt(   ++i, pvo.ROW_CNT);
-      ps.setInt(   ++i, pvo.BC_ID);
+      ps.setInt(   ++i, pvo.CPY_ID);
+      ps.setString(++i, StrUtil.nvl(pvo.ROLE, CyclnOrderVO.ROLE_BUYER));
       ps.setString(++i, StrUtil.nvl(pvo.ORDERNO_COND));
       ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_START));
       ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_END));
       ps.setString(++i, StrUtil.nvl(pvo.STATUS_COND));
-      ps.setString(++i, StrUtil.nvl(pvo.SC_NAME_COND));
+      ps.setString(++i, StrUtil.nvl(pvo.CPY_NAME_COND));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null) {
@@ -41,11 +43,15 @@ public class CyclnDAO {
           vo.ORDERNO      = StrUtil.nvl(rs.getString("ORDERNO"));
           vo.TRADEDATE    = StrUtil.nvl(rs.getString("TRADEDATE"));
           vo.ORDERNAME    = StrUtil.nvl(rs.getString("ORDERNAME"));
+          vo.BC_NAME      = StrUtil.nvl(rs.getString("BC_NAME"));
           vo.SC_NAME      = StrUtil.nvl(rs.getString("SC_NAME"));
           vo.REQDLVDATE   = StrUtil.nvl(rs.getString("REQDLVDATE"));
           vo.PURC_PRIC    = StrUtil.nvl(rs.getString("PURC_PRIC"));
           vo.CRETIME      = StrUtil.nvl(rs.getString("CRETIME"));
           vo.STATUS       = StrUtil.nvl(rs.getString("STATUS"));
+          vo.CODE_NM      = StrUtil.nvl(rs.getString("CODE_NM"));
+          vo.TRX_CLS      = StrUtil.nvl(rs.getString("TRX_CLS"));
+          vo.CQ100_STATUS = StrUtil.nvl(rs.getString("CQ100_STATUS"));
           arr.add(vo);
         }
       }
@@ -139,9 +145,18 @@ public class CyclnDAO {
         vo.CPYSELLER  = StrUtil.nvl(rs.getString("CPYSELLER"));
         vo.SC_NAME    = StrUtil.nvl(rs.getString("SC_NAME"));
         vo.DLVADDRESS   = StrUtil.nvl(rs.getString("DLVADDRESS"));
-        vo.STATUS       = StrUtil.nvl(rs.getString("STATUS"));
-        vo.TRX_CLS      = StrUtil.nvl(rs.getString("TRX_CLS"));
-        vo.CQ100_STATUS = StrUtil.nvl(rs.getString("CQ100_STATUS"));
+        vo.STATUS        = StrUtil.nvl(rs.getString("STATUS"));
+        vo.ESTIMATE_TYPE = StrUtil.nvl(rs.getString("ESTIMATE_TYPE"));
+        vo.TRX_CLS       = StrUtil.nvl(rs.getString("TRX_CLS"));
+        vo.CQ100_STATUS  = StrUtil.nvl(rs.getString("CQ100_STATUS"));
+        vo.ROLE          = StrUtil.nvl(rs.getString("ROLE"));
+        vo.CODE_NM       = StrUtil.nvl(rs.getString("CODE_NM"));
+        vo.CAN_CANCEL    = StrUtil.nvl(rs.getString("CAN_CANCEL"));
+        vo.CAN_CONFIRM   = StrUtil.nvl(rs.getString("CAN_CONFIRM"));
+        vo.CAN_CHGREQ    = StrUtil.nvl(rs.getString("CAN_CHGREQ"));
+        vo.CAN_CANREQ    = StrUtil.nvl(rs.getString("CAN_CANREQ"));
+        vo.CAN_CHGCFM    = StrUtil.nvl(rs.getString("CAN_CHGCFM"));
+        vo.CAN_CANCFM    = StrUtil.nvl(rs.getString("CAN_CANCFM"));
       }
       if (vo==null) return null;
 

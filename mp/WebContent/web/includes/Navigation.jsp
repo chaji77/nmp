@@ -53,7 +53,7 @@ $(window).on('resize', function(){
         <li class='navigation-li-col nav-003'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>이용안내</a></li>
         <li class='navigation-li-col nav-004'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>고객센터</a></li>
 		    <li class='navigation-li-col nav-005'><a href='<%=request.getContextPath()%>/web/customer/support/mro.jsp'>기업지원서비스</a></li>
-		    <li class='navigation-li-col nav-006'><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp'>싸이클론</a></li>
+		    <li class='navigation-li-col nav-006'><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>싸이클론</a></li>
       </ul>
       <aside>
         <% if (isLogined) { %>
@@ -117,8 +117,8 @@ $(window).on('resize', function(){
         </li>
         <li class='navigation-li-col'>
           <ul class='nav-006'><!-- 싸이클론 -->
-            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp'>발주계약서</a></li>
-            <li><a href='<%=request.getContextPath()%>/web/customer/support/course_list.jsp'>납품내역관리</a></li> 
+            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>발주계약서</a></li>
+            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=S'>납품내역관리</a></li> 
           </ul>
         </li>
       </ul>

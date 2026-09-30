@@ -35,7 +35,10 @@ String amt(String s) {
 }
 %>
 <%
-String strReturnForError = "<script>alert('열람권한이 없습니다.');location.href = 'CyclnOrders.jsp';</script>";
+// 되돌아갈 목록. 실제 역할은 아래에서 주문의 거래당사자로 다시 정한다.
+String strListPage = "CyclnOrders.jsp?role="
+                   + (CyclnOrderVO.ROLE_SELLER.equals(request.getParameter("role")) ? CyclnOrderVO.ROLE_SELLER : CyclnOrderVO.ROLE_BUYER);
+String strReturnForError = "<script>alert('열람권한이 없습니다.');location.href = '"+strListPage+"';</script>";
 
 String strCpyId = (String)pageContext.getAttribute("CPY_ID");
 if (!StrUtil.isOnlyNumeric(strCpyId)) return;
@@ -54,8 +57,16 @@ if (vo==null) {
   return;
 }
 
-// 로그인 회사가 구매기업이면 구매사 기준 상태명을 보인다.
-String strRole = vo.CPYBUYER.equals(strCpyId) ? CyclnOrderVO.ROLE_BUYER : CyclnOrderVO.ROLE_SELLER;
+// 보는 사람의 입장은 프로시저가 정해준다.
+String  strRole      = CyclnOrderVO.ROLE_SELLER.equals(vo.ROLE) ? CyclnOrderVO.ROLE_SELLER : CyclnOrderVO.ROLE_BUYER;
+boolean isSeller     = CyclnOrderVO.ROLE_SELLER.equals(strRole);
+String  strPageTitle = isSeller ? "납품내역" : "발주내역";
+strListPage = "CyclnOrders.jsp?role=" + strRole;
+
+// 수량/총액을 고칠 수 있는지는 CYCLN_ORDER_STATUS 의 변경요청/변경승인 플래그가 정한다.
+// 결제전문이 나간 뒤에는 상태와 무관하게 막는다.
+boolean isEditable  = vo.isItemEditable() && StrUtil.nvl(vo.CQ100_STATUS).equals("");
+String  strReadOnly = isEditable ? "" : "readOnly";
 
 // 합계금액 행
 BigDecimal bdReqQty    = BigDecimal.ZERO;
@@ -65,9 +76,8 @@ BigDecimal bdTaxAmt    = BigDecimal.ZERO;
 BigDecimal bdTotalAmt  = BigDecimal.ZERO;
 for (CyclnOrderDetailVO.ItemVO r : vo.ITEMS) {
   try {
-    // 납품수량은 '690(개)' 처럼 단위가 붙어 오므로 숫자만 뽑아서 더한다.
     bdReqQty    = bdReqQty.add(new BigDecimal(StrUtil.nvl(r.REQQTY, "0")));
-    bdQty       = bdQty.add(new BigDecimal(StrUtil.nvl(StrUtil.extractInteger(r.QTY), "0")));
+    bdQty       = bdQty.add(new BigDecimal(StrUtil.nvl(r.QTY, "0")));
     bdSupplyAmt = bdSupplyAmt.add(new BigDecimal(StrUtil.nvl(r.SUPPLYAMT, "0")));
     bdTaxAmt    = bdTaxAmt.add(new BigDecimal(StrUtil.nvl(r.TAXAMT, "0")));
     bdTotalAmt  = bdTotalAmt.add(new BigDecimal(StrUtil.nvl(r.TOTALAMT, "0")));
@@ -78,8 +88,13 @@ for (CyclnOrderDetailVO.ItemVO r : vo.ITEMS) {
 %>
 <%@ include file="../includes/Header.jsp" %>
 <!-- page head block -->
-<title>발주내역</title>
+<title><%=strPageTitle%></title>
 <style>
+/* 안내문 모양은 web/trade/Contracts.jsp 와 맞춘다. */
+ul.exp {display:flex;flex-flow:row wrap;justify-content:left;margin:20px 0;padding:10px;border:1px solid #ddd;color:#888;}
+ul.exp>li {padding:10px;}
+ul.exp>li>ul>li {padding:3px 0;}
+ul.exp>li>ul>li>strong {color:#000;}
 /* 입력칸 뒤의 '원'/단위가 잘리지 않도록 그 글자 자리를 빼고 폭을 잡는다. */
 table#items td {vertical-align:middle;white-space:nowrap;}
 table#items td.name {white-space:normal;word-break:break-all;}
@@ -87,35 +102,72 @@ table#items tr.sum {background-color:#fafafa;font-weight:bold;}
 table#items tr.sum td {color:#000;}
 table#items input.num {width:calc(100% - 22px);min-width:0;box-sizing:border-box;text-align:right;}
 table#items textarea {width:100%;box-sizing:border-box;}
+/* 자동계산 칸은 입력칸이 아니라는 게 보이게 한다. */
+table#items input[readOnly] {background-color:#f5f5f5;color:#555;}
+table#items textarea[readOnly] {background-color:#f5f5f5;color:#555;}
 .won, .unit {color:#888;margin-left:2px;}
+.estimate-type {margin:10px 0;padding:10px;border:3px solid #E8DFCF;}
+.estimate-type strong {color:#c00;}
 </style>
 <script>
+/* 계산서 종류. '1'(과세)일 때만 총액에 부가세가 포함돼 있다. */
+var ESTIMATE_TYPE = "<%=StrUtil.nvl(vo.ESTIMATE_TYPE)%>";
+var IS_VAT        = (ESTIMATE_TYPE === "1");
+var SUPPLY_RATIO  = IS_VAT ? (10 / 11) : 1;
+
 /* 쉼표가 섞인 입력값을 숫자로 바꾼다. 비어 있거나 숫자가 아니면 0. */
 function toNumber(str) {
   var n = parseFloat(String(str).replace(/[^0-9.-]/g, ""));
   return isNaN(n) ? 0 : n;
 }
-/* 입력값이 바뀌면 합계금액 행을 다시 계산한다. */
+/* 소수점 자리수를 지정해 반올림한다. */
+function roundTo(n, digits) {
+  var p = Math.pow(10, digits);
+  return Math.round(n * p) / p;
+}
+/*
+ * 한 줄 다시 계산. 총액과 수량이 입력값이고 나머지는 여기서 나온다.
+ * 수량/단가는 발주내역이면 요청수량·요청단가, 납품내역이면 납품수량·납품단가다.
+ *   공급가액 = 총액 × (과세면 10/11, 아니면 1)
+ *   세액     = 과세면 공급가액 ÷ 10, 아니면 0
+ *   단가     = 공급가액 ÷ 수량 (소수 둘째자리까지)
+ */
+function calcRow(tr) {
+  var $tr    = $(tr);
+  var total  = toNumber($tr.find("input.total").val());
+  var qty    = toNumber($tr.find("input.qty").val());
+  var supply = total * SUPPLY_RATIO;
+  var tax    = IS_VAT ? Math.round(supply / 10) : 0;
+  var price  = (qty === 0) ? 0 : roundTo(supply / qty, 2);
+
+  $tr.find("input.supply").val(addComma(Math.round(supply)));
+  $tr.find("input.tax").val(addComma(tax));
+  $tr.find("input.price").val(addComma(price));
+}
+/* 합계 행 다시 계산. */
 function sumItems() {
   var sum = function(cls) {
     var total = 0;
     $("table#items input." + cls).each(function() { total += toNumber($(this).val()); });
     return total;
   };
-  $("#sumReqQty").text(addComma(sum("sum-reqqty")));
-  $("#sumSupplyAmt").text(addComma(sum("sum-supplyamt")));
-  $("#sumTaxAmt").text(addComma(sum("sum-taxamt")));
-  $("#sumTotalAmt").text(addComma(sum("sum-totalamt")));
+  $("#sumQty").text(addComma(sum("qty")));
+  $("#sumSupplyAmt").text(addComma(sum("supply")));
+  $("#sumTaxAmt").text(addComma(sum("tax")));
+  $("#sumTotalAmt").text(addComma(sum("total")));
 }
 $(document).ready(function() {
-  $("table#items").on("keyup change", "input.num", sumItems);
+  $("table#items").on("keyup change", "input.qty, input.total", function() {
+    calcRow($(this).closest("tr"));
+    sumItems();
+  });
 });
 </script>
 <!-- // page head block -->
 <%@ include file="../includes/Navigation.jsp" %>
 
 <div class='page-title-block'>
-  <span class='title'>발주내역</span>
+  <span class='title'><%=strPageTitle%></span>
   <span class='more'>
     <a href='javascript:self.print();' class='btn lurian'>인쇄하기</a>
   </span>
@@ -136,7 +188,7 @@ $(document).ready(function() {
   <li class='th'>발주계약서명</li>
   <li class='td'><%=dash(vo.ORDERNAME)%></li>
   <li class='th'>상태</li>
-  <li class='td'><strong style='color:blue;'><%=CyclnOrderVO.getOrderStatusNm(vo.STATUS, vo.CQ100_STATUS, vo.TRX_CLS, strRole)%></strong></li>
+  <li class='td'><strong style='color:blue;'><%=CyclnOrderVO.getOrderStatusNm(vo.CODE_NM, vo.STATUS, vo.CQ100_STATUS, vo.TRX_CLS)%></strong></li>
   <li class='th'>거래일자</li>
   <li class='td'><%=ymd(vo.TRADEDATE)%></li>
   <li class='th'>요청납기일</li>
@@ -150,6 +202,8 @@ $(document).ready(function() {
 </ul>
 
 <h3>제품정보</h3>
+
+<div class='estimate-type'>계산서종류 : <strong><%=vo.getEstimateTypeNm()%></strong></div>
 
 <table id='items' class='detail'>
   <colgroup>
@@ -182,37 +236,60 @@ if (vo.ITEMS.size()>0) {
   for (CyclnOrderDetailVO.ItemVO r : vo.ITEMS) {
 %>
     <tr>
-      <td class='center name'><%=dash(r.PRD_TITLE)%></td>
+      <td class='center name'><%=dash(r.PRD_TITLE)%>
+        <input type='hidden' name='prd_id' value='<%=StrUtil.nvl(r.PRD_ID)%>'>
+      </td>
+<%-- 고치는 수량/단가가 역할에 따라 다르다.
+     발주내역(구매사)은 요청수량, 납품내역(판매사)은 납품수량. 단가는 총액에서 자동으로 나온다. --%>
+<% if (isSeller) { %>
+      <td class='right'><%=amt(r.REQQTY)%><span class='unit'><%=StrUtil.nvl(r.UNIT)%></span></td>
+      <td class='right'><%=amt(r.REQPRICE)%><span class='won'>원</span></td>
       <td class='right'>
-        <input type='text' name='reqqty' class='num sum-reqqty' value='<%=amt(r.REQQTY)%>'><span class='unit'><%=StrUtil.nvl(r.UNIT)%></span>
+        <input type='text' name='qty' class='num qty' value='<%=amt(r.QTY)%>' <%=strReadOnly%>><span class='unit'><%=StrUtil.nvl(r.UNIT)%></span>
       </td>
       <td class='right'>
-        <input type='text' name='reqprice' class='num' value='<%=amt(r.REQPRICE)%>'><span class='won'>원</span>
+        <input type='text' name='price' class='num price' value='<%=amt(r.PRICE)%>' readOnly><span class='won'>원</span>
       </td>
-      <td class='center'><%=dash(r.QTY)%></td>
+<% } else { %>
+      <td class='right'>
+        <input type='text' name='reqqty' class='num qty' value='<%=amt(r.REQQTY)%>' <%=strReadOnly%>><span class='unit'><%=StrUtil.nvl(r.UNIT)%></span>
+      </td>
+      <td class='right'>
+        <input type='text' name='reqprice' class='num price' value='<%=amt(r.REQPRICE)%>' readOnly><span class='won'>원</span>
+      </td>
+      <td class='right'><%=amt(r.QTY)%><span class='unit'><%=StrUtil.nvl(r.UNIT)%></span></td>
       <td class='right'><%=amt(r.PRICE)%><span class='won'>원</span></td>
+<% } %>
       <td class='right'>
-        <input type='text' name='supplyamt' class='num sum-supplyamt' value='<%=amt(r.SUPPLYAMT)%>'><span class='won'>원</span>
+        <input type='text' name='supplyamt' class='num supply' value='<%=amt(r.SUPPLYAMT)%>' readOnly><span class='won'>원</span>
       </td>
       <td class='right'>
-        <input type='text' name='taxamt' class='num sum-taxamt' value='<%=amt(r.TAXAMT)%>'><span class='won'>원</span>
+        <input type='text' name='taxamt' class='num tax' value='<%=amt(r.TAXAMT)%>' readOnly><span class='won'>원</span>
       </td>
       <td class='right'>
-        <input type='text' name='totalamt' class='num sum-totalamt' value='<%=amt(r.TOTALAMT)%>'><span class='won'>원</span>
+        <input type='text' name='totalamt' class='num total' value='<%=amt(r.TOTALAMT)%>' <%=strReadOnly%>><span class='won'>원</span>
       </td>
       <td class='left mobile_hide'>
-        <textarea name='description' rows='2'><%=StrUtil.nvl(r.DESCRIPTION)%></textarea>
+        <textarea name='description' rows='2' <%=strReadOnly%>><%=StrUtil.nvl(r.DESCRIPTION)%></textarea>
       </td>
     </tr>
 <%
   }
 %>
     <tr class='sum'>
-      <td class='center'>합 계 금 액</td>
-      <td class='center' id='sumReqQty'><%=StrUtil.addComma(bdReqQty.toPlainString())%></td>
+      <td class='center'>합 계</td>
+<%-- 합계도 고치는 쪽 수량만 다시 계산된다. --%>
+<% if (isSeller) { %>
+      <td class='right'><%=StrUtil.addComma(bdReqQty.toPlainString())%></td>
       <td></td>
-      <td class='center'><%=StrUtil.addComma(bdQty.toPlainString())%></td>
+      <td class='right'><span id='sumQty'><%=StrUtil.addComma(bdQty.toPlainString())%></span></td>
       <td></td>
+<% } else { %>
+      <td class='right'><span id='sumQty'><%=StrUtil.addComma(bdReqQty.toPlainString())%></span></td>
+      <td></td>
+      <td class='right'><%=StrUtil.addComma(bdQty.toPlainString())%></td>
+      <td></td>
+<% } %>
       <td class='right'><span id='sumSupplyAmt'><%=StrUtil.addComma(bdSupplyAmt.toPlainString())%></span><span class='won'>원</span></td>
       <td class='right'><span id='sumTaxAmt'><%=StrUtil.addComma(bdTaxAmt.toPlainString())%></span><span class='won'>원</span></td>
       <td class='right'><font color='red'><span id='sumTotalAmt'><%=StrUtil.addComma(bdTotalAmt.toPlainString())%></span></font><span class='won'>원</span></td>
@@ -225,7 +302,7 @@ if (vo.ITEMS.size()>0) {
 </table>
 
 <div class='btns'>
-  <a href='CyclnOrders.jsp' class='cancel'>목록보기</a>
+  <a href='<%=strListPage%>' class='cancel'>목록보기</a>
 </div>
 
 <p>&nbsp;</p>

@@ -17,6 +17,11 @@ public class CyclnOrderVO extends CommonVO {
   public String TRX_CLS;      // 거래구분(CL100.TRX_CLS) 1-결제, 2-취소
   public String CQ100_STATUS; // 결제상태(CYCLN_QUEUE.STATUS)
   public String CRETIME;      // 등록일시
+  public String CODE_NM;      // 상태 표시명(CYCLN_ORDER_STATUS)
+
+  /* 거래당사자 구분. 같은 상태코드라도 구매사/판매사 화면의 표시명이 다르다. */
+  public static final String ROLE_BUYER  = "B";
+  public static final String ROLE_SELLER = "S";
 
   /* FOR SEARCH */
   public String STATUS_CD       = ""; // 화면에서 고른 단일 상태코드
@@ -28,8 +33,10 @@ public class CyclnOrderVO extends CommonVO {
   public String TRADEDATE_END   = "";
   public int    BC_ID           = 0;
   public int    SC_ID           = 0;
+  public int    CPY_ID          = 0;  // 거래당사자 화면의 로그인 회사
   public String STATUS_COND     = ""; // 주문상태 코드 조건(ORDER_STATUS 의 코드)
-  public String SC_NAME_COND    = ""; // 판매사명 검색어
+  public String CPY_NAME_COND   = ""; // 거래상대 기업명 검색어
+  public String ROLE            = ROLE_BUYER; // 조회 기준. ROLE_BUYER-발주계약서, ROLE_SELLER-납품내역관리
 
   /**
    * 화면 드롭다운용 상태 정의.
@@ -45,62 +52,54 @@ public class CyclnOrderVO extends CommonVO {
     , {"PC", "결제 취소",       "050", "2",   "02"}
   };
 
-  /* 거래당사자 구분. 같은 상태코드라도 구매사/판매사 화면의 표시명이 다르다. */
-  public static final String ROLE_BUYER  = "B";
-  public static final String ROLE_SELLER = "S";
-
   /**
-   * CYCLN_ORDER.STATUS 코드 정의.
-   * {상태코드, 구매사 표시명, 판매사 표시명}
+   * 검색 드롭다운용 상태코드 목록. {상태코드, 표시명}
+   * 표시명은 CYCLN_ORDER_STATUS 가 갖고 있지만, 검색조건 목록까지 조회하기는 과해서
+   * 코드 목록만 여기 둔다. 조회결과 한 건의 표시명은 프로시저의 CODE_NM 을 쓴다.
    */
   public static final String[][] ORDER_STATUS = {
-      {"010", "발주내역 승인대기", "구매사 발주상태"  }
-    , {"020", "구매사 변경요청",   "구매사 변경요청"  }
-    , {"025", "판매사 변경요청",   "판매사 변경요청"  }
-    , {"030", "판매사 취소요청",   "판매사 취소요청"  }
-    , {"035", "구매사 취소요청",   "구매사 취소요청"  }
-    , {"050", "발주확정",         "납품확정"        }
-    , {"090", "구매사 취소",      "구매사 취소"     }
-    , {"095", "판매사 취소",      "판매사 취소"     }
+      {"010", "승인대기"    }
+    , {"020", "구매사 변경요청"}
+    , {"025", "판매사 변경요청"}
+    , {"030", "판매사 취소요청"}
+    , {"035", "구매사 취소요청"}
+    , {"050", "확정"        }
+    , {"090", "구매사 취소"  }
+    , {"095", "판매사 취소"  }
   };
 
-  /**
-   * 상태코드를 해당 역할의 표시명으로 바꾼다.
-   * 정의에 없는 코드는 원본을 그대로 돌려준다.
-   *
-   * @param strStatus 상태코드
-   * @param strRole   ROLE_BUYER 또는 ROLE_SELLER. 그 외 값은 구매사로 본다.
-   */
-  public static String getOrderStatusNm(String strStatus, String strRole) {
-    String strCode = (strStatus==null) ? "" : strStatus.trim();
-    int    nIdx    = ROLE_SELLER.equals(strRole) ? 2 : 1;
-    for (String[] f : ORDER_STATUS) {
-      if (f[0].equals(strCode)) return f[nIdx];
-    }
-    return strCode;
-  }
-
-  /** 조회결과 한 건의 상태 표시명(거래당사자 화면용). */
-  public String getOrderStatusNm(String strRole) {
-    return getOrderStatusNm(this.STATUS, strRole);
+  /** 조회결과 한 건의 상태 표시명. 프로시저가 준 CODE_NM 에 결제전문 상태를 덮어쓴다. */
+  public String getOrderStatusNm() {
+    return getOrderStatusNm(this.CODE_NM, this.STATUS, this.CQ100_STATUS, this.TRX_CLS);
   }
 
   /**
    * 결제전문 상태까지 반영한 거래당사자 화면용 표시명.
-   * 결제전문이 있는 건만 결제 정의(STATUS_FILTERS)를 쓰고, 나머지는 역할별 주문상태명(ORDER_STATUS)을 쓴다.
-   * 두 정의는 010 / 050 / 090 / 095 에서 겹치는데, 전문이 없으면 거래당사자 화면 용어가 맞다.
+   * 결제전문이 나간 건만 결제 정의(STATUS_FILTERS)로 덮어쓰고, 나머지는 프로시저가 준
+   * CYCLN_ORDER_STATUS 의 표시명을 그대로 쓴다. 그 테이블에는 결제전문 상태가 없기 때문이다.
    *
+   * @param strCodeNm  프로시저가 준 CODE_NM(역할에 맞는 BCNAME/SCNAME)
    * @param strStatus  CYCLN_ORDER.STATUS
    * @param strQueue   CYCLN_QUEUE.STATUS. 전문이 없으면 빈값
    * @param strTrxCls  CYCLN_CL100.TRX_CLS
-   * @param strRole    ROLE_BUYER 또는 ROLE_SELLER
    */
-  public static String getOrderStatusNm(String strStatus, String strQueue, String strTrxCls, String strRole) {
+  public static String getOrderStatusNm(String strCodeNm, String strStatus, String strQueue, String strTrxCls) {
     if (strQueue!=null && !strQueue.trim().equals("")) {
       String strNm = matchStatusFilter(strStatus, strQueue, strTrxCls);
       if (strNm!=null) return strNm;
     }
-    return getOrderStatusNm(strStatus, strRole);
+    String strBase = oneLine(strCodeNm);
+    if (!strBase.equals("")) return strBase;
+    return (strStatus==null) ? "" : strStatus.trim(); // 상태코드 정의가 없는 건
+  }
+
+  /**
+   * CYCLN_ORDER_STATUS 의 표시명을 한 줄로 편다.
+   * DB 값이 '구매사 <BR>발주상태' 처럼 줄바꿈 앞뒤에 공백을 갖고 있어 공백도 하나로 줄인다.
+   */
+  private static String oneLine(String strNm) {
+    if (strNm==null) return "";
+    return strNm.replaceAll("(?i)<br\\s*/?>", " ").replaceAll("\\s+", " ").trim();
   }
 
   /**

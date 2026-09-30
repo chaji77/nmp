@@ -15,7 +15,8 @@ public class CyclnBean {
     return this.dao.CYCLN_ORDER_LIST_PROC(pvo);
   }
   /**
-   * 거래당사자(구매사) 기준 싸이클론 주문 목록. pvo.BC_ID 가 조회 기준 회사다.
+   * 거래당사자 기준 싸이클론 주문 목록.
+   * pvo.CPY_ID 가 로그인 회사, pvo.ROLE 이 B 면 발주계약서, S 면 납품내역관리 기준이다.
    */
   public ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PER_CPY_ID_PROC(CyclnOrderVO pvo) {
     trimTradeDate(pvo);
