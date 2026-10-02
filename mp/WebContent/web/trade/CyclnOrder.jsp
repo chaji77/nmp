@@ -23,6 +23,21 @@ String dash(String s) {
   s = StrUtil.nvl(s).trim();
   return s.equals("") ? "-" : s;
 }
+// yyyyMMddHHmmss 를 yyyy/MM/dd HH:mm:ss 로 보인다.
+String ymdhms(String s) {
+  return FormatUtil.addSeparatorDateTime(StrUtil.nvl(s).trim(), "/");
+}
+// 금액. 값이 없으면 '-' 로 보인다. 전문 컬럼은 앞에 0 이 채워져 오므로 숫자로 걸러낸다.
+String won(String s) {
+  s = StrUtil.nvl(s).trim();
+  if (s.equals("")) return "-";
+  try {
+    s = new BigDecimal(s).stripTrailingZeros().toPlainString();
+  } catch (NumberFormatException e) {
+    return s;
+  }
+  return StrUtil.addComma(s) + "원";
+}
 // 금액/단가에 자릿수 구분을 넣는다. 13188.410 처럼 의미없는 끝자리 0 은 버린다.
 String amt(String s) {
   s = StrUtil.nvl(s, "0");
@@ -68,6 +83,10 @@ strListPage = "CyclnOrders.jsp?role=" + strRole;
 boolean isEditable  = vo.isItemEditable() && StrUtil.nvl(vo.CQ100_STATUS).equals("");
 String  strReadOnly = isEditable ? "" : "readOnly";
 
+// 결제가 끝나면 결제정보를 보이고, 제품정보에서 요청수량/요청단가는 감춘다.
+boolean isSettled   = vo.isSettled();
+String  strLoanRate = vo.getLoanRate();
+
 // 합계금액 행
 BigDecimal bdReqQty    = BigDecimal.ZERO;
 BigDecimal bdQty       = BigDecimal.ZERO;
@@ -108,6 +127,10 @@ table#items textarea[readOnly] {background-color:#f5f5f5;color:#555;}
 .won, .unit {color:#888;margin-left:2px;}
 .estimate-type {margin:10px 0;padding:10px;border:3px solid #E8DFCF;}
 .estimate-type strong {color:#c00;}
+/* style.css 의 인쇄 규칙은 .btn 만 감춘다. div.btns 안의 목록보기는 따로 감춰야 한다. */
+@media print {
+  div.btns {display:none;}
+}
 </style>
 <script>
 /* 계산서 종류. '1'(과세)일 때만 총액에 부가세가 포함돼 있다. */
@@ -182,9 +205,40 @@ $(document).ready(function() {
   </li>
 </ul>
 
+<%-- 결제정보는 결제가 끝난 건에만 보인다. --%>
+<% if (isSettled) { %>
+<h3>결제정보</h3>
+
+<ul class='detail'>
+  <li class='th'>발주계약금액</li>
+  <li class='td'><%=won(vo.PURC_PRIC)%></li>
+  <li class='th'>결제예정금액</li>
+  <li class='td'><%=won(vo.SETL_PLN_PRIC)%></li>
+  <li class='th'>실결제금액</li>
+  <li class='td'>
+    <strong><%=won(vo.SETL_PRIC)%></strong><%=strLoanRate.equals("") ? "" : "(구매자금대출 "+strLoanRate+"%)"%>
+  </li>
+  <li class='th'>결제일시</li>
+  <li class='td'><%=dash(ymdhms(vo.PAYTIME))%></li>
+<%-- 만기일은 대출을 갚는 구매기업에만 보인다. --%>
+<% if (!isSeller) { %>
+  <li class='th'>만기일(대출상환날짜)</li>
+  <li class='td wide'><%=ymd(vo.MTR_YMD)%></li>
+<% } %>
+  <li class='th'>결제예정일</li>
+  <li class='td'><%=ymd(vo.SETL_PLN_YMD)%></li>
+  <li class='th'>세금계산서발행일</li>
+  <li class='td'><%=ymd(vo.TAX_ISSU_YMD)%></li>
+</ul>
+<% } %>
+
 <h3>계약기본정보</h3>
 
 <ul class='detail'>
+  <li class='th'>발주-ID</li>
+  <li class='td'><%=dash(vo.ORDERNO)%></li>
+  <li class='th'>등록일시</li>
+  <li class='td'><%=ymdhms(vo.REGTIME)%></li>
   <li class='th'>발주계약서명</li>
   <li class='td'><%=dash(vo.ORDERNAME)%></li>
   <li class='th'>상태</li>
@@ -208,8 +262,11 @@ $(document).ready(function() {
 <table id='items' class='detail'>
   <colgroup>
     <col width='160'/>
+<%-- 결제가 끝나면 요청수량/요청단가는 의미가 없어 감춘다. --%>
+<% if (!isSettled) { %>
     <col width='100'/>
     <col width='120'/>
+<% } %>
     <col width='100'/>
     <col width='100'/>
     <col width='115'/>
@@ -220,8 +277,10 @@ $(document).ready(function() {
   <thead>
     <tr>
       <th class='center'>제품명</th>
+<% if (!isSettled) { %>
       <th class='center'>요청수량</th>
       <th class='center'>요청단가</th>
+<% } %>
       <th class='center'>납품수량</th>
       <th class='center'>납품단가</th>
       <th class='center'>공급가액</th>
@@ -239,6 +298,15 @@ if (vo.ITEMS.size()>0) {
       <td class='center name'><%=dash(r.PRD_TITLE)%>
         <input type='hidden' name='prd_id' value='<%=StrUtil.nvl(r.PRD_ID)%>'>
       </td>
+<% if (isSettled) { %>
+      <%-- 결제가 끝난 건은 고칠 수 없으므로 입력칸 없이 글자로만 보인다. --%>
+      <td class='right'><%=amt(r.QTY)%><span class='unit'><%=StrUtil.nvl(r.UNIT)%></span></td>
+      <td class='right'><%=amt(r.PRICE)%><span class='won'>원</span></td>
+      <td class='right'><%=amt(r.SUPPLYAMT)%><span class='won'>원</span></td>
+      <td class='right'><%=amt(r.TAXAMT)%><span class='won'>원</span></td>
+      <td class='right'><%=amt(r.TOTALAMT)%><span class='won'>원</span></td>
+      <td class='left mobile_hide'><%=StrUtil.nvl(r.DESCRIPTION)%></td>
+<% } else { %>
 <%-- 고치는 수량/단가가 역할에 따라 다르다.
      발주내역(구매사)은 요청수량, 납품내역(판매사)은 납품수량. 단가는 총액에서 자동으로 나온다. --%>
 <% if (isSeller) { %>
@@ -272,14 +340,18 @@ if (vo.ITEMS.size()>0) {
       <td class='left mobile_hide'>
         <textarea name='description' rows='2' <%=strReadOnly%>><%=StrUtil.nvl(r.DESCRIPTION)%></textarea>
       </td>
+<% } %>
     </tr>
 <%
   }
 %>
     <tr class='sum'>
       <td class='center'>합 계</td>
+<% if (isSettled) { %>
+      <td class='right'><%=StrUtil.addComma(bdQty.toPlainString())%></td>
+      <td></td>
+<% } else if (isSeller) { %>
 <%-- 합계도 고치는 쪽 수량만 다시 계산된다. --%>
-<% if (isSeller) { %>
       <td class='right'><%=StrUtil.addComma(bdReqQty.toPlainString())%></td>
       <td></td>
       <td class='right'><span id='sumQty'><%=StrUtil.addComma(bdQty.toPlainString())%></span></td>
@@ -296,7 +368,7 @@ if (vo.ITEMS.size()>0) {
       <td class='mobile_hide'></td>
     </tr>
 <%
-} else out.println("<tr><td colspan='9' class='noentry'>등록된 제품이 없습니다.</td></tr>");
+} else out.println("<tr><td colspan='"+(isSettled?7:9)+"' class='noentry'>등록된 제품이 없습니다.</td></tr>");
 %>
   </tbody>
 </table>

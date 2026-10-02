@@ -22,6 +22,13 @@ public class CyclnBean {
     trimTradeDate(pvo);
     return this.dao.CYCLN_ORDER_LIST_PER_CPY_ID_PROC(pvo);
   }
+  /**
+   * 발주계약서 등록. 주문번호는 프로시저가 만들어 돌려준다.
+   * @return 새 주문번호. 실패하면 빈 문자열.
+   */
+  public String CYCLN_ORDER_REG_PROC(CyclnOrderRegVO vo) {
+    return this.dao.CYCLN_ORDER_REG_PROC(vo, CyclnOrderRegVO.setXml(vo.ITEMS));
+  }
   /** 거래일 조건의 구분자를 제거해 yyyyMMdd 로 맞춘다. */
   private void trimTradeDate(CyclnOrderVO pvo) {
     pvo.TRADEDATE_START = (pvo.TRADEDATE_START==null) ? "" : pvo.TRADEDATE_START.replaceAll("-", "");

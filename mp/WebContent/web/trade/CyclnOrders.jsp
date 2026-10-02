@@ -23,10 +23,21 @@ String dash(String s) {
   s = StrUtil.nvl(s).trim();
   return s.equals("") ? "-" : s;
 }
-// yyyyMMddHHmmss 를 yyyy/MM/dd HH:mm 으로 보인다(초는 버린다).
-String ymdhm(String s) {
-  s = FormatUtil.addSeparatorDateTime(StrUtil.nvl(s).trim(), "/");
-  return (s.length()>16) ? s.substring(0, 16) : s;
+// yyyyMMddHHmmss 를 yyyy/MM/dd HH:mm:ss 로 보인다.
+String ymdhms(String s) {
+  return FormatUtil.addSeparatorDateTime(StrUtil.nvl(s).trim(), "/");
+}
+// 금액. 값이 없으면 '-' 로 보인다.
+// 전문 컬럼이 고정폭이라 '000000011352000' 처럼 앞에 0 이 붙어 오므로 숫자로 한 번 걸러낸다.
+String won(String s) {
+  s = StrUtil.nvl(s).trim();
+  if (s.equals("")) return "-";
+  try {
+    s = new BigDecimal(s).stripTrailingZeros().toPlainString();
+  } catch (NumberFormatException e) {
+    return s;
+  }
+  return StrUtil.addComma(s) + "원";
 }
 %>
 <%
@@ -92,6 +103,8 @@ ul.exp>li>ul>li {padding:3px 0;}
 ul.exp>li>ul>li>strong {color:#000;}
 table.detail td {line-height:1.7em;vertical-align:top;}
 .ordername {max-width:260px;white-space:wrap;}
+/* 한 칸에 두 줄을 쌓는다. 아랫줄은 딸린 값이라는 게 보이게 흐리고 작게 쓴다. */
+.sub {display:block;color:#888;font-size:0.92em;}
 @media only screen and (max-width:767px) {
   table.searchbox td {padding:5px;}
 }
@@ -114,6 +127,7 @@ $(document).ready(function(){
 <div class='page-title-block'>
   <span class='title'><%=strPageTitle%></span>
   <span class='more'>
+    <a href='CyclnOrderReg.jsp' class='btn'>등록</a>
     <a class='btn white magnify mobile_show'>검색</a>
   </span>
 </div>
@@ -172,14 +186,14 @@ for (String[] f : CyclnOrderVO.ORDER_STATUS) {
 <table class='detail'>
   <thead>
     <tr>
-      <th class='left'>주문번호</th>
-      <th class='left'>거래일</th>
-      <th class='left'>발주 계약서명</th>
-      <th class='left'><%=strCpyLabel%></th>
-      <th class='left'>납품기한</th>
-      <th class='right'>매매금액</th>
-      <th class='left'>등록일시</th>
-      <th class='center'>진행상태</th>
+      <th class='center'>발주-ID<span class='sub'>(거래일자)</span></th>
+      <th class='center'>발주서명<span class='sub'><%=strCpyLabel%></span></th>
+      <th class='center'>요청납기일<span class='sub'>만기일</span></th>
+      <th class='center'>발주계약금액<span class='sub'>결제예정금액</span></th>
+      <th class='center'>실결제금액</th>
+      <th class='center'>등록일시<span class='sub'>결제일시</span></th>
+      <th class='center'>상태</th>
+      <th class='center'>바로가기</th>
     </tr>
   </thead>
   <tbody>
@@ -188,14 +202,17 @@ if (arr!=null && arr.size()>0) {
   for (CyclnOrderVO vo : arr) {
 %>
     <tr>
-      <td class='left'><a href='CyclnOrder.jsp?orderno=<%=vo.ORDERNO%>&role=<%=strRole%>'><strong><%=vo.ORDERNO%></strong></a></td>
-      <td class='left'><%=ymd(vo.TRADEDATE)%></td>
-      <td class='left ordername'><%=dash(vo.ORDERNAME)%></td>
-      <td class='left'><%=dash(isSeller ? vo.BC_NAME : vo.SC_NAME)%></td>
-      <td class='left'><%=ymd(vo.REQDLVDATE)%></td>
-      <td class='right'><%=StrUtil.addComma(vo.PURC_PRIC)%></td>
-      <td class='left'><%=ymdhm(vo.CRETIME)%></td>
+      <td class='center'>
+        <a href='CyclnOrder.jsp?orderno=<%=vo.ORDERNO%>&role=<%=strRole%>'><strong><%=vo.ORDERNO%></strong></a>
+        <span class='sub'>(<%=ymd(vo.TRADEDATE)%>)</span>
+      </td>
+      <td class='center ordername'><%=dash(vo.ORDERNAME)%><span class='sub'><%=dash(isSeller ? vo.BC_NAME : vo.SC_NAME)%></span></td>
+      <td class='center'><%=dash(ymd(vo.REQDLVDATE))%><span class='sub'><%=dash(ymd(vo.MTR_YMD))%></span></td>
+      <td class='right'><%=won(vo.PURC_PRIC)%><span class='sub'><%=won(vo.SETL_PLN_PRIC)%></span></td>
+      <td class='right'><%=won(vo.SETL_PRIC)%></td>
+      <td class='center'><%=dash(ymdhms(vo.REGTIME))%><span class='sub'><%=dash(ymdhms(vo.PAYTIME))%></span></td>
       <td class='center'><%=vo.getOrderStatusNm()%></td>
+      <td class='center'><a href='CyclnOrder.jsp?orderno=<%=vo.ORDERNO%>&role=<%=strRole%>' class='btn white'>자세히</a></td>
     </tr>
 <%
   }

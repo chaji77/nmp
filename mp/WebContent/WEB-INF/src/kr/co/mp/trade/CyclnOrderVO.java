@@ -13,10 +13,14 @@ public class CyclnOrderVO extends CommonVO {
   public String FEE_RATE;     // 수수료율(CL090)
   public String SETL_PLN_YMD; // 결제예정일(CL090)
   public String TAX_ISSU_YMD; // 세금계산서발행일(CL090)
+  public String MTR_YMD;      // 만기일(CL100)
+  public String SETL_PLN_PRIC;// 결제예정금액(CL090)
+  public String SETL_PRIC;    // 실결제금액(CL100)
   public String STATUS;       // 주문상태(CYCLN_ORDER.STATUS)
   public String TRX_CLS;      // 거래구분(CL100.TRX_CLS) 1-결제, 2-취소
   public String CQ100_STATUS; // 결제상태(CYCLN_QUEUE.STATUS)
-  public String CRETIME;      // 등록일시
+  public String REGTIME;      // 등록일시(CYCLN_ORDER.CRETIME)
+  public String PAYTIME;      // 결제일시(CYCLN_SETTLE.CRETIME)
   public String CODE_NM;      // 상태 표시명(CYCLN_ORDER_STATUS)
 
   /* 거래당사자 구분. 같은 상태코드라도 구매사/판매사 화면의 표시명이 다르다. */

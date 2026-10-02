@@ -1,6 +1,10 @@
 package kr.co.mp.trade;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+
+import kr.co.funology.fw.util.StrUtil;
 
 /**
  * 싸이클론 결제전송관리 상세.
@@ -31,6 +35,44 @@ public class CyclnOrderDetailVO {
   public String CAN_CANREQ  = ""; // 취소요청
   public String CAN_CHGCFM  = ""; // 변경승인
   public String CAN_CANCFM  = ""; // 취소승인
+
+  /* 결제정보. 결제전문이 없으면 전부 빈값이다. */
+  public String REGTIME        = ""; // 등록일시(CYCLN_ORDER.CRETIME)
+  public String PAYTIME        = ""; // 결제일시(CYCLN_SETTLE.CRETIME)
+  public String PURC_PRIC      = ""; // 발주계약금액(CL080)
+  public String SETL_PLN_PRIC  = ""; // 결제예정금액(CL090)
+  public String SETL_PLN_YMD   = ""; // 결제예정일(CL090)
+  public String TAX_ISSU_YMD   = ""; // 세금계산서발행일(CL090)
+  public String SETL_PRIC      = ""; // 실결제금액(CL100)
+  public String SFCP_SETL_PRIC = ""; // 자기자금결제금액(CL100)
+  public String BYCA_LOAN_PRIC = ""; // 구매자금대출금액(CL100)
+  public String MTR_YMD        = ""; // 만기일, 대출상환날짜(CL100)
+
+  /**
+   * 결제가 끝난 건인지 본다. 결제전문이 있고 거래구분이 결제(01)여야 한다.
+   * 결제취소(02)는 결제완료로 보지 않는다.
+   */
+  public boolean isSettled() {
+    return "2".equals(StrUtil.nvl(this.CQ100_STATUS)) && "01".equals(StrUtil.nvl(this.TRX_CLS));
+  }
+
+  /**
+   * 실결제금액 중 구매자금대출이 차지하는 비율. '100' 처럼 % 기호 없이 돌려준다.
+   * 계산할 수 없으면 빈 문자열.
+   */
+  public String getLoanRate() {
+    try {
+      BigDecimal bdSetl = new BigDecimal(StrUtil.nvl(this.SETL_PRIC, "0"));
+      BigDecimal bdLoan = new BigDecimal(StrUtil.nvl(this.BYCA_LOAN_PRIC, "0"));
+      if (bdSetl.compareTo(BigDecimal.ZERO)==0) return "";
+      // 소수 첫째자리까지 보고 의미없는 끝자리 0 은 버린다. 100.0 은 100 이 된다.
+      return bdLoan.multiply(new BigDecimal("100"))
+                   .divide(bdSetl, 1, RoundingMode.HALF_UP)
+                   .stripTrailingZeros().toPlainString();
+    } catch (NumberFormatException e) {
+      return "";
+    }
+  }
 
   /**
    * 제품 금액을 고칠 수 있는지 본다.

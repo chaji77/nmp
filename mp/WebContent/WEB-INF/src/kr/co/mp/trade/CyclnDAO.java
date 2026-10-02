@@ -47,7 +47,11 @@ public class CyclnDAO {
           vo.SC_NAME      = StrUtil.nvl(rs.getString("SC_NAME"));
           vo.REQDLVDATE   = StrUtil.nvl(rs.getString("REQDLVDATE"));
           vo.PURC_PRIC    = StrUtil.nvl(rs.getString("PURC_PRIC"));
-          vo.CRETIME      = StrUtil.nvl(rs.getString("CRETIME"));
+          vo.SETL_PLN_PRIC= StrUtil.nvl(rs.getString("SETL_PLN_PRIC"));
+          vo.SETL_PRIC    = StrUtil.nvl(rs.getString("SETL_PRIC"));
+          vo.MTR_YMD      = StrUtil.nvl(rs.getString("MTR_YMD"));
+          vo.REGTIME      = StrUtil.nvl(rs.getString("REGTIME"));
+          vo.PAYTIME      = StrUtil.nvl(rs.getString("PAYTIME"));
           vo.STATUS       = StrUtil.nvl(rs.getString("STATUS"));
           vo.CODE_NM      = StrUtil.nvl(rs.getString("CODE_NM"));
           vo.TRX_CLS      = StrUtil.nvl(rs.getString("TRX_CLS"));
@@ -62,6 +66,41 @@ public class CyclnDAO {
       ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
     }
     return arr;
+  }
+
+  /**
+   * 발주계약서 등록. 계약기본정보와 제품정보를 한 프로시저(=한 트랜잭션)에서 넣는다.
+   * 제품정보는 매매계약서와 같은 방식으로 XML 문자열에 실어 보낸다.
+   * @return 새 주문번호. 실패하면 빈 문자열.
+   */
+  protected String CYCLN_ORDER_REG_PROC(CyclnOrderRegVO vo, String strItemXml) {
+    Connection conn = ConnectionMgr.getInstance().getConnetion();
+    WrapPreparedStatementUtil ps = null;
+    Logger logger = Logger.getLogger(this.getClass());
+    ResultSet rs = null;
+    String strOrderNo = "";
+    try {
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_REG_PROC ?, ?, ?, ?, ?, ?, ?, ?;");
+      int i = 0;
+      ps.setInt(   ++i, vo.CPYBUYER);
+      ps.setInt(   ++i, vo.CPYSELLER);
+      ps.setString(++i, StrUtil.nvl(vo.ORDERNAME));
+      ps.setString(++i, StrUtil.nvl(vo.REQDLVDATE));
+      ps.setString(++i, StrUtil.nvl(vo.DLVADDRESS));
+      ps.setString(++i, StrUtil.nvl(vo.ESTIMATE_TYPE, "1"));
+      ps.setString(++i, StrUtil.nvl(vo.CREUSER));
+      ps.setString(++i, StrUtil.nvl(strItemXml));
+      logger.debug(ps.getQueryString());
+      rs = ps.executeQuery();
+      if (rs!=null && rs.next()) strOrderNo = StrUtil.nvl(rs.getString("ORDERNO"));
+    } catch (Exception e) {
+      logger.error(ps.getQueryString());
+      logger.error(e.toString());
+      strOrderNo = "";
+    } finally {
+      ConnectionMgr.getInstance().closeConnection(conn, ps, rs);
+    }
+    return strOrderNo;
   }
 
   protected ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PROC(CyclnOrderVO pvo) {
@@ -157,6 +196,17 @@ public class CyclnDAO {
         vo.CAN_CANREQ    = StrUtil.nvl(rs.getString("CAN_CANREQ"));
         vo.CAN_CHGCFM    = StrUtil.nvl(rs.getString("CAN_CHGCFM"));
         vo.CAN_CANCFM    = StrUtil.nvl(rs.getString("CAN_CANCFM"));
+        // 결제정보
+        vo.REGTIME        = StrUtil.nvl(rs.getString("REGTIME"));
+        vo.PAYTIME        = StrUtil.nvl(rs.getString("PAYTIME"));
+        vo.PURC_PRIC      = StrUtil.nvl(rs.getString("PURC_PRIC"));
+        vo.SETL_PLN_PRIC  = StrUtil.nvl(rs.getString("SETL_PLN_PRIC"));
+        vo.SETL_PLN_YMD   = StrUtil.nvl(rs.getString("SETL_PLN_YMD"));
+        vo.TAX_ISSU_YMD   = StrUtil.nvl(rs.getString("TAX_ISSU_YMD"));
+        vo.SETL_PRIC      = StrUtil.nvl(rs.getString("SETL_PRIC"));
+        vo.SFCP_SETL_PRIC = StrUtil.nvl(rs.getString("SFCP_SETL_PRIC"));
+        vo.BYCA_LOAN_PRIC = StrUtil.nvl(rs.getString("BYCA_LOAN_PRIC"));
+        vo.MTR_YMD        = StrUtil.nvl(rs.getString("MTR_YMD"));
       }
       if (vo==null) return null;
 
