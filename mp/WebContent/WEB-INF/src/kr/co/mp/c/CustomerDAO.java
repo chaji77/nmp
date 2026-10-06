@@ -246,6 +246,7 @@ public class CustomerDAO {
         vo.SELLER_CLEAR_YN     = StrUtil.nvl(rs.getString("SELLER_CLEAR_YN   ".trim()));
         vo.FEE_MOD_YN           = StrUtil.nvl(rs.getString("FEE_MOD_YN        ".trim()));
         vo.CPY_CEO_HP          = StrUtil.nvl(rs.getString("CPY_CEO_HP        ".trim()));
+        vo.CYCLN_AGREEYN       = StrUtil.nvl(rs.getString("CYCLN_AGREEYN     ".trim()));
       }
     } catch (Exception e) {
       logger.error(ps.getQueryString());

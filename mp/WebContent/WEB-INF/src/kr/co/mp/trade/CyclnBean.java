@@ -16,7 +16,8 @@ public class CyclnBean {
   }
   /**
    * 거래당사자 기준 싸이클론 주문 목록.
-   * pvo.CPY_ID 가 로그인 회사, pvo.ROLE 이 B 면 발주계약서, S 면 납품내역관리 기준이다.
+   * pvo.CPY_ID 가 기준 회사, pvo.ROLE 이 B 면 발주계약서, S 면 납품내역관리 기준이다.
+   * A 면 구매·판매 전체(관리자 회원별 거래화면).
    */
   public ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PER_CPY_ID_PROC(CyclnOrderVO pvo) {
     trimTradeDate(pvo);

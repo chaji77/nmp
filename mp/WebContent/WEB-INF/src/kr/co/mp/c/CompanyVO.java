@@ -39,6 +39,7 @@ public class CompanyVO extends CommonVO {
   public String CPY_MEMO; //특이사항
   public String SELLER_CLEAR_YN; // 판매사사전검증해제여부
   public String FEE_MOD_YN; // 수수료수정가능여부
+  public String CYCLN_AGREEYN; // 싸이클론 약정여부 (COMPANY_DETAIL_PROC)
 
   public String CPY_CREDIT_GRADE; // 기업신용등급 (COMPANY_SALES_SEARCH_PROC, COMPANY_MOREINFO_PROC)
   public String CPY_INDUSTRY_CODE; // 업종코드 (COMPANY_SALES_SEARCH_PROC, COMPANY_MOREINFO_PROC)

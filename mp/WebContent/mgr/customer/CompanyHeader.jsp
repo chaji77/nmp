@@ -14,6 +14,9 @@ else return;
 
 CustomerBean bean = new CustomerBean();
 CompanyVO cvo = bean.COMPANY_DETAIL_PROC(intCpyId);
+
+// 싸이클론 약정기업만 싸이클론 탭을 본다.
+boolean isCycln = "Y".equals(StrUtil.nvl(cvo.CYCLN_AGREEYN).trim());
 %>
 <script>
 function goCompanyMenu(idx) {
@@ -51,6 +54,9 @@ function goCompanyMenu(idx) {
     break;
   case 11 :
     url = "<%=request.getContextPath()%>/mgr/customer/CyclnGuarantee.jsp";
+    break;
+  case 12 :
+    url = "<%=request.getContextPath()%>/mgr/trade/CyclnOrdersPerCpy.jsp";
     break;
   }
   document.frmCompanyHead.action = url;
@@ -91,6 +97,9 @@ function goCompanyMenu(idx) {
   <li class='category<%=(strMenuIdx.equals("7"))?" selected":""%>' onclick='goCompanyMenu(7);'>거래처</li>
   <li class='category<%=(strMenuIdx.equals("9"))?" selected":""%>' onclick='goCompanyMenu(9);'>추가정보</li>
   <li class='category<%=(strMenuIdx.equals("10"))?" selected":""%>' onclick='goCompanyMenu(10);'>영업메모</li>
+<% if (isCycln) { %>
   <li class='category<%=(strMenuIdx.equals("11"))?" selected":""%>' onclick='goCompanyMenu(11);'>싸이클론보증서</li>
+  <li class='category<%=(strMenuIdx.equals("12"))?" selected":""%>' onclick='goCompanyMenu(12);'>싸이클론거래</li>
+<% } %>
   <li></li>
 </ul>

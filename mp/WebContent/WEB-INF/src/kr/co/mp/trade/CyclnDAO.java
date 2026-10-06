@@ -14,6 +14,7 @@ public class CyclnDAO {
   /**
    * 거래당사자 기준 주문 목록.
    * pvo.ROLE 이 B 면 구매기업(발주계약서), S 면 판매기업(납품내역관리) 기준으로 찾는다.
+   * A 면 구매·판매 구분 없이 그 회사가 끼어있는 거래를 모두 찾는다.
    */
   protected ArrayList<CyclnOrderVO> CYCLN_ORDER_LIST_PER_CPY_ID_PROC(CyclnOrderVO pvo) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();

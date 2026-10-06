@@ -26,6 +26,8 @@ public class CyclnOrderVO extends CommonVO {
   /* 거래당사자 구분. 같은 상태코드라도 구매사/판매사 화면의 표시명이 다르다. */
   public static final String ROLE_BUYER  = "B";
   public static final String ROLE_SELLER = "S";
+  /* 구매·판매 구분 없이 한 회사의 거래를 모두 본다. 관리자 회원별 거래화면용. */
+  public static final String ROLE_ALL    = "A";
 
   /* FOR SEARCH */
   public String STATUS_CD       = ""; // 화면에서 고른 단일 상태코드
@@ -40,7 +42,7 @@ public class CyclnOrderVO extends CommonVO {
   public int    CPY_ID          = 0;  // 거래당사자 화면의 로그인 회사
   public String STATUS_COND     = ""; // 주문상태 코드 조건(ORDER_STATUS 의 코드)
   public String CPY_NAME_COND   = ""; // 거래상대 기업명 검색어
-  public String ROLE            = ROLE_BUYER; // 조회 기준. ROLE_BUYER-발주계약서, ROLE_SELLER-납품내역관리
+  public String ROLE            = ROLE_BUYER; // 조회 기준. ROLE_BUYER-발주계약서, ROLE_SELLER-납품내역관리, ROLE_ALL-전체
 
   /**
    * 화면 드롭다운용 상태 정의.
