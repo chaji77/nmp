@@ -32,7 +32,7 @@ public class SendSMS {
   }
 
   /**
-   * 싸이클론 문자 발송 (발신번호: CYCLN_TEL)
+   * 싸이클론 문자 발송 (발신번호: OWNER_TEL)
    */
   public static int SEND_CYCLN_SMS_PROC(String to, String msg, int intMessageMaxSize) {
     Connection conn = ConnectionMgr.getInstance().getConnetion();
@@ -44,7 +44,7 @@ public class SendSMS {
       to = "01033561454";
       ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.SEND_SMS_PROC ?, ? , ?;");
       ps.setString(1, to.replaceAll("-", ""));
-      ps.setString(2, ConfigurationMgr.getInstance().getString("CYCLN_TEL").replaceAll("-", ""));
+      ps.setString(2, ConfigurationMgr.getInstance().getString("OWNER_TEL").replaceAll("-", ""));
       ps.setString(3, StrUtil.cutString(msg, intMessageMaxSize, ""));
       logger.debug(ps.getQueryString());
       ps.execute();
