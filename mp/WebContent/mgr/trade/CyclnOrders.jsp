@@ -36,7 +36,7 @@ CyclnOrderVO pvo   = new CyclnOrderVO();
 pvo.PAGE           = Integer.parseInt(StrUtil.nvl(request.getParameter("page"), "1"));
 pvo.ROW_CNT        = 20;
 pvo.ORDERNO_COND   = StrUtil.nvl(request.getParameter("orderno"), "");
-pvo.TRADEDATE_START = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 31, "-"));
+pvo.TRADEDATE_START = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 365, "-"));
 pvo.TRADEDATE_END   = StrUtil.nvl(request.getParameter("end_ymd"), DateTimeUtil.getCurrentDate("-"));
 pvo.setStatusCd(StrUtil.nvl(request.getParameter("status_cd"), ""));
 
@@ -187,7 +187,7 @@ if (arr!=null && arr.size()>0) {
       <td class='right'><%=rate(vo.FEE_RATE)%></td>
       <td class='left'><%=ymd(vo.SETL_PLN_YMD)%></td>
       <td class='left'><%=ymd(vo.TAX_ISSU_YMD)%></td>
-      <td class='left'><%=vo.getStatusNm()%></td>
+      <td class='left' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getOrderStatusNm()%></td>
       <td class='left'></td>
     </tr>
 <%

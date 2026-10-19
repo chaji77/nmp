@@ -4,6 +4,7 @@
 <%@ page import="kr.co.funology.fw.util.IntegerCryptoUtil" %>
 <%@ page import="kr.co.mp.trade.CyclnBean" %>
 <%@ page import="kr.co.mp.trade.CyclnOrderDetailVO" %>
+<%@ page import="kr.co.mp.trade.CyclnOrderVO" %>
 <%--
   싸이클론 거래 상세 본문. Header / Navigation 뒤에 include 해서 쓴다.
   거래관리 목록용 CyclnOrder.jsp 와 회원정보 탭용 CyclnOrderPerCpy.jsp 가 같이 쓴다.
@@ -55,16 +56,49 @@ String feeRate(String strFee, String strSetl) {
 // 발주계약서 상태코드. 정의에 없으면 코드를 그대로 보인다.
 String orderStatusNm(String s) {
   s = StrUtil.nvl(s).trim();
-  if (s.equals("010")) return "발주계약서 작성";
-  if (s.equals("050")) return "납품확정";
-  if (s.equals("090")) return "발주취소";
-  if (s.equals("095")) return "납품취소";
+  for (String[] f : CyclnOrderVO.ORDER_STATUS) {
+    if (f[0].equals(s)) return f[1];
+  }
   return s;
+}
+// 매매계약정보·결제예정정보 제목 오른쪽의 재전송·상태값 변경 버튼과 상태 선택칸.
+// 고를 수 있는 구매사 취소요청·판매사 취소요청만 보인다.
+// 막는 사유(CL090 먼저 취소 등)가 있으면 버튼을 눌렀을 때 알린다.
+String tmsgCtrl(CyclnOrderDetailVO vo, String strKncd) {
+  StringBuilder sb = new StringBuilder("<span class='tmsg-ctrl'>");
+  if (vo.isTmsgFailed(strKncd)) {
+    sb.append("<a onclick='resendTmsg(\"").append(strKncd).append("\");' class='btn'>재전송</a> ");
+  }
+  if (vo.canAdminCancel(strKncd)) {
+    String strWhy = vo.getAdminCancelError(strKncd).replace("'", "&#39;").replace("\"", "&quot;");
+    sb.append("<a onclick='openStatus(\"").append(strKncd).append("\", this);' data-why=\"").append(strWhy)
+      .append("\" class='btn darkred'>상태값 변경</a>");
+  }
+  sb.append("</span>");
+  return sb.toString();
+}
+String tmsgPanel(CyclnOrderDetailVO vo, String strKncd) {
+  StringBuilder sb = new StringBuilder();
+  if (vo.canAdminCancel(strKncd)) {
+    String strNow = StrUtil.nvl(vo.STATUS).trim();
+    sb.append("<div id='status_").append(strKncd).append("' class='status-panel' style='display:none;'>");
+    for (String[] f : CyclnOrderVO.ORDER_STATUS) {
+      if (!f[0].equals(CyclnOrderVO.STATUS_BUYER_CANREQ) && !f[0].equals(CyclnOrderVO.STATUS_SELLER_CANREQ)) continue;
+      sb.append("<label>")
+        .append("<input type='radio' name='status_").append(strKncd).append("' value='").append(f[0]).append("'")
+        .append(f[0].equals(strNow) ? " checked" : "").append("> ")
+        .append(f[1]).append("</label>");
+    }
+    sb.append("<a onclick='changeStatus(\"").append(strKncd).append("\");' class='btn darkred'>변경</a>")
+      .append(" <a onclick='$(\"#status_").append(strKncd).append("\").hide();' class='btn'>닫기</a></div>");
+  }
+  return sb.toString();
 }
 // 전문 처리상태(CYCLN_QUEUE.STATUS). 전문이 없으면 '-'.
 String queueStatusNm(String s) {
   s = StrUtil.nvl(s).trim();
   if (s.equals(""))  return "-";
+  if (s.equals("0")) return "전송대기";
   if (s.equals("1")) return "처리중";
   if (s.equals("2")) return "완료";
   if (s.equals("9")) return "실패";
@@ -116,6 +150,13 @@ for (CyclnOrderDetailVO.Cl100VO r : vo.CL100) {
   lngSumFee  += num(r.FEE_AMT);
 }
 %>
+
+<%-- 이 파일을 include 하는 두 화면이 같이 쓰도록 여기 둔다. --%>
+<style>
+h3 .tmsg-ctrl {float:right;font-size:12px;font-weight:normal;}
+.status-panel {margin:5px 0 10px;padding:10px;border:1px solid #ddd;background:#fafafa;}
+.status-panel label {display:inline-block;margin:0 14px 6px 0;white-space:nowrap;}
+</style>
 
 <table class='detail summary'>
   <tbody>
@@ -198,7 +239,8 @@ if (vo.ITEMS.size()>0) {
   </tbody>
 </table>
 
-<h3>매매계약정보</h3>
+<h3>매매계약정보<%=tmsgCtrl(vo, "CL080")%></h3>
+<%=tmsgPanel(vo, "CL080")%>
 
 <table class='detail'>
   <thead>
@@ -233,7 +275,8 @@ if (vo.CL080.size()>0) {
   </tbody>
 </table>
 
-<h3>결제예정정보</h3>
+<h3>결제예정정보<%=tmsgCtrl(vo, "CL090")%></h3>
+<%=tmsgPanel(vo, "CL090")%>
 
 <table class='detail'>
   <thead>
@@ -319,4 +362,37 @@ $(document).ready(function(){
   $("#total_kor").text("(" + numberToKorean(<%=lngSumTotal%>) + "원)");
   $("#fee_kor").text("(" + numberToKorean(<%=lngSumFee%>) + "원)");
 });
+var TMSG_NM = {"CL080":"매매계약정보", "CL090":"결제예정정보"};
+/* 전문 처리. 전문은 전송대기로 등록만 하고 전송은 통신서버가 한다. 끝나면 화면을 다시 읽어 처리상태를 보인다. */
+function postTmsg(param, okMsg) {
+  param.orderno = "<%=vo.ORDERNO%>";
+  $.post("<%=request.getContextPath()%>/mgr/trade/CyclnOrderStatusProc.jsp", param, function(data) {
+    var json = null;
+    try { json = JSON.parse($.trim(data)); } catch (e) { json = null; }
+    if (json === null) { showAlert("전문 등록에 실패했습니다."); return; }
+    if (json.result != "ok") { showAlert(json.msg); return; }
+    showAlert(okMsg, function() { window.location.reload(); });
+  }).fail(function() { showAlert("전문 등록에 실패했습니다. 잠시 후 다시 시도하십시오."); });
+}
+/* 상태값 변경 칸을 연다. 막는 사유가 있으면 알리기만 한다. */
+function openStatus(kncd, btn) {
+  var why = $(btn).attr("data-why");
+  if (why) { showAlert(why); return; }
+  $("#status_" + kncd).show();
+}
+/* 고른 취소요청 상태로 바꾸고 그 전문의 취소(03)를 보낸다. */
+function changeStatus(kncd) {
+  var $sel = $("input[name='status_" + kncd + "']:checked");
+  if ($sel.length == 0) { showAlert("바꿀 상태를 고르십시오."); return; }
+  var nm = $.trim($sel.parent().text());
+  showCustomConfirm("상태를 '" + nm + "'(으)로 바꾸고<br/>" + TMSG_NM[kncd] + " 취소 전문을 보내시겠습니까?", function() {
+    postTmsg({"action":"STATUS", "kncd":kncd, "status":$sel.val()}, TMSG_NM[kncd] + " 취소 전문을 등록했습니다.");
+  }, function(){});
+}
+/* 실패한 마지막 전문을 같은 내용으로 다시 보낸다. */
+function resendTmsg(kncd) {
+  showCustomConfirm(TMSG_NM[kncd] + " 전문을 다시 보내시겠습니까?", function() {
+    postTmsg({"action":"RESEND", "kncd":kncd}, TMSG_NM[kncd] + " 전문을 다시 등록했습니다.");
+  }, function(){});
+}
 </script>

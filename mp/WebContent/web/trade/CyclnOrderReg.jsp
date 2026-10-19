@@ -1,10 +1,13 @@
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.UUID" %>
 <%@ page import="kr.co.funology.fw.mgr.ConfigurationMgr" %>
 <%@ page import="kr.co.funology.fw.util.DateTimeUtil" %>
 <%@ page import="kr.co.funology.fw.util.StrUtil" %>
 <%@ page import="kr.co.funology.fw.util.WebPageCtrlUtil" %>
+<%@ page import="kr.co.mp.trade.CyclnBean" %>
 <%@ page import="kr.co.mp.trade.CyclnOrderDetailVO" %>
+<%@ page import="kr.co.mp.trade.CyclnSellerVO" %>
 <%
 request.setCharacterEncoding("utf-8");
 WebPageCtrlUtil.setHistoryBack(request, session);
@@ -19,6 +22,12 @@ String strCpyBizNo = StrUtil.nvl((String)pageContext.getAttribute("CPY_BIZ_NO"))
 
 String csrf_token = UUID.randomUUID().toString();
 session.setAttribute("csrf_token", csrf_token);
+
+// 요청납기일은 오늘 이후만 고를 수 있다. 달력의 하한이자 검사 기준이다.
+String strToday = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+
+// 거래한 적 있는 판매기업. 드롭다운에 미리 담아둔다. 없는 기업은 검색으로 고른다.
+ArrayList<CyclnSellerVO> arrSellers = new CyclnBean().CYCLN_SELLER_LIST_PROC(Integer.parseInt(strCpyId));
 
 // 거래불가품목명. 매매계약서와 같은 설정을 쓴다.
 String strBlockWords = StrUtil.nvl(ConfigurationMgr.getInstance().getString("TRADE_BLOCK_ITEM_NM"));
@@ -100,6 +109,7 @@ function searchCompany(page) {
 /*
  * 검색결과에서 판매기업을 고른다.
  * CompaniesSearched.jsp 가 그린 '추가' 버튼이 회사아이디만 넘겨주므로, 회사명은 눌린 줄에서 읽는다.
+ * 고른 기업이 드롭다운에 없으면 항목으로 더해 고른 상태로 만든다.
  */
 function addCompany(cid) {
   var $tr   = $(event.target).closest("tr");
@@ -111,9 +121,19 @@ function addCompany(cid) {
     toast("자기 회사에는 발주할 수 없습니다.");
     return;
   }
-  $("#seller_cpy_id").val(cid);
-  $("#seller_cpy_nm").val(strNm);
+  var $sel = $("#seller_cpy_id");
+  if ($sel.find("option[value='" + cid + "']").length === 0) {
+    var strText = (strNo==="") ? strNm : strNm + " (" + addDashBizNo(strNo) + ")";
+    $sel.append($("<option>").val(cid).text(strText));
+  }
+  $sel.val(cid);
   closePopup();
+}
+/* 사업자번호 10자리에 구분자를 넣는다. 드롭다운 글자를 화면과 맞추려고 쓴다. */
+function addDashBizNo(str) {
+  str = String(str).replace(/[^0-9]/g, "");
+  if (str.length !== 10) return str;
+  return str.substring(0, 3) + "-" + str.substring(3, 5) + "-" + str.substring(5);
 }
 
 /* 쉼표가 섞인 입력값을 숫자로 바꾼다. 비어 있거나 숫자가 아니면 0. */
@@ -186,12 +206,18 @@ function validate() {
     toast("발주계약서명을 입력하십시오.");
     return false;
   }
-  if ($("input[name='reqdlvdate']").val() === "") {
+  var reqdlvdate = $("input[name='reqdlvdate']").val();
+  if (reqdlvdate === "") {
     toast("요청납기일을 선택하십시오.");
     return false;
   }
+  /* 달력의 min 은 브라우저가 무시할 수 있어 여기서도 본다. yyyy-MM-dd 라 글자 비교로 충분하다. */
+  if (reqdlvdate < "<%=strToday%>") {
+    toast("요청납기일을 다시 선택해주세요.");
+    return false;
+  }
   if (toNumber($("#seller_cpy_id").val()) === 0) {
-    toast("판매기업을 검색해 선택하십시오.");
+    toast("판매기업을 선택하십시오.");
     return false;
   }
   if ($.trim($("input[name='addr']").val()) === "") {
@@ -263,7 +289,9 @@ $(document).ready(function() {
   $("input[name='mycompany_bizno'], input[name='mycompany_nm']").keydown(function(key) {
     if (key.keyCode === 13) searchCompany(1);
   });
-  $("table#items").on("keyup change", "input.qty, input.total", function() {
+  // input 은 붙여넣기까지 잡는다. 고치는 중에도 자릿수 구분을 유지한 뒤 다시 계산한다.
+  $("table#items").on("input change", "input.qty, input.total", function() {
+    reformatNumberInput(this);
     calcRow($(this).closest("tr"));
     calcAll();
   });
@@ -321,15 +349,21 @@ $(document).ready(function() {
   </li>
   <li class='wide'>
     <label>요청납기일</label>
-    <input type='date' name='reqdlvdate' style='width:auto;'>
-    <span class='guide'>* 판매기업에 요청할 납기일을 선택해 주세요.</span>
+    <input type='date' name='reqdlvdate' style='width:auto;' min='<%=strToday%>'>
+    <span class='guide'>* 판매기업에 요청할 납기일을 선택해 주세요. 오늘 이전은 선택할 수 없습니다.</span>
   </li>
   <li class='wide'>
     <label>판매기업</label>
-    <input type='text' id='seller_cpy_nm' style='width:220px;cursor:pointer;' readonly placeholder='검색 버튼을 눌러 선택하세요' onclick='showSellerSearch();'>
-    <input type='hidden' id='seller_cpy_id' name='seller_cpy_id'>
+    <%-- 거래한 적 있는 기업은 드롭다운에서 고르고, 없는 기업은 검색으로 찾아 넣는다.
+         검색으로 고른 기업은 이 드롭다운에 항목으로 더해져 고른 상태가 된다. --%>
+    <select id='seller_cpy_id' name='seller_cpy_id' style='width:260px;'>
+      <option value=''>---최근거래기업---</option>
+<%  for (CyclnSellerVO s : arrSellers) { %>
+      <option value='<%=s.CPY_ID%>'><%=StrUtil.xss(s.getOptionText())%></option>
+<%  } %>
+    </select>
     <a onclick='showSellerSearch();' class='btn' style='vertical-align:middle;'>검색</a>
-    <span class='guide'>* 상호 또는 사업자번호로 찾을 수 있습니다.</span>
+    <span class='guide'>* 거래한 적 있는 기업이 먼저 나옵니다. 목록에 없으면 검색으로 찾으세요.</span>
   </li>
   <li class='wide'>
     <label>도 착 지</label>

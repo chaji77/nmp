@@ -93,30 +93,33 @@ function modify(obj, seq) {
   var pid = $(obj).parent().parent().attr("payid");
   location.href = "GuaranteeReg.jsp?cpy_id=<%=strCpyId%>&payId="+pid+"&seq="+seq;
 }
-function a311() {
-  var s = $("select[name='payment']").val();
-  if (s.indexOf("xx")>-1) {
-    var bp = s.split("xx");
-    $.ajax({
-      url:strContextPath + "/web/transaction/A311.jsp", 
-      type: 'post',
-      data:{'cpy_id':'<%=strCpyId%>','bank_cd':bp[0],'pay_cd':bp[1]}, 
-      async: true,
-      success: function(data) {
-        var json = JSON.parse($.trim(data));
-        intLimitSum = json.limit;
-        json.msg = "<h4 style='margin-top:0;padding-top:0;'>"+$("select[name='bnk_pay_id'] option:selected").text()+" 한도조회결과</h4>" + json.msg;
-        showAlert(json.msg);
-      },
-      beforeSend: function() {
-        showSpinner("응답을 기다리고 있습니다.");
-      },
-      complete: function() {
+/* CL120 한도조회. 전문을 등록한 뒤 응답이 올 때까지 2초마다 다시 읽는다. 3분이 지나면 그만둔다.
+   취소하면 기다리기만 멈춘다. 이미 등록한 전문은 통신서버가 그대로 보낸다. */
+var cl120Run = 0; // 취소하거나 다시 누르면 올라가서 이전 조회의 응답을 버린다
+function cl120() {
+  var url = "<%=request.getContextPath()%>/mgr/customer/CyclnLimitProc.jsp";
+  var run = ++cl120Run;
+  var fail = function() { if (run!=cl120Run) return; hideSpinner(); showAlert("한도조회에 실패했습니다. 잠시 후 다시 시도하십시오."); };
+  showSpinner("은행 응답을 기다리고 있습니다.<br/><br/><a onclick='cl120Cancel();' class='btn'>취소</a>");
+  $.post(url, {'cpy_id':'<%=strCpyId%>'}, function(data) {
+    if (run!=cl120Run) return;
+    var sent = JSON.parse($.trim(data));
+    if (sent.result!="sent") { hideSpinner(); showAlert(sent.msg); return; }
+    var tries = 0;
+    (function poll() {
+      $.post(url, {'cpy_id':'<%=strCpyId%>', 'tmsg_seq':sent.tmsg_seq, 'req_ymd':sent.req_ymd}, function(d) {
+        if (run!=cl120Run) return;
+        var json = JSON.parse($.trim(d));
+        if (json.result=="wait" && ++tries<90) { setTimeout(poll, 2000); return; }
         hideSpinner();
-      }
-    });
-  } else toast("걸제수단을 먼저 선택하세요.");
- 
+        showAlert(json.result=="wait" ? "은행 응답이 지연되고 있습니다. 잠시 후 다시 조회하십시오." : json.msg, null, json.result=="ok" ? "cycln-limit-message" : ""); // 결과표는 기본 300px 에 안 들어가 전용 팝업을 쓴다
+      }).fail(fail);
+    })();
+  }).fail(fail);
+}
+function cl120Cancel() {
+  cl120Run++;
+  hideSpinner();
 }
 $(document).ready(function(){
   $("select[name='payment']").on("change", function() {
@@ -171,7 +174,7 @@ for (Map.Entry<String, ArrayList<PayMethodVO>> e : arrSortedGroups) {
 }
 %>
   </select>
-  <a onclick='a311();' class='btn'>한도조회</a>
+  <a onclick='cl120();' class='btn'>한도조회</a>
   <span class='more' style='font-weight:bold;font-size:1.2em;'>보증총액 <span id='total-amt'></span>원</span>
 </div>
 

@@ -3,6 +3,7 @@
 <%@ page import="kr.co.funology.fw.util.StrUtil" %>
 <%@ page import="kr.co.mp.trade.CyclnBean" %>
 <%@ page import="kr.co.mp.trade.CyclnOrderRegVO" %>
+<%@ page import="kr.co.mp.sms.CyclnSms" %>
 <%
 request.setCharacterEncoding("utf-8");
 pageContext.setAttribute("SESS_NEED_LOGIN_PAGE", true);
@@ -73,6 +74,12 @@ if (vo.REQDLVDATE.length()!=8) {
   out.print("{\"result\":\"error\",\"msg\":\"요청납기일을 선택하십시오.\"}");
   return;
 }
+/* 오늘 이전 날짜는 받지 않는다. 화면의 달력 하한은 조작될 수 있어 여기서 다시 본다. */
+String strToday = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+if (vo.REQDLVDATE.compareTo(strToday)<0) {
+  out.print("{\"result\":\"error\",\"msg\":\"요청납기일을 다시 선택해주세요.\"}");
+  return;
+}
 if (vo.CPYSELLER==0) {
   out.print("{\"result\":\"error\",\"msg\":\"판매기업을 선택하십시오.\"}");
   return;
@@ -133,5 +140,6 @@ if (strOrderNo.equals("")) {
 }
 session.removeAttribute("csrf_token"); // 새로고침으로 두 번 등록되는 것을 막는다.
 logger.debug("REGISTERED CYCLN ORDER : " + strOrderNo);
+CyclnSms.send(vo.CPYSELLER, CyclnSms.MSG_ORDER_REG); // 판매기업에 발주계약서 도착 알림
 out.print("{\"result\":\"ok\",\"orderno\":\"" + js(strOrderNo) + "\"}");
 %>

@@ -30,6 +30,21 @@ public class CyclnBean {
   public String CYCLN_ORDER_REG_PROC(CyclnOrderRegVO vo) {
     return this.dao.CYCLN_ORDER_REG_PROC(vo, CyclnOrderRegVO.setXml(vo.ITEMS));
   }
+  /**
+   * 발주계약서 수정·취소. 채워 넘긴 값만 바뀐다.
+   * 누가 무엇을 할 수 있는지는 부르는 쪽에서 정한다.
+   * @return [0] "ok" 또는 "error", [1] 실패하면 보여줄 사유
+   */
+  public String[] CYCLN_ORDER_MOD_PROC(CyclnOrderActVO vo) {
+    return this.dao.CYCLN_ORDER_MOD_PROC(vo);
+  }
+  /**
+   * 발주계약서 작성 화면의 판매기업 목록. 거래한 적 있는 기업만 최근 거래순으로 나온다.
+   * 목록에 없는 기업은 화면의 검색으로 고른다.
+   */
+  public ArrayList<CyclnSellerVO> CYCLN_SELLER_LIST_PROC(int intCpyId) {
+    return this.dao.CYCLN_SELLER_LIST_PROC(intCpyId);
+  }
   /** 거래일 조건의 구분자를 제거해 yyyyMMdd 로 맞춘다. */
   private void trimTradeDate(CyclnOrderVO pvo) {
     pvo.TRADEDATE_START = (pvo.TRADEDATE_START==null) ? "" : pvo.TRADEDATE_START.replaceAll("-", "");
@@ -47,5 +62,46 @@ public class CyclnBean {
    */
   public CyclnOrderDetailVO CYCLN_ORDER_DETAIL_PROC(String strOrderNo) {
     return this.dao.CYCLN_ORDER_DETAIL_PROC(strOrderNo);
+  }
+  /**
+   * CL080(매매계약정보) 전문 등록. 제품정보를 반영하고 전문을 전송대기로 올린다.
+   * 누가 무엇을 할 수 있는지와 어떤 상태로 가야 하는지는 부르는 쪽에서 정한다.
+   * @return [0] "ok" 또는 "error", [1] 성공하면 전문 일련번호, 실패하면 보여줄 사유
+   */
+  public String[] CYCLN_CL080_PROC(CyclnOrderActVO vo) {
+    return this.dao.CYCLN_CL080_PROC(vo);
+  }
+  /**
+   * CL090(결제예정정보) 전문 등록. 구매기업이 은행에 결제를 접수한다.
+   * @return [0] "ok" 또는 "error", [1] 성공하면 전문 일련번호, 실패하면 보여줄 사유
+   */
+  public String[] CYCLN_CL090_PROC(CyclnOrderActVO vo) {
+    return this.dao.CYCLN_CL090_PROC(vo);
+  }
+  /**
+   * 실패한 CL080·CL090 전문 재전송. 관리자 화면용.
+   * @return [0] "ok" 또는 "error", [1] 성공하면 전문 일련번호, 실패하면 보여줄 사유, [2] 요청일 yyyyMMdd
+   */
+  public String[] CYCLN_TMSG_RESEND_PROC(String strOrderNo, String strKncd) {
+    return this.dao.CYCLN_TMSG_RESEND_PROC(strOrderNo, strKncd);
+  }
+  /**
+   * CL120(한도조회) 전문 등록. 회사의 사업자번호로 기업은행에 약정한도를 묻는다.
+   * @return [0] "ok" 또는 "error", [1] 성공하면 전문 일련번호, 실패하면 보여줄 사유, [2] 요청일 yyyyMMdd
+   */
+  public String[] CYCLN_CL120_PROC(int intCpyId) {
+    return this.dao.CYCLN_CL120_PROC(intCpyId);
+  }
+  /**
+   * CL120(한도조회) 응답. 응답 전이면 STATUS 만 채워진 한 줄, 전문이 없으면 빈 목록.
+   */
+  public ArrayList<CyclnLimitVO> CYCLN_CL120_RESULT_PROC(String strTmsgSeq, String strReqYmd) {
+    return this.dao.CYCLN_CL120_RESULT_PROC(strTmsgSeq, strReqYmd);
+  }
+  /**
+   * CL080·CL090 응답. [0] STATUS, [1] RESP_CD, [2] RES_MSG, [3] ORDERNO, [4] TRX_CLS. 전문이 없으면 null.
+   */
+  public String[] CYCLN_TMSG_RESULT_PROC(String strKncd, String strTmsgSeq, String strReqYmd) {
+    return this.dao.CYCLN_TMSG_RESULT_PROC(strKncd, strTmsgSeq, strReqYmd);
   }
 }

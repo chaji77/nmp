@@ -54,8 +54,8 @@ public class CyclnOrderRegVO {
     return sb.toString();
   }
 
-  /** XML 속성값으로 넣을 수 있게 특수문자를 바꾼다. */
-  private static String esc(String s) {
+  /** XML 속성값으로 넣을 수 있게 특수문자를 바꾼다. 같은 패키지의 다른 VO 도 쓴다. */
+  static String esc(String s) {
     if (s==null) return "";
     return s.replace("&", "&amp;")
             .replace("<", "&lt;")

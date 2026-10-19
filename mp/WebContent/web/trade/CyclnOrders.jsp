@@ -8,6 +8,10 @@
 <%@ page import="kr.co.mp.trade.CyclnBean" %>
 <%
 request.setCharacterEncoding("utf-8");
+/* 상세에서 승인·취소하고 돌아오면 목록의 상태도 바뀌어 있어야 한다.
+   뒤로가기 캐시에서 꺼내 쓰지 않도록 응답 헤더로 막는다. */
+response.setHeader("Cache-Control", "no-store, must-revalidate");
+response.setDateHeader("Expires", 0);
 WebPageCtrlUtil.setHistoryBack(request, session);
 pageContext.setAttribute("SESS_NEED_LOGIN_PAGE", true);
 %>
@@ -127,7 +131,10 @@ $(document).ready(function(){
 <div class='page-title-block'>
   <span class='title'><%=strPageTitle%></span>
   <span class='more'>
+<%-- 발주계약서는 구매기업이 쓰는 것이라 납품내역관리에는 등록이 없다. --%>
+<% if (!isSeller) { %>
     <a href='CyclnOrderReg.jsp' class='btn'>등록</a>
+<% } %>
     <a class='btn white magnify mobile_show'>검색</a>
   </span>
 </div>
@@ -211,7 +218,7 @@ if (arr!=null && arr.size()>0) {
       <td class='right'><%=won(vo.PURC_PRIC)%><span class='sub'><%=won(vo.SETL_PLN_PRIC)%></span></td>
       <td class='right'><%=won(vo.SETL_PRIC)%></td>
       <td class='center'><%=dash(ymdhms(vo.REGTIME))%><span class='sub'><%=dash(ymdhms(vo.PAYTIME))%></span></td>
-      <td class='center'><%=vo.getOrderStatusNm()%></td>
+      <td class='center' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getOrderStatusNm()%></td>
       <td class='center'><a href='CyclnOrder.jsp?orderno=<%=vo.ORDERNO%>&role=<%=strRole%>' class='btn white'>자세히</a></td>
     </tr>
 <%

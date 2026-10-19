@@ -196,6 +196,36 @@ function addComma(num) {
   return num.toString().replace(regexp, ',');
 }
 
+/*
+ * 금액 입력칸의 자릿수 구분을 입력하는 중에도 유지한다.
+ * 불러올 때만 쉼표를 찍어두면 가운데를 고칠 때 '50,0,00' 처럼 자리가 어긋난다.
+ *
+ * 값을 다시 쓰면 커서가 끝으로 밀리므로, 커서 앞의 숫자 개수를 세어 같은 자리로 되돌린다.
+ * 소수점은 둘째자리까지만 남긴다. 단가 계산이 그 자리까지만 쓰기 때문이다.
+ */
+function reformatNumberInput(el) {
+  var raw = String($(el).val());
+  var pos = (typeof el.selectionStart === 'number') ? el.selectionStart : raw.length;
+  var digitsBefore = (raw.slice(0, pos).match(/[0-9]/g) || []).length;
+
+  var minus   = (raw.replace(/\s/g, '').charAt(0) === '-') ? '-' : '';
+  var parts   = raw.replace(/[^0-9.]/g, '').split('.');
+  var intPart = parts[0].replace(/^0+(?=[0-9])/, '');          // 앞에 붙은 0 제거
+  var decPart = (parts.length > 1) ? '.' + parts.slice(1).join('').substring(0, 2) : '';
+  var out     = minus + addComma(intPart) + decPart;
+
+  if (out === raw) return;
+  $(el).val(out);
+
+  // 숫자 개수를 기준으로 커서를 되돌린다.
+  var seen = 0, i = 0;
+  while (i < out.length && seen < digitsBefore) {
+    if (out.charAt(i) >= '0' && out.charAt(i) <= '9') seen++;
+    i++;
+  }
+  try { el.setSelectionRange(i, i); } catch (e) { /* 지원하지 않는 입력칸은 그냥 둔다 */ }
+}
+
 function downloadurl(url) {
   location.href = encodeURIComponent(url);
 }

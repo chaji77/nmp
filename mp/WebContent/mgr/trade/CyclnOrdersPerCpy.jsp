@@ -197,7 +197,7 @@ if (arr!=null && arr.size()>0) {
       <td class='right'><%=won(vo.PURC_PRIC)%><span class='sub'><%=won(vo.SETL_PLN_PRIC)%></span></td>
       <td class='right'><%=won(vo.SETL_PRIC)%></td>
       <td class='left'><%=dash(ymdhm(vo.REGTIME))%><span class='sub'><%=dash(ymdhm(vo.PAYTIME))%></span></td>
-      <td class='left'><%=vo.getOrderStatusNm()%></td>
+      <td class='left' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getOrderStatusNm()%></td>
       <td class='center'><a href='CyclnOrderPerCpy.jsp?orderno=<%=vo.ORDERNO%>&cpy_id=<%=strCpyId%>' class='btn white'>자세히</a></td>
     </tr>
 <%

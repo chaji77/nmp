@@ -186,6 +186,7 @@ span.bold {font-weight:bold;}
 .result-message button:last-child {right:20px;}
 .result-message button:hover {background-color:#333;}
 .error-message {top:calc(50% - 130px);left:calc(25% - 20px);width:50%;}
+.cycln-limit-message {left:calc(50% - 330px);width:620px;} /* 싸이클론 한도조회 결과 */
 div.et {color:darkred;font-size:1.1em;font-weight:bold;line-height:1.4em;margin-bottom: 10px;}
 
 /* title decoration */
