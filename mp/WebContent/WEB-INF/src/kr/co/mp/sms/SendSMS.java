@@ -41,7 +41,6 @@ public class SendSMS {
     int intCnt = 0;
     logger.info("SEND_CYCLN_SMS_PROC : TO=" + to + ", MSG=" + msg);
     try {
-      to = "01033561454";
       ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.SEND_SMS_PROC ?, ? , ?;");
       ps.setString(1, to.replaceAll("-", ""));
       ps.setString(2, ConfigurationMgr.getInstance().getString("OWNER_TEL").replaceAll("-", ""));
