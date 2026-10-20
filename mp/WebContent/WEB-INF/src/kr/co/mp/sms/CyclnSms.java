@@ -19,7 +19,7 @@ public class CyclnSms {
   /********** 문자 목록 **********/
   /* #{CPY_NAME} 은 보내는 쪽에서 회사명으로 바꿔 넘긴다. */
   /** 구매기업이 발주계약서를 등록했을 때 -> 판매기업 */
-  public static final String MSG_ORDER_REG     = "발주계약서가 도착하였습니다. cycleloan.co.kr에서 발주확정하십시요.";
+  public static final String MSG_ORDER_REG     = "발주계약서가 도착하였습니다. mp1.co.kr에서 발주확정하십시요.";
   /** 판매기업이 발주계약서를 승인했을 때 -> 구매기업. 판매기업명 */
   public static final String MSG_ORDER_CONFIRM = "판매기업 #{CPY_NAME} 에서 납품확정하였습니다.";
   /** 구매기업이 취소했을 때 -> 판매기업. 구매기업명 */
@@ -37,7 +37,7 @@ public class CyclnSms {
   /** (미사용) CL100 결제완료 수신 시. 구매기업명 */
   public static final String MSG_PAY_DONE      = "구매기업 #{CPY_NAME} 에서 결제완료하였습니다. 입금확인 부탁드립니다.";
   /** 판매기업 승인 시 CL080 실패 -> 구매기업. 판매기업명 */
-  public static final String MSG_CONFIRM_FAIL  = "판매기업 #{CPY_NAME} 의 납품확정이 실패하였습니다. 발주계약서를 확인해주시기 바랍니다.";
+  public static final String MSG_CONFIRM_FAIL  = "판매기업 #{CPY_NAME} 의 납품확정이 실패하였습니다. 납품기일을 확인해주시기 바랍니다.";
 
   /** SEND_SMS_PROC @MSG VARCHAR(100) */
   private static final int MAX_MSG_SIZE = 100;
