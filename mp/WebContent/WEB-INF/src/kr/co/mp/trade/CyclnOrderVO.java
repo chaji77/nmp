@@ -49,11 +49,8 @@ public class CyclnOrderVO extends CommonVO {
   public static final String ROLE_ALL    = "A";
 
   /* FOR SEARCH */
-  public String STATUS_CD       = ""; // 화면에서 고른 단일 상태코드
-  public String STATUS1         = ""; // 주문상태 조건
-  public String STATUS2         = ""; // 결제상태 조건('NUL'이면 전문 없는 건만)
-  public String STATUS3         = ""; // 은행접수 조건('NUL'이면 전문 없는 건만)
-  public String TRX_CLS_COND    = ""; // 거래구분 조건
+  public String STEP_CD         = ""; // 관리자 목록 진행상태(STEP_FILTERS 의 코드)
+  public String SEND_CD         = ""; // 관리자 목록 전송상태(SEND_FILTERS 의 코드)
   public String ORDERNO_COND    = ""; // 주문번호 검색어
   public String TRADEDATE_START = "";
   public String TRADEDATE_END   = "";
@@ -65,7 +62,28 @@ public class CyclnOrderVO extends CommonVO {
   public String ROLE            = ROLE_BUYER; // 조회 기준. ROLE_BUYER-발주계약서, ROLE_SELLER-납품내역관리, ROLE_ALL-전체
 
   /**
-   * 화면 드롭다운용 상태 정의. 거래가 나아가는 순서대로 적는다.
+   * 관리자 목록 진행상태 필터. {코드, 표시명}
+   * 코드별 조건은 CYCLN_ORDER_LIST_PROC 의 @STEP_CD 분기에 있다.
+   */
+  public static final String[][] STEP_FILTERS = {
+      {"",   "전체"          }
+    , {"WT", "발주계약 대기"  }
+    , {"AP", "발주계약 승인"  }
+    , {"CN", "발주계약 취소"  }
+    , {"BK", "은행접수"      }
+    , {"BC", "은행접수 취소"  }
+    , {"PD", "결제완료"      }
+  };
+
+  /** 관리자 목록 전송상태 필터. {CYCLN_QUEUE.STATUS, 표시명} */
+  public static final String[][] SEND_FILTERS = {
+      {"",  "전체"}
+    , {"2", "완료"}
+    , {"9", "실패"}
+  };
+
+  /**
+   * 상태 표시명 정의. 거래가 나아가는 순서대로 적는다.
    * {상태코드, 표시명, STATUS1, STATUS2, TRX_CLS, STATUS3}
    *   STATUS1 : CYCLN_ORDER.STATUS
    *   STATUS2 : 결제전문(CL100)의 CYCLN_QUEUE.STATUS
@@ -109,6 +127,20 @@ public class CyclnOrderVO extends CommonVO {
     , {"2", "은행접수"    }
     , {"9", "은행접수실패"}
   };
+
+  /**
+   * 관리자 목록 한 건의 상태 표시명. 프로시저가 준 진행상태(STEP_CD) 이름에,
+   * 전송상태가 실패(9)면 뒤에 ' 실패' 를 붙인다. 진행상태가 없는 건은 CODE_NM 을 쓴다.
+   */
+  public String getStepStatusNm() {
+    String strNm = "";
+    for (String[] f : STEP_FILTERS) {
+      // 빈 코드는 '전체' 라 상태명으로 쓰지 않는다.
+      if (!f[0].equals("") && f[0].equals(this.STEP_CD)) strNm = f[1];
+    }
+    if (strNm.equals("")) strNm = oneLine(this.CODE_NM);
+    return "9".equals(this.SEND_CD) ? strNm + " 실패" : strNm;
+  }
 
   /** 조회결과 한 건의 상태 표시명. 프로시저가 준 CODE_NM 에 전문 상태를 덮어쓴다. */
   public String getOrderStatusNm() {
@@ -226,26 +258,18 @@ public class CyclnOrderVO extends CommonVO {
     return null;
   }
 
-  /**
-   * 화면에서 넘어온 단일 상태코드를 STATUS1 / STATUS2 / TRX_CLS 조건으로 쪼갠다.
-   * 정의에 없는 값이면 전체조회로 둔다.
-   */
-  public void setStatusCd(String strStatusCd) {
-    this.STATUS_CD    = (strStatusCd==null) ? "" : strStatusCd.trim();
-    this.STATUS1      = "";
-    this.STATUS2      = "";
-    this.STATUS3      = "";
-    this.TRX_CLS_COND = "";
-    for (String[] f : STATUS_FILTERS) {
-      if (f[0].equals(this.STATUS_CD)) {
-        this.STATUS1      = f[2];
-        this.STATUS2      = f[3];
-        this.TRX_CLS_COND = f[4];
-        this.STATUS3      = f[5];
-        return;
-      }
+  /** 화면에서 넘어온 진행상태·전송상태 코드를 담는다. 정의에 없는 값이면 전체조회로 둔다. */
+  public void setFilter(String strStepCd, String strSendCd) {
+    this.STEP_CD = pickCode(STEP_FILTERS, strStepCd);
+    this.SEND_CD = pickCode(SEND_FILTERS, strSendCd);
+  }
+
+  private static String pickCode(String[][] arrDef, String strCd) {
+    strCd = (strCd==null) ? "" : strCd.trim();
+    for (String[] f : arrDef) {
+      if (f[0].equals(strCd)) return strCd;
     }
-    this.STATUS_CD = "";
+    return "";
   }
 
 }

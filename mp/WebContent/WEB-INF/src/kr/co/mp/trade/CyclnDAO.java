@@ -23,7 +23,7 @@ public class CyclnDAO {
     ResultSet rs = null;
     ArrayList<CyclnOrderVO> arr = new ArrayList<CyclnOrderVO>();
     try {
-      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PER_CPY_ID_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?;");
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PER_CPY_ID_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?;");
       int i = 0;
       ps.setInt(   ++i, pvo.PAGE);
       ps.setInt(   ++i, pvo.ROW_CNT);
@@ -34,6 +34,8 @@ public class CyclnDAO {
       ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_END));
       ps.setString(++i, StrUtil.nvl(pvo.STATUS_COND));
       ps.setString(++i, StrUtil.nvl(pvo.CPY_NAME_COND));
+      ps.setString(++i, StrUtil.nvl(pvo.STEP_CD)); // 관리자 회원별 거래 화면만 넘긴다. 사용자 화면은 빈값
+      ps.setString(++i, StrUtil.nvl(pvo.SEND_CD));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null) {
@@ -59,6 +61,8 @@ public class CyclnDAO {
           vo.CQ090_STATUS = StrUtil.nvl(rs.getString("CQ090_STATUS"));
           vo.CQ100_STATUS = StrUtil.nvl(rs.getString("CQ100_STATUS"));
           vo.TMSG_FAIL_YN = StrUtil.nvl(rs.getString("TMSG_FAIL_YN"));
+          vo.STEP_CD      = StrUtil.nvl(rs.getString("STEP_CD"));
+          vo.SEND_CD      = StrUtil.nvl(rs.getString("SEND_CD"));
           arr.add(vo);
         }
       }
@@ -113,19 +117,17 @@ public class CyclnDAO {
     ResultSet rs = null;
     ArrayList<CyclnOrderVO> arr = new ArrayList<CyclnOrderVO>();
     try {
-      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?;");
+      ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.CYCLN_ORDER_LIST_PROC ?, ?, ?, ?, ?, ?, ?, ?, ?;");
       int i = 0;
       ps.setInt(   ++i, pvo.PAGE);
       ps.setInt(   ++i, pvo.ROW_CNT);
       ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_START));
       ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_END));
-      ps.setString(++i, StrUtil.nvl(pvo.STATUS1));
-      ps.setString(++i, StrUtil.nvl(pvo.STATUS2));
-      ps.setString(++i, StrUtil.nvl(pvo.TRX_CLS_COND));
+      ps.setString(++i, StrUtil.nvl(pvo.STEP_CD));
+      ps.setString(++i, StrUtil.nvl(pvo.SEND_CD));
       ps.setString(++i, StrUtil.nvl(pvo.ORDERNO_COND));
       ps.setInt(   ++i, pvo.BC_ID);
       ps.setInt(   ++i, pvo.SC_ID);
-      ps.setString(++i, StrUtil.nvl(pvo.STATUS3));
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null) {
@@ -149,6 +151,8 @@ public class CyclnDAO {
           vo.CQ090_STATUS   = StrUtil.nvl(rs.getString("CQ090_STATUS"));
           vo.CQ100_STATUS   = StrUtil.nvl(rs.getString("CQ100_STATUS"));
           vo.TMSG_FAIL_YN   = StrUtil.nvl(rs.getString("TMSG_FAIL_YN"));
+          vo.STEP_CD        = StrUtil.nvl(rs.getString("STEP_CD"));
+          vo.SEND_CD        = StrUtil.nvl(rs.getString("SEND_CD"));
           arr.add(vo);
         }
       }

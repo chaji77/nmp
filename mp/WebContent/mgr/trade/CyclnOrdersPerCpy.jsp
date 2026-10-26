@@ -55,7 +55,7 @@ pvo.ROLE            = CyclnOrderVO.ROLE_ALL;
 pvo.ORDERNO_COND    = StrUtil.nvl(request.getParameter("orderno"), "");
 // 거래상대 검색어. CompanyHeader 가 탭 이동 때 회사명을 cpy_nm 으로 넘기므로 이름을 따로 쓴다.
 pvo.CPY_NAME_COND   = StrUtil.nvl(request.getParameter("partner_nm"), "");
-pvo.STATUS_COND     = StrUtil.nvl(request.getParameter("status"), "");
+pvo.setFilter(request.getParameter("step_cd"), request.getParameter("send_cd"));
 pvo.TRADEDATE_START = StrUtil.nvl(request.getParameter("start_ymd"));
 pvo.TRADEDATE_END   = StrUtil.nvl(request.getParameter("end_ymd"));
 
@@ -144,11 +144,20 @@ $(document).ready(function(){
         </li>
         <li class='search-option-status'>
           <label>진행상태</label>
-          <select name='status' onChange="goPage(1);">
-            <option value=''>전체</option>
+          <select name='step_cd' onChange="goPage(1);">
 <%
-for (String[] f : CyclnOrderVO.ORDER_STATUS) {
-  out.println("            <option value=\""+f[0]+"\" "+(pvo.STATUS_COND.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
+for (String[] f : CyclnOrderVO.STEP_FILTERS) {
+  out.println("            <option value=\""+f[0]+"\" "+(pvo.STEP_CD.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
+}
+%>
+          </select>
+        </li>
+        <li class='search-option-status'>
+          <label>전송상태</label>
+          <select name='send_cd' onChange="goPage(1);">
+<%
+for (String[] f : CyclnOrderVO.SEND_FILTERS) {
+  out.println("            <option value=\""+f[0]+"\" "+(pvo.SEND_CD.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
 }
 %>
           </select>
@@ -197,7 +206,7 @@ if (arr!=null && arr.size()>0) {
       <td class='right'><%=won(vo.PURC_PRIC)%><span class='sub'><%=won(vo.SETL_PLN_PRIC)%></span></td>
       <td class='right'><%=won(vo.SETL_PRIC)%></td>
       <td class='left'><%=dash(ymdhm(vo.REGTIME))%><span class='sub'><%=dash(ymdhm(vo.PAYTIME))%></span></td>
-      <td class='left' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getOrderStatusNm()%></td>
+      <td class='left' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getStepStatusNm()%></td>
       <td class='center'><a href='CyclnOrderPerCpy.jsp?orderno=<%=vo.ORDERNO%>&cpy_id=<%=strCpyId%>' class='btn white'>자세히</a></td>
     </tr>
 <%

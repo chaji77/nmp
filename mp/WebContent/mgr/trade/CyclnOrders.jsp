@@ -38,7 +38,7 @@ pvo.ROW_CNT        = 20;
 pvo.ORDERNO_COND   = StrUtil.nvl(request.getParameter("orderno"), "");
 pvo.TRADEDATE_START = StrUtil.nvl(request.getParameter("start_ymd"), DateTimeUtil.diff(DateTimeUtil.getCurrentDate("-"), 365, "-"));
 pvo.TRADEDATE_END   = StrUtil.nvl(request.getParameter("end_ymd"), DateTimeUtil.getCurrentDate("-"));
-pvo.setStatusCd(StrUtil.nvl(request.getParameter("status_cd"), ""));
+pvo.setFilter(request.getParameter("step_cd"), request.getParameter("send_cd"));
 
 String strBcId  = StrUtil.nvl(request.getParameter("bc_id"), "0");
 String strScId  = StrUtil.nvl(request.getParameter("sc_id"), "0");
@@ -135,11 +135,20 @@ $(document).ready(function(){
         </li>
         <li class='search-option-status'>
           <label>진행상태</label>
-          <select name='status_cd' onChange="goPage(1);">
-            <option value=''>전체</option>
+          <select name='step_cd' onChange="goPage(1);">
 <%
-for (String[] f : CyclnOrderVO.STATUS_FILTERS) {
-  out.println("            <option value=\""+f[0]+"\" "+(pvo.STATUS_CD.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
+for (String[] f : CyclnOrderVO.STEP_FILTERS) {
+  out.println("            <option value=\""+f[0]+"\" "+(pvo.STEP_CD.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
+}
+%>
+          </select>
+        </li>
+        <li class='search-option-status'>
+          <label>전송상태</label>
+          <select name='send_cd' onChange="goPage(1);">
+<%
+for (String[] f : CyclnOrderVO.SEND_FILTERS) {
+  out.println("            <option value=\""+f[0]+"\" "+(pvo.SEND_CD.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
 }
 %>
           </select>
@@ -187,7 +196,7 @@ if (arr!=null && arr.size()>0) {
       <td class='right'><%=rate(vo.FEE_RATE)%></td>
       <td class='left'><%=ymd(vo.SETL_PLN_YMD)%></td>
       <td class='left'><%=ymd(vo.TAX_ISSU_YMD)%></td>
-      <td class='left' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getOrderStatusNm()%></td>
+      <td class='left' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getStepStatusNm()%></td>
       <td class='left'></td>
     </tr>
 <%
