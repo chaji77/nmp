@@ -39,8 +39,9 @@ public class SendSMS {
     WrapPreparedStatementUtil ps = null;
     Logger logger = Logger.getLogger("CustomerDAO");
     int intCnt = 0;
-    logger.info("SEND_CYCLN_SMS_PROC : TO=" + to + ", MSG=" + msg);
+    String strLoadedTo = to; // 조회해서 넘어온 수신번호
     try {
+      logger.info("SEND_CYCLN_SMS_PROC : LOADED_TO=" + strLoadedTo + ", SEND_TO=" + to + ", MSG=" + msg);
       ps = new WrapPreparedStatementUtil(conn, "EXEC DBO.SEND_SMS_PROC ?, ? , ?;");
       ps.setString(1, to.replaceAll("-", ""));
       ps.setString(2, ConfigurationMgr.getInstance().getString("OWNER_TEL").replaceAll("-", ""));
