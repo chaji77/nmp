@@ -34,8 +34,8 @@ public class CyclnDAO {
       ps.setString(++i, StrUtil.nvl(pvo.TRADEDATE_END));
       ps.setString(++i, StrUtil.nvl(pvo.STATUS_COND));
       ps.setString(++i, StrUtil.nvl(pvo.CPY_NAME_COND));
-      ps.setString(++i, StrUtil.nvl(pvo.STEP_CD)); // 관리자 회원별 거래 화면만 넘긴다. 사용자 화면은 빈값
-      ps.setString(++i, StrUtil.nvl(pvo.SEND_CD));
+      ps.setString(++i, StrUtil.nvl(pvo.STEP_CD));
+      ps.setString(++i, StrUtil.nvl(pvo.SEND_CD)); // 관리자 회원별 거래 화면만 넘긴다. 사용자 화면은 빈값
       logger.debug(ps.getQueryString());
       rs = ps.executeQuery();
       if (rs!=null) {
@@ -203,7 +203,9 @@ public class CyclnDAO {
         vo.ROLE          = StrUtil.nvl(rs.getString("ROLE"));
         vo.CODE_NM       = StrUtil.nvl(rs.getString("CODE_NM"));
         vo.TMSG_FAIL_YN  = StrUtil.nvl(rs.getString("TMSG_FAIL_YN"));
-        vo.CAN_CANCEL    = StrUtil.nvl(rs.getString("CAN_CANCEL"));
+        vo.STEP_CD       = StrUtil.nvl(rs.getString("STEP_CD"));
+        vo.SEND_CD       = StrUtil.nvl(rs.getString("SEND_CD"));
+        vo.CAN_CANCEL   = StrUtil.nvl(rs.getString("CAN_CANCEL"));
         vo.CAN_CONFIRM   = StrUtil.nvl(rs.getString("CAN_CONFIRM"));
         vo.CAN_CHGREQ    = StrUtil.nvl(rs.getString("CAN_CHGREQ"));
         vo.CAN_CANREQ    = StrUtil.nvl(rs.getString("CAN_CANREQ"));

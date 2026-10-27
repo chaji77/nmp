@@ -65,7 +65,8 @@ pvo.CPY_ID          = Integer.parseInt(strCpyId);
 pvo.ROLE            = strRole;
 pvo.ORDERNO_COND    = StrUtil.nvl(request.getParameter("orderno"), "");
 pvo.CPY_NAME_COND   = StrUtil.nvl(request.getParameter("cpy_nm"), "");
-pvo.STATUS_COND     = StrUtil.nvl(request.getParameter("status"), "");
+// 진행상태만 고른다. 전송상태는 목록의 상태 칸에 '실패' 로 보이므로 따로 거르지 않는다.
+pvo.setFilter(request.getParameter("step_cd"), "");
 pvo.TRADEDATE_START = StrUtil.nvl(request.getParameter("start_ymd"));
 pvo.TRADEDATE_END   = StrUtil.nvl(request.getParameter("end_ymd"));
 
@@ -162,11 +163,10 @@ $(document).ready(function(){
         </li>
         <li class='search-option-status'>
           <label>진행상태</label>
-          <select name='status' onChange="goPage(1);">
-            <option value=''>전체</option>
+          <select name='step_cd' onChange="goPage(1);">
 <%
-for (String[] f : CyclnOrderVO.ORDER_STATUS) {
-  out.println("            <option value=\""+f[0]+"\" "+(pvo.STATUS_COND.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
+for (String[] f : CyclnOrderVO.STEP_FILTERS) {
+  out.println("            <option value=\""+f[0]+"\" "+(pvo.STEP_CD.equals(f[0])?"selected":"")+">"+f[1]+"</option>");
 }
 %>
           </select>
@@ -218,7 +218,7 @@ if (arr!=null && arr.size()>0) {
       <td class='right'><%=won(vo.PURC_PRIC)%><span class='sub'><%=won(vo.SETL_PLN_PRIC)%></span></td>
       <td class='right'><%=won(vo.SETL_PRIC)%></td>
       <td class='center'><%=dash(ymdhms(vo.REGTIME))%><span class='sub'><%=dash(ymdhms(vo.PAYTIME))%></span></td>
-      <td class='center' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getOrderStatusNm()%></td>
+      <td class='center' style='color:<%=vo.getOrderStatusColor()%>;'><%=vo.getStepStatusNm()%></td>
       <td class='center'><a href='CyclnOrder.jsp?orderno=<%=vo.ORDERNO%>&role=<%=strRole%>' class='btn white'>자세히</a></td>
     </tr>
 <%

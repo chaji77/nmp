@@ -128,18 +128,23 @@ public class CyclnOrderVO extends CommonVO {
     , {"9", "은행접수실패"}
   };
 
-  /**
-   * 관리자 목록 한 건의 상태 표시명. 프로시저가 준 진행상태(STEP_CD) 이름에,
-   * 전송상태가 실패(9)면 뒤에 ' 실패' 를 붙인다. 진행상태가 없는 건은 CODE_NM 을 쓴다.
-   */
+  /** 조회결과 한 건의 진행상태 표시명. 목록과 상세가 같은 이름을 쓴다. */
   public String getStepStatusNm() {
+    return getStepStatusNm(this.STEP_CD, this.SEND_CD, this.CODE_NM);
+  }
+
+  /**
+   * 프로시저가 준 진행상태(STEP_CD) 이름에, 전송상태가 실패(9)면 뒤에 ' 실패' 를 붙인다.
+   * 진행상태가 없는 건은 CODE_NM 을 쓴다.
+   */
+  public static String getStepStatusNm(String strStepCd, String strSendCd, String strCodeNm) {
     String strNm = "";
     for (String[] f : STEP_FILTERS) {
       // 빈 코드는 '전체' 라 상태명으로 쓰지 않는다.
-      if (!f[0].equals("") && f[0].equals(this.STEP_CD)) strNm = f[1];
+      if (!f[0].equals("") && f[0].equals(strStepCd)) strNm = f[1];
     }
-    if (strNm.equals("")) strNm = oneLine(this.CODE_NM);
-    return "9".equals(this.SEND_CD) ? strNm + " 실패" : strNm;
+    if (strNm.equals("")) strNm = oneLine(strCodeNm);
+    return "9".equals(strSendCd) ? strNm + " 실패" : strNm;
   }
 
   /** 조회결과 한 건의 상태 표시명. 프로시저가 준 CODE_NM 에 전문 상태를 덮어쓴다. */

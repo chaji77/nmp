@@ -624,7 +624,7 @@ $(document).ready(function() {
   <li class='td'><%=dash(vo.ORDERNAME)%></li>
 <% } %>
   <li class='th'>상태</li>
-  <li class='td'><strong style='color:<%=CyclnOrderVO.getOrderStatusColor(vo.STATUS, vo.CQ100_STATUS, vo.TRX_CLS)%>;'><%=CyclnOrderVO.getOrderStatusNm(vo.CODE_NM, vo.STATUS, vo.CQ090_STATUS, vo.CQ100_STATUS, vo.TRX_CLS, vo.TMSG_FAIL_YN)%></strong></li>
+  <li class='td'><strong style='color:<%=CyclnOrderVO.getOrderStatusColor(vo.STATUS, vo.CQ100_STATUS, vo.TRX_CLS)%>;'><%=CyclnOrderVO.getStepStatusNm(vo.STEP_CD, vo.SEND_CD, vo.CODE_NM)%></strong></li>
   <li class='th'>거래일자</li>
   <li class='td'><%=ymd(vo.TRADEDATE)%></li>
   <li class='th'>요청납기일</li>

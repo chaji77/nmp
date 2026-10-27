@@ -29,6 +29,8 @@ public class CyclnOrderDetailVO {
   public String ROLE          = ""; // 보는 사람의 입장. B-구매기업, S-판매기업
   public String CODE_NM       = ""; // 상태 표시명(CYCLN_ORDER_STATUS)
   public String TMSG_FAIL_YN  = ""; // 마지막 CL080·CL090 전문발송 실패 여부(Y/N)
+  public String STEP_CD       = ""; // 진행상태(CyclnOrderVO.STEP_FILTERS 의 코드). 거래당사자 상세만 채운다
+  public String SEND_CD       = ""; // 전송상태. 2-완료, 9-실패. 거래당사자 상세만 채운다
 
   /* 변경요청·취소요청 판단용. 거래당사자 상세(CYCLN_ORDER_DETAIL_PER_CPY_ID_PROC)만 채운다. */
   public String C080_TRX_CLS  = ""; // 마지막 매매계약전문(CL080) 거래구분
