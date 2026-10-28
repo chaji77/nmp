@@ -27,7 +27,7 @@
         <span class='noseparator'>개인정보 관리책임자 : <%=ConfigurationMgr.getInstance().getString("OWNER_CPO") %></span><br/>
         Copyright <%=ConfigurationMgr.getInstance().getString("OWNER_COPYRIGHT") %> All rights reserved.
       </span>
-      <span class='more'>
+      <span class='more' hidden>
         <select name='partner' class='mobile_hide' style='width:160px;position:absolute;top:0;right:10px;' onChange="goPartnerWeb();">
           <option value="">:: 엠피원(MP1)그룹 ::</option>
           <option value="http://www.mp1.co.kr/">MP1</option> 	
