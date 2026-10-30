@@ -134,7 +134,7 @@ $(document).ready(function(){
   <span class='more'>
 <%-- 발주계약서는 구매기업이 쓰는 것이라 납품내역관리에는 등록이 없다. --%>
 <% if (!isSeller) { %>
-    <a href='CyclnOrderReg.jsp' class='btn'>등록</a>
+    <a href='CyclnOrderReg.jsp' class='btn'>발주계약서 작성</a>
 <% } %>
     <a class='btn white magnify mobile_show'>검색</a>
   </span>
