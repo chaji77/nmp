@@ -25,11 +25,7 @@ try {
   if (pageContext.getAttribute("SESS_NEED_LOGIN_PAGE")!=null) isNeedLogin = (boolean) pageContext.getAttribute("SESS_NEED_LOGIN_PAGE");
   if (isNeedLogin) {
     if (lvo_for_login_check==null || lvo_for_login_check.CPY_ID.equals("0")) {
-      boolean login_check_hasParams = false;
-      Enumeration<String> login_check_enumeration = request.getParameterNames();
-      while (login_check_enumeration.hasMoreElements()) {
-        login_check_hasParams =true;
-      }
+      boolean login_check_hasParams = request.getParameterNames().hasMoreElements();
       if (!login_check_hasParams) {
         String strLoginCheckRef = request.getRequestURI() + ((request.getQueryString()!=null)?"?"+request.getQueryString():"");
         session.setAttribute("LOGIN_AFTER", strLoginCheckRef);

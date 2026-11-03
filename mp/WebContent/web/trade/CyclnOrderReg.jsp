@@ -39,7 +39,9 @@ String strPageTitle = "발주계약서 작성";
 <!-- page head block -->
 <title><%=strPageTitle%></title>
 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/plugin/select2.css?<%=DateTimeUtil.getCurrentResourceVersion()%>"/>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/css/regist.css?<%=DateTimeUtil.getCurrentResourceVersion()%>">
+<script type='text/javascript' src="<%=request.getContextPath()%>/static/plugin/select2.js?<%=DateTimeUtil.getCurrentResourceVersion()%>"></script>
 <script type='text/javascript' src="<%=request.getContextPath()%>/static/js/pop.js"></script>
 <script type='text/javascript' src="<%=request.getContextPath()%>/static/js/validate.js?<%=DateTimeUtil.getCurrentResourceVersion()%>"></script><!-- isValidBusinessNumber -->
 
@@ -126,7 +128,7 @@ function addCompany(cid) {
     var strText = (strNo==="") ? strNm : strNm + " (" + addDashBizNo(strNo) + ")";
     $sel.append($("<option>").val(cid).text(strText));
   }
-  $sel.val(cid);
+  $sel.val(cid).trigger("change"); // select2 표시도 함께 바뀌도록 change 를 발생시킨다.
   closePopup();
 }
 /* 사업자번호 10자리에 구분자를 넣는다. 드롭다운 글자를 화면과 맞추려고 쓴다. */
@@ -285,6 +287,8 @@ function send() {
 }
 
 $(document).ready(function() {
+  // 판매기업 드롭다운에서 검색할 수 있게 한다. (ContractReg.jsp 와 동일)
+  $("#seller_cpy_id").select2();
   // 검색창에서 엔터로도 찾을 수 있게 한다.
   $("input[name='mycompany_bizno'], input[name='mycompany_nm']").keydown(function(key) {
     if (key.keyCode === 13) searchCompany(1);
@@ -356,8 +360,8 @@ $(document).ready(function() {
     <label>판매기업</label>
     <%-- 거래한 적 있는 기업은 드롭다운에서 고르고, 없는 기업은 검색으로 찾아 넣는다.
          검색으로 고른 기업은 이 드롭다운에 항목으로 더해져 고른 상태가 된다. --%>
-    <select id='seller_cpy_id' name='seller_cpy_id' style='width:260px;'>
-      <option value=''>---최근거래기업---</option>
+    <select id='seller_cpy_id' name='seller_cpy_id' style='width:260px;' data-placeholder='판매기업 목록에서 선택하세요'>
+      <option value=''></option><!-- select2 는 비어 있는 첫 option 을 안내문구로만 쓰고 목록에서는 감춘다. -->
 <%  for (CyclnSellerVO s : arrSellers) { %>
       <option value='<%=s.CPY_ID%>'><%=StrUtil.xss(s.getOptionText())%></option>
 <%  } %>

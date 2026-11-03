@@ -50,10 +50,10 @@ $(window).on('resize', function(){
       <ul id='navigation'>
         <li class='navigation-li-col nav-001'><a href='<%=request.getContextPath()%>/web/trade/index.jsp'>B2B전자결제</a></li>
         <li class='navigation-li-col nav-002'><a href='<%=request.getContextPath()%>/web/collateral/kodit/'>B2B담보보증</a></li>
-        <li class='navigation-li-col nav-003'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>이용안내</a></li>
-        <li class='navigation-li-col nav-004'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>고객센터</a></li>
-		    <li class='navigation-li-col nav-005'><a href='<%=request.getContextPath()%>/web/customer/support/mro.jsp'>기업지원서비스</a></li>
-		    <li class='navigation-li-col nav-006'><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>싸이클론</a></li>
+		    <li class='navigation-li-col nav-003'><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>싸이클론</a></li>
+        <li class='navigation-li-col nav-004'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>이용안내</a></li>
+        <li class='navigation-li-col nav-005'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>고객센터</a></li>
+		    <li class='navigation-li-col nav-006'><a href='<%=request.getContextPath()%>/web/customer/support/mro.jsp'>기업지원서비스</a></li>
       </ul>
       <aside>
         <% if (isLogined) { %>
@@ -94,7 +94,13 @@ $(window).on('resize', function(){
           </ul>
         </li>
         <li class='navigation-li-col'>
-          <ul class='nav-003'><!-- 이용안내 -->
+          <ul class='nav-003'><!-- 싸이클론 -->
+            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>발주계약서</a></li>
+            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=S'>납품내역관리</a></li> 
+          </ul>
+        </li>
+        <li class='navigation-li-col'>
+          <ul class='nav-004'><!-- 이용안내 -->
             <li><a href='<%=request.getContextPath()%>/web/customer/guide/Service.jsp'>서비스 소개</a></li>
             <li><a href='<%=request.getContextPath()%>/web/customer/guide/BankWorkTime.jsp'>은행B2B결제시간</a></li>
             <li><a href='<%=request.getContextPath()%>/web/customer/download/Downloads.jsp'>프로그램 다운로드</a></li>
@@ -102,7 +108,7 @@ $(window).on('resize', function(){
           </ul>
         </li>
         <li class='navigation-li-col'>
-          <ul class='nav-004'><!-- 고객센터 -->
+          <ul class='nav-005'><!-- 고객센터 -->
             <li><a href='<%=request.getContextPath()%>/web/customer/notice/Notices.jsp'>공지사항</a></li>
             <li><a href='<%=request.getContextPath()%>/web/customer/guide/Sales.jsp'>영업담당자</a></li>
             <li><a href='<%=request.getContextPath()%>/web/customer/faq/'>FAQ</a></li>
@@ -110,15 +116,9 @@ $(window).on('resize', function(){
           </ul>
         </li>
         <li class='navigation-li-col'>
-          <ul class='nav-005'><!-- 기업지원서비스 -->
+          <ul class='nav-006'><!-- 기업지원서비스 -->
             <li><a href='<%=request.getContextPath()%>/web/customer/support/mro.jsp'>회원사전용MRO쇼핑몰</a></li> 
             <li><a href='<%=request.getContextPath()%>/web/customer/support/course_list.jsp'>공개교육</a></li> 
-          </ul>
-        </li>
-        <li class='navigation-li-col'>
-          <ul class='nav-006'><!-- 싸이클론 -->
-            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>발주계약서</a></li>
-            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=S'>납품내역관리</a></li> 
           </ul>
         </li>
       </ul>
