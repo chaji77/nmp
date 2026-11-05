@@ -65,6 +65,7 @@ int intTradeStatusSellerSent     = 0;
 int intTradeStatusSellerReceived = 0;
 int intTradeStatusSettleStandby  = 0;
 int intTradeStatusYetMaturity    = 0;
+int[] arrCyclnWaitCounts         = new int[2]; // 싸이클론 대기건수 {발주계약서, 납품내역관리}
 if (lvo_for_login_check!=null && !StrUtil.nvl(lvo_for_login_check.CPY_ID).equals("") && !StrUtil.nvl(lvo_for_login_check.CPY_ID).equals("0") && StrUtil.isOnlyNumeric(lvo_for_login_check.CPY_ID)) {
   ArrayList<TradeStatusVO> arrTradeStatuses = TradeStatusBean.CT_HEADER_STATUS_PER_CPY_ID_PROC(Integer.parseInt(lvo_for_login_check.CPY_ID));
   if (arrTradeStatuses!=null && arrTradeStatuses.size()>0) {
@@ -77,6 +78,7 @@ if (lvo_for_login_check!=null && !StrUtil.nvl(lvo_for_login_check.CPY_ID).equals
       if (tsv.WAIT_TYPE.equals("YET_MATURITY"))    intTradeStatusYetMaturity    = tsv.WAIT_COUNT;
     }
   }
+  arrCyclnWaitCounts = TradeStatusBean.CYCLN_ORDER_STATUS_PER_CPY_ID_PROC(Integer.parseInt(lvo_for_login_check.CPY_ID));
 }
 
 pageContext.setAttribute("BUYER_SENT",        intTradeStatusBuyerSent);
@@ -87,4 +89,6 @@ pageContext.setAttribute("SENT_CONTRACT",     intTradeStatusBuyerSent + intTrade
 pageContext.setAttribute("RECEIVED_CONTRACT", intTradeStatusBuyerReceived + intTradeStatusSellerReceived); // 받은계약건수
 pageContext.setAttribute("SETTLE_STANDBY",    intTradeStatusSettleStandby); // 결제대기건수
 pageContext.setAttribute("YET_MATURITY",      intTradeStatusYetMaturity); // 만기미도래건수
+pageContext.setAttribute("CYCLN_BUYER_WAIT",  arrCyclnWaitCounts[0]); // 싸이클론 발주계약서 대기건수
+pageContext.setAttribute("CYCLN_SELLER_WAIT", arrCyclnWaitCounts[1]); // 싸이클론 납품내역관리 대기건수
 %>

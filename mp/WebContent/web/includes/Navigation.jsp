@@ -6,8 +6,17 @@ boolean isLogined = false;
 
 // if (!((String)pageContext.getAttribute("VALID_IP_YN")).equals("N") && !((String)pageContext.getAttribute("CPY_ID")).equals("0")) isLogined = true;
 if (!((String)pageContext.getAttribute("CPY_ID")).equals("0")) isLogined = true;
-int intReceivedContractsCountForNavigation = ((int)pageContext.getAttribute("SENT_CONTRACT"))+((int)pageContext.getAttribute("RECEIVED_CONTRACT"))+((int)pageContext.getAttribute("SETTLE_STANDBY"));
-;
+// B2B전자결제 하위 메뉴 배지의 합계
+int intReceivedContractsCountForNavigation = ((int)pageContext.getAttribute("SENT_CONTRACT"))+((int)pageContext.getAttribute("RECEIVED_CONTRACT"))+((int)pageContext.getAttribute("SETTLE_STANDBY")); // 만기 미도래는 결제완료 건이라 넣지 않는다
+// 싸이클론 하위 메뉴 배지의 합계
+int intCyclnWaitCountForNavigation = ((int)pageContext.getAttribute("CYCLN_BUYER_WAIT"))+((int)pageContext.getAttribute("CYCLN_SELLER_WAIT"));
+%>
+<%!
+// 하위 메뉴 옆 대기건수 배지. 0건이면 표시하지 않는다.
+private String navBadge(Object count) {
+  int n = (count instanceof Integer) ? (Integer) count : 0;
+  return (n > 0) ? " <span class='nav-badge'>" + n + "</span>" : "";
+}
 %>
 <script>
 $(document).ready(function() {
@@ -48,9 +57,9 @@ $(window).on('resize', function(){
       <img class='burger' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAYNJREFUeF7t2VGKwzAUxdB4/4t26QYK/ghyH2e+BxRLuS3F6/GXGlgpHfwRIH4JBBAgNhDjLUCA2ECMtwABYgMx3gIEiA3EeAsQIDYQ4y1AgNhAjLcAAWIDMd4CBIgNxHgLECA2EOMtQIDYQIy3gH8LsPfe8TNfjV9rHb3UR//8PbkAv/sLEO9DAAFiAzHeAgSIDcR4C5geID7fOPzx74BxBuIDCSBAbCDGW4AAsYEYbwECxAZivAUIEBuI8RYgQGwgxh8vwJWkK8n4nRVAgKsNxA/nQkaA2ECMtwABYgMx/vUFxOcbhz/+ITbOQHwgAQSIDcR4CxAgNhDjLUCA2ECMtwABYgMx3gIEiA3E+OMFuBN2JRm/swIIcLWB+OFevw/wHeAjKH7HBRDgagPxw73+HRCfbxz++IfYOAPxgQQQIDYQ4y1AgNhAjLcAAWIDMd4CBIgNxHgLECA2EOMtQIDYQIy3AAFiAzHeAgSIDcR4CxAgNhDjLUCA2ECMtwABYgMx/gNZbGBhNKJf3wAAAABJRU5ErkJggg=='>
       <a href='<%=request.getContextPath()%>/index.jsp'><img class='logo' src='//image.mp1.co.kr<%=request.getContextPath() %>/bi.png'></a>
       <ul id='navigation'>
-        <li class='navigation-li-col nav-001'><a href='<%=request.getContextPath()%>/web/trade/index.jsp'>B2B전자결제</a></li>
+        <li class='navigation-li-col nav-001'><a href='<%=request.getContextPath()%>/web/trade/index.jsp'>B2B전자결제<%=navBadge(intReceivedContractsCountForNavigation)%></a></li>
         <li class='navigation-li-col nav-002'><a href='<%=request.getContextPath()%>/web/collateral/kodit/'>B2B담보보증</a></li>
-		    <li class='navigation-li-col nav-003'><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>싸이클론</a></li>
+		    <li class='navigation-li-col nav-003'><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>싸이클론<%=navBadge(intCyclnWaitCountForNavigation)%></a></li>
         <li class='navigation-li-col nav-004'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>이용안내</a></li>
         <li class='navigation-li-col nav-005'><a href='<%=request.getContextPath()%>/web/customer/index.jsp'>고객센터</a></li>
 		    <li class='navigation-li-col nav-006'><a href='<%=request.getContextPath()%>/web/customer/support/mro.jsp'>기업지원서비스</a></li>
@@ -58,9 +67,6 @@ $(window).on('resize', function(){
       <aside>
         <% if (isLogined) { %>
         <font color='#000' class='mobile_hide is-logined-flag' style='font-weight:bold;'><i class="fa-solid fa-lock"></i> ${CPY_NM}</font>&nbsp;
-          <% if (intReceivedContractsCountForNavigation>0) { %>
-        <a class='received_contract' href='<%=request.getContextPath()%>/web/trade/index.jsp' title='B2B전자결제현황'><%=intReceivedContractsCountForNavigation %></a>
-          <% } %>
         <a href='<%=request.getContextPath() %>/web/customer/MyPage.jsp' class='btn'>마이페이지</a>
         <a href='<%=request.getContextPath() %>/web/Logout.jsp' class='btn'>로그아웃</a>
         <% } else { %>
@@ -76,8 +82,8 @@ $(window).on('resize', function(){
         <li class='navigation-li-col'>
           <ul class='nav-001'><!-- B2B전자결제 -->
             <li><a href='<%=request.getContextPath()%>/web/trade/ContractReg.jsp'>매매계약서 작성</a></li>
-            <li><a href='<%=request.getContextPath()%>/web/trade/ContractsSent.jsp'>보낸계약서</a></li>
-            <li><a href='<%=request.getContextPath()%>/web/trade/ContractsReceived.jsp'>받은계약서</a></li>
+            <li><a href='<%=request.getContextPath()%>/web/trade/ContractsSent.jsp'>보낸계약서<%=navBadge((int)pageContext.getAttribute("SENT_CONTRACT") + (int)pageContext.getAttribute("SETTLE_STANDBY"))%></a></li>
+            <li><a href='<%=request.getContextPath()%>/web/trade/ContractsReceived.jsp'>받은계약서<%=navBadge(pageContext.getAttribute("RECEIVED_CONTRACT"))%></a></li>
             <li><a href='<%=request.getContextPath()%>/web/trade/ContractsMaturityComing.jsp'>만기 미도래 계약서</a></li>
             <% if (!"2".equals((String)pageContext.getAttribute("CPY_GUBUN"))) { %>
             <li><a href='<%=request.getContextPath()%>/web/trade/Invoices.jsp'>거래세금계산서관리</a></li>
@@ -95,8 +101,8 @@ $(window).on('resize', function(){
         </li>
         <li class='navigation-li-col'>
           <ul class='nav-003'><!-- 싸이클론 -->
-            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>발주계약서</a></li>
-            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=S'>납품내역관리</a></li> 
+            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'>발주계약서<%=navBadge(pageContext.getAttribute("CYCLN_BUYER_WAIT"))%></a></li>
+            <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=S'>납품내역관리<%=navBadge(pageContext.getAttribute("CYCLN_SELLER_WAIT"))%></a></li> 
           </ul>
         </li>
         <li class='navigation-li-col'>

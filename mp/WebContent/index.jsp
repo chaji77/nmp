@@ -34,7 +34,7 @@ int intTotalCustomerCount = CustomerBean.COMPANY_CNT_PROC();
 <!-- in-page styles -->
 <style>
 body {overflow-x: hidden;}
-header {z-index:4;position:fixed;top:0;width:100%;background-color:rgba(255, 255, 255, 0);border-bottom:0;}
+header {z-index:4;position:fixed;top:0;width:100%;background-color:rgba(255, 255, 255, 0.9);border-bottom:0;}
 header:hover {background-color:white;}
 
 #navigation-items-block {position:fixed;top:57px;margin-top:0 !important;background-color:rgba(255, 255, 255, 0.95);}
@@ -62,7 +62,7 @@ ul.direct-links>li>a:hover {color:#072;cursor:pointer;}
 ul.direct-links>li i {font-size:4em;margin-top:0px;line-height:1.6em;}
 ul.direct-links>li i:hover {font-size:4.2em;margin-bottom:20px;color:white;background-color:#072;padding:0 20px;border-radius:10px;}
 
-span.contract-cnt {position:absolute;top:20px;right:0;color:white;background-color:#FF5733;border-radius:50px;padding:10px 15px;font-weight:bold;animation:blink 3s infinite;}
+ul.direct-links span.nav-badge {position:absolute;top:10px;right:12px;z-index:1;font-size:0.9em;font-weight:bold;pointer-events:none;}
 span.due-date {background-color:#33aa57;color:white;padding:3px 5px;border-radius:3px;}
 
 ul.customer-service-block {clear:both;position:relative;display:flex;flex-flow:row wrap;color:#000;}
@@ -117,6 +117,7 @@ footer {opacity: 0.8;}
   ul.direct-links {min-height:0;}
   ul.direct-links>li {margin:5px;width:76px;font-size:0.9em;}
   ul.direct-links>li i {font-size:3em;}
+  ul.direct-links span.nav-badge {top:8px;right:8px;}
   span.due-date {padding:2px 5px;}
   ul.customer-service-block {padding-top:40px;background-image:none;}
   ul.customer-service-block>li {width:100%;padding:0;padding-top:40px;}
@@ -204,7 +205,6 @@ $(document).ready(function() {
   $("div.banner-btns i").on("click", function() {
     show_banner($(this).attr("idx"));
   });
-  if ($("span.contract-cnt").text()=="0") $("span.contract-cnt").hide();
   if ($(".is-logined-flag").length>0) $(".login-btn").hide(); 
 });
 $(document).on('visibilitychange', function() {
@@ -268,7 +268,10 @@ window.addEventListener('scroll', function() {
       <ul class='direct-links'>
         <li class='login-btn'><a onclick='loadLoginBox();'><i class="fa-solid fa-unlock"></i><br/>로그인</a></li>
         <li><a href='<%=request.getContextPath()%>/web/trade/ContractReg.jsp'><i class="fa-solid fa-file-signature"></i><br/>매매계약서<br/>작성</a></li>
-        <li><a href='<%=request.getContextPath()%>/web/trade/ContractsReceived.jsp'><span class='contract-cnt'>${RECEIVED_CONTRACT}</span><i class="fa-solid fa-receipt"></i><br/>받은 계약서</a></li>
+        <%-- 건수 배지는 Navigation.jsp 의 navBadge() 를 쓴다. 0건이면 나오지 않는다. --%>
+        <li><a href='<%=request.getContextPath()%>/web/trade/ContractsReceived.jsp'><%=navBadge(pageContext.getAttribute("RECEIVED_CONTRACT"))%><i class="fa-solid fa-receipt"></i><br/>받은 계약서</a></li>
+        <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=B'><%=navBadge(pageContext.getAttribute("CYCLN_BUYER_WAIT"))%><i class="fa-solid fa-file-export"></i><br/>싸이클론<br/>발주계약서</a></li>
+        <li><a href='<%=request.getContextPath()%>/web/trade/CyclnOrders.jsp?role=S'><%=navBadge(pageContext.getAttribute("CYCLN_SELLER_WAIT"))%><i class="fa-solid fa-file-import"></i><br/>싸이클론<br/>납품내역확인</a></li>
         <li class='mobile_hide'><a href='<%=request.getContextPath()%>/web/customer/guide/BankWorkTime.jsp'><i class="fa-solid fa-clock"></i><br/>인터넷 뱅킹<br/>시간 확인</a></li>
         <li><a href='<%=request.getContextPath()%>/web/customer/'><i class="fa-solid fa-person-circle-question"></i><br/>도움이 필요<br/>하세요?</a></li>
         <!-- li class='mobile_hide'><a href='<%=request.getContextPath()%>/web/customer/download/Downloads.jsp'><i class="fa-solid fa-cloud-arrow-down"></i><br/>필수프로그램<br/>다운로드</a></li -->
