@@ -263,7 +263,7 @@ var bankRun = 0; // 취소하면 올라가서 이전 확인의 응답을 버린�
 function waitBank(kncd, r, done) {
   var run = ++bankRun;
   var tries = 0;
-  showSpinner("은행 응답을 기다리고 있습니다.<br/><br/><a onclick='bankRun++;hideSpinner();location.reload();' class='btn'>취소</a>");
+  showSpinner("전송중입니다.<br/><br/><a onclick='bankRun++;hideSpinner();location.reload();' class='btn'>취소</a>");
   (function poll() {
     $.post("CyclnTmsgResultProc.jsp", {"kncd":kncd, "tmsg_seq":r.tmsg_seq, "req_ymd":r.req_ymd}, function(d) {
       if (run!=bankRun) return;
@@ -272,20 +272,20 @@ function waitBank(kncd, r, done) {
       if (json.result=="wait" && ++tries<60) { setTimeout(poll, 2000); return; }
       hideSpinner();
       done(json.result=="ok" ? null
-         : json.result=="wait" ? "은행 응답이 지연되고 있습니다. 잠시 후 목록에서 상태를 확인하십시오."
+         : json.result=="wait" ? "응답이 지연되고 있습니다. 잠시 후 목록에서 상태를 확인하십시오."
          : json.msg);
     }).fail(function() {
       if (run!=bankRun) return;
       if (++tries<60) { setTimeout(poll, 2000); return; }
       hideSpinner();
-      done("은행 응답을 확인하지 못했습니다. 잠시 후 목록에서 상태를 확인하십시오.");
+      done("응답을 확인하지 못했습니다. 잠시 후 목록에서 상태를 확인하십시오.");
     });
   })();
 }
 /* 승인. 성공하면 바뀐 상태를 보여주려고 같은 화면을 다시 띄운다. */
 function confirmOrder() {
   if (!validateConfirm()) return;
-  showCustomConfirm("승인하시겠습니까?<br/>승인하면 발주계약 내용이 은행으로 전송됩니다.", function() {
+  showCustomConfirm("승인하시겠습니까?<br/>승인하면 발주계약 내용이 접수됩니다.", function() {
     showLoading();
     $.post("CyclnOrderConfirmProc.jsp", $("form[name='frmConfirm']").serialize(), function(data) {
       hideLoading();
@@ -405,7 +405,7 @@ function startChange() {
 /* 변경요청 보내기. 전문은 나가지 않고, 상대 기업이 승인하면 그때 은행으로 전송된다. */
 function chgReq() {
   if (!validateConfirm()) return;
-  showCustomConfirm("변경을 요청하시겠습니까?<br/>상대 기업이 승인하면 변경 내용이 은행으로 전송됩니다.", function() {
+  showCustomConfirm("변경을 요청하시겠습니까?<br/>상대 기업이 승인하면 변경 내용이 접수됩니다.", function() {
     showLoading();
     $.post("CyclnOrderReqProc.jsp", $("form[name='frmConfirm']").serialize() + "&action=CHGREQ", function(data) {
       hideLoading();
@@ -427,7 +427,7 @@ function chgReq() {
 }
 /* 변경승인. 상대가 요청한 내용으로 CL080 변경 전문을 보낸다. */
 function chgCfm() {
-  showCustomConfirm("변경요청을 승인하시겠습니까?<br/>승인하면 변경 내용이 은행으로 전송됩니다.", function() {
+  showCustomConfirm("변경요청을 승인하시겠습니까?<br/>승인하면 변경 내용이 접수됩니다.", function() {
     showLoading();
     $.post("CyclnOrderReqProc.jsp", {
       "orderno"    : "<%=StrUtil.nvl(vo.ORDERNO)%>",
@@ -456,7 +456,7 @@ function chgCfm() {
 /* 취소요청. 상대 승인 없이 바로 취소 전문이 나간다.
    결제예정정보(CL090)가 나가 있으면 그것부터 취소하고, 은행 처리가 끝나면 매매계약(CL080) 취소를 이어서 보낸다. */
 function cancelReq() {
-  showCustomConfirm("거래를 취소하시겠습니까?<br/>상대 기업의 승인 없이 은행으로 취소가 전송되며 되돌릴 수 없습니다.", function() {
+  showCustomConfirm("거래를 취소하시겠습니까?<br/>상대 기업의 승인 없이 취소처리되며 되돌릴 수 없습니다.", function() {
     sendCancel($("input[name='csrf_token']").val());
   }, function(){});
 }
@@ -513,7 +513,7 @@ function payOrder() {
       var r = null;
       try { r = JSON.parse(data); } catch (e) { r = null; }
       if (r === null) {
-        showAlert("은행 접수에 실패했습니다. 잠시 후 다시 시도하십시오.");
+        showAlert("접수에 실패했습니다. 잠시 후 다시 시도하십시오.");
         return;
       }
       if (r.result === "ok") {
@@ -555,7 +555,7 @@ $(document).ready(function() {
 <% if (canChgCfm) { %>
       <li><strong>상대 기업이 변경을 요청한 내용입니다.</strong> 확인 후 승인하거나, 다시 고쳐 변경요청하십시오.</li>
 <% } else if (vo.isChgPending()) { %>
-      <li><strong>변경을 요청했습니다.</strong> 상대 기업이 승인하면 변경 내용이 은행으로 전송됩니다.</li>
+      <li><strong>변경을 요청했습니다.</strong> 상대 기업이 승인하면 변경 내용이 접수됩니다.</li>
 <% } %>
     </ul>
   </li>

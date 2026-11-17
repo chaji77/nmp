@@ -72,6 +72,6 @@ if (strKncd.equals("CL080") && strTrxCls.equals(CyclnOrderVO.TRX_REGIST)
   CyclnSms.send(Integer.parseInt(detail.CPYBUYER), CyclnSms.MSG_CONFIRM_FAIL.replace("#{CPY_NAME}", detail.SC_NAME));
 }
 
-String strMsg = "은행 처리에 실패했습니다." + (strResMsg.equals("") ? "" : "<br/>" + strResMsg);
+String strMsg = "처리를 실패했습니다." + (strResMsg.equals("") ? "" : "<br/>" + strResMsg);
 out.print("{\"result\":\"error\",\"msg\":\"" + js(strMsg) + "\"}");
 %>
